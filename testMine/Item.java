@@ -21,7 +21,7 @@ public class Item
     World world;
 
     /**
-     * Use this class if you want to draw a sprite. or else, just use the other classes.
+     * Use this class if you want to draw a PermantSprite. or else, just use the other classes.
      * @param x
      * @param y
      * @param gold

@@ -3,6 +3,7 @@ package testMine;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Image;
+import java.awt.geom.Point2D;
 
 
 /**
@@ -18,6 +19,8 @@ import java.awt.Image;
  */
 public abstract class Character
 {
+    Point2D.Double location;
+    
     double wid;
 
     double hei;
@@ -36,7 +39,7 @@ public abstract class Character
 
     double hp; // health points
 
-    private World w;
+    public World w;
 
     boolean alive;
 
@@ -379,5 +382,20 @@ public abstract class Character
     public void setWorld( World w )
     {
         this.w = w;
+    }
+    
+    /**
+     * Give this method a point, and if it happens to be inside them then yeah
+     * @param givenX
+     * @param givenY
+     * @return if its inside
+     */
+    public boolean insideMe( double givenX, double givenY)
+    {
+        if (givenX > x && givenX < x + wid && givenY > y && givenY < y + hei)
+        {
+            return true;
+        }
+        return false;
     }
 }

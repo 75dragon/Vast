@@ -149,6 +149,7 @@ public class Enemy extends Character
     public void enemyAttack( Player c )
     {
         c.takeDamage( 1 );
+        w.addAttackSprite( c.getX(), c.getY(), .1 );
     }
     
     public void removeEnemy()

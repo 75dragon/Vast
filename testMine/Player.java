@@ -118,6 +118,7 @@ public class Player extends Character
         {
             getWorld().theWorld[(int)( getY() + getVY() + hei / 2 )][(int)( getX() + getVX() + wid / 2 )].getTile()
                 .mineTile();
+            getWorld().addAttackSprite( getX() + getVX(), getY() + getVY() , .1 );
         }
     }
 

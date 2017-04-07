@@ -1,12 +1,6 @@
 package testMine;
 
 import java.awt.Color;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.util.ArrayList;
-
-import javax.swing.Timer;
-
 
 /**
  * GoldTile class.
@@ -20,10 +14,6 @@ import javax.swing.Timer;
  */
 public class GoldTile extends Tile
 {
-
-    private boolean gold;
-
-
     /**
      * @param c
      *            col
@@ -35,7 +25,6 @@ public class GoldTile extends Tile
     public GoldTile( int c, int r, World world )
     {
         super( false, 1000, Color.YELLOW, c, r, world );
-        gold = true;
     }
 
 }

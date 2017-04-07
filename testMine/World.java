@@ -284,6 +284,16 @@ public class World
         System.out.println( x + " " + y + " start ticking!" );
     }
 
+    /**
+     * add atk sprite for time seconds
+     * @param x
+     * @param y
+     * @param time
+     */
+    public void addAttackSprite(double x, double y, double time)
+    {
+        theItems.add( new TemporaryItem(x, y, time, attackImage, this) );
+    }
 
     /**
      * Clears an area, like creating a cavern but also killing things in it!
