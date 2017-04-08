@@ -22,10 +22,14 @@ public class Player extends Character
     private int gold;
 
     private int bombs;
-    
+
     Timer moveMe;
 
-    int light;//TODO
+    int light;// TODO
+
+    Weapon holding;
+
+
     /**
      * @param x
      *            x
@@ -72,6 +76,7 @@ public class Player extends Character
         }
     }
 
+
     /**
      * @param damage
      *            damage value
@@ -85,6 +90,7 @@ public class Player extends Character
             System.out.println( getHP() );
         }
     }
+
 
     /**
      * Deploys bomb
@@ -118,9 +124,10 @@ public class Player extends Character
         {
             getWorld().theWorld[(int)( getY() + getVY() + hei / 2 )][(int)( getX() + getVX() + wid / 2 )].getTile()
                 .mineTile();
-            getWorld().addAttackSprite( getX() + getVX(), getY() + getVY() , .1 );
+            getWorld().addAttackSprite( getX() + getVX(), getY() + getVY(), .1 );
         }
     }
+
 
     public void startMoving()
     {
@@ -133,6 +140,24 @@ public class Player extends Character
             }
         } );
         moveMe.start();
+    }
+
+    /**
+     * Sets the player's weapon
+     * @param x the weapon, oh how kind
+     */
+    public void setWeapon( Weapon x )
+    {
+        holding = x;
+    }
+
+    /**
+     * Get the player's weapon
+     * @return Weapon weap-on
+     */
+    public Weapon getWeapon()
+    {
+        return holding;
     }
     /**
      * Returns player's gold amount.
@@ -154,16 +179,25 @@ public class Player extends Character
     public void addGold( int g )
     {
         gold += g;
-        System.out.println( "I have this much gold: " + gold );
     }
 
 
+    /**
+     * Adds bombs to the player.
+     * 
+     * @param amount
+     */
     public void addBombs( int amount )
     {
         bombs = bombs + amount;
     }
 
 
+    /**
+     * gets the amount of bombs
+     * 
+     * @return int of bombs
+     */
     public int getBombs()
     {
         return bombs;
@@ -180,9 +214,14 @@ public class Player extends Character
     {
         return hei;
     }
-    
+
+
     public void removePlayer()
     {
-       moveMe.stop();
+        moveMe.stop();
+        if ( holding != null )
+        {
+            holding.stopAttacking();
+        }
     }
 }
