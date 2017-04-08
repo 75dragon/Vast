@@ -43,9 +43,9 @@ public abstract class Character
 
     boolean alive;
 
-    private Color color;
+    Color color;
 
-    private Image img; // image of the char
+    Image img; // image of the char
 
 
     /**

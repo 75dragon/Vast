@@ -1,6 +1,7 @@
 package testMine;
 
 import java.awt.Color;
+import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -115,6 +116,43 @@ public class Player extends Character
             }
         } );
         moveMe.start();
+    }
+    
+    /**
+     * Draws character.
+     * 
+     * @param g
+     *            graphics
+     */
+    public void drawMe( Graphics g )
+    {
+        if ( img == null )
+        {
+            g.setColor( color );
+            g.fillRect( (int)( x * 40 ), (int)( y * 40 ), 40, 40 );
+            g.setColor( Color.WHITE );
+            g.fillRect( (int)( x * 40 ), (int)( y * 40 ), 40, 5 );
+            g.setColor( Color.RED );
+            g.fillRect( (int)( x * 40 ), (int)( y * 40 ), (int)( 40 * hp / maxHp ), 5 );
+            // g.setColor( Color.MAGENTA );
+            // g.drawString( x + ", " + y, (int)( x * 40 ), (int)( y * 40 ) );
+        }
+        else
+        {
+            g.setColor( color );
+            g.fillRect( (int)( x * 40 ), (int)( y * 40 ), (int)( 40 * wid ), (int)( 40 * hei ) );
+            g.drawImage( img, (int)( x * 40 ) + (int)( 10 * wid ), (int)( y * 40 ) + (int)( 10 * hei ), null );
+            g.setColor( Color.WHITE );
+            g.fillRect( (int)( x * 40 ), (int)( y * 40 ), 40, 5 );
+            g.setColor( Color.RED );
+            g.fillRect( (int)( x * 40 ), (int)( y * 40 ), (int)( 40 * hp / maxHp ), 5 );
+            // g.setColor( Color.MAGENTA );
+            // g.drawString( x + ", " + y, (int)( x * 40 ), (int)( y * 40 ) );
+        }
+        if ( holding != null )
+        {
+            holding.drawMe( g );
+        }
     }
 
     /**

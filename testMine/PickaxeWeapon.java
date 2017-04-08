@@ -13,6 +13,7 @@ public class PickaxeWeapon extends Weapon
     public PickaxeWeapon( Image image, Image atkImg, Player had )
     {
         super( 1, 1, .5, image, atkImg, 100, had );
+        weaponName = "Pickaxe";
     }
 
 

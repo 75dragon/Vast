@@ -122,7 +122,7 @@ public class Displayer extends JPanel
 
         g.drawString( sayBombs + world.thePlayers.get( 0 ).getBombs(),
             (int)( world.thePlayers.get( 0 ).getX() * tileSize ) - 300,
-            (int)( world.thePlayers.get( 0 ).getY() * tileSize ) + 300 );
+            (int)( world.thePlayers.get( 0 ).getY() * tileSize ) + 250 );
 
     }
 
