@@ -63,7 +63,7 @@ public class EntranceTile extends Tile
     
     public void playerLeaves(Player left)
     {
-        world.playerDeath( left );
+        left.takeDamage( left.getHP(), "Nothing. Left safely." );
     }
     
     public void removeTile()
