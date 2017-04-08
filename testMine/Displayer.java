@@ -28,8 +28,6 @@ public class Displayer extends JPanel
 
     private String saytime = "";
 
-    private String sayBombs = "Bombs: ";
-
     int disX;
 
     int disY;
@@ -119,11 +117,6 @@ public class Displayer extends JPanel
         g.drawString( saytime,
             (int)( world.thePlayers.get( 0 ).getX() * tileSize ) - 200,
             (int)( world.thePlayers.get( 0 ).getY() * tileSize ) - 260 );
-
-        g.drawString( sayBombs + world.thePlayers.get( 0 ).getBombs(),
-            (int)( world.thePlayers.get( 0 ).getX() * tileSize ) - 300,
-            (int)( world.thePlayers.get( 0 ).getY() * tileSize ) + 250 );
-
     }
 
     public void drawEnd()

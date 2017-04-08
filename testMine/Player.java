@@ -1,6 +1,7 @@
 package testMine;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -149,6 +150,12 @@ public class Player extends Character
             // g.setColor( Color.MAGENTA );
             // g.drawString( x + ", " + y, (int)( x * 40 ), (int)( y * 40 ) );
         }
+        g.setFont( new Font( "Courier", Font.BOLD, 30 ) );
+        g.setColor( Color.WHITE );
+        g.drawString( "Bombs: " + getBombs(),
+            (int)( getX() * 40 ) - 300,
+            (int)( getY() * 40 ) + 250 );
+
         if ( holding != null )
         {
             holding.drawMe( g );

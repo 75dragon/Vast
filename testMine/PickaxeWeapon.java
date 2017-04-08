@@ -12,11 +12,14 @@ public class PickaxeWeapon extends Weapon
 
     public PickaxeWeapon( Image image, Image atkImg, Player had )
     {
-        super( 1, 1, .5, image, atkImg, 100, had );
+        super( 1, 1, .3 , image, atkImg, 100, had );
         weaponName = "Pickaxe";
     }
 
-
+    /**
+     * This weapon cannot attack, however it can be used to clear solid walls.
+     * basically, it takes the direction you are going in, and checks if its in bounds. then, it hits that tile for 1.
+     */
     public void attack()
     {
         attackSend = new Timer( (int)( attackSpeed * 1000 ), new ActionListener()

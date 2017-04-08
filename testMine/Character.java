@@ -8,9 +8,9 @@ import java.awt.geom.Point2D;
 
 /**
  * Character class that holds parameters such as position (in rows and columns),
- * velocities, health points and color.
+ * velocities, health points and color. A lot more now.
  *
- * @author Bryan Wu
+ * @author Bryan Wu, Austin Cheng
  * @version May 22, 2016
  * @author Period: 3
  * @author Assignment: zMine
