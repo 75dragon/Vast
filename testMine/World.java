@@ -83,7 +83,7 @@ public class World
         {
             thePlayers.add( new Player( entranceX, entranceY, 0, 0, 10, Color.PINK, this, 5 ) );
             thePlayers.get( i ).setImage( playerImage );
-            thePlayers.get( i ).setWeapon( new Weapon(1, 1, 1, attackImage, attackImage, 20) );
+            thePlayers.get( i ).setWeapon( new PickaxeWeapon(attackImage, attackImage, thePlayers.get( i )) );
         }
         this.dis.setGameRun( true );
         runWorld();

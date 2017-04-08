@@ -104,31 +104,6 @@ public class Player extends Character
         }
     }
 
-
-    /**
-     * Mines tile in front of player.
-     */
-    public void mine()
-    {
-        if ( getVX() == 0 && getVY() == 0 ) // player starts out with no
-                                            // direction!
-        {
-            System.out.println( "move!" );
-        }
-        else if ( getY() + getVY() + hei / 2 < 0 || getY() + getVY() + hei / 2 > getWorld().yDim
-            || getX() + getVX() + wid / 2 < 0 || getX() + getVX() + wid / 2 > getWorld().xDim )
-        {
-            System.out.println( "cant mine the abyss..." );
-        }
-        else
-        {
-            getWorld().theWorld[(int)( getY() + getVY() + hei / 2 )][(int)( getX() + getVX() + wid / 2 )].getTile()
-                .mineTile();
-            getWorld().addAttackSprite( getX() + getVX(), getY() + getVY(), .1 );
-        }
-    }
-
-
     public void startMoving()
     {
         moveMe = new Timer( 10, new ActionListener()
