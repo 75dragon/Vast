@@ -96,7 +96,7 @@ public abstract class Character
     }
 
 
-    abstract void takeDamage( double damage );
+    abstract void takeDamage( double damage, String whatHitMe );
 
 
     /**

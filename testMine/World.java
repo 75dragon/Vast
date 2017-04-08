@@ -36,8 +36,6 @@ public class World
 
     static Color brown = new Color( 90, 55, 20 );
 
-    Timer bombTimer;
-
     long countoftime = 0;
 
     int entranceX = 0;
@@ -47,6 +45,8 @@ public class World
     int TileSize;
     
     int[] endGold;
+    
+    String[] endText;
 
     int totalPlayers;
     /**
@@ -77,6 +77,7 @@ public class World
         this.dis = dis;
         theWorld = new Tile[y][x];
         endGold = new int[playersx];
+        endText = new String[playersx];
         loadImages();
         convertWorld( x, y );
         for ( int i = 0; i < playersx; i++ )
@@ -337,7 +338,8 @@ public class World
         {
             if ( distance( thePlayers.get( i ).getX(), x ) + distance( thePlayers.get( i ).getY(), y ) < radius )
             {
-                playerDeath( thePlayers.get( i ) );
+                //playerDeath( thePlayers.get( i ) );
+                thePlayers.get( i ).takeDamage( 15, "Explosion" );
             }
         }
         for ( int i = 0; i < theEnemies.size(); i++ )

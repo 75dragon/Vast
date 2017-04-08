@@ -69,7 +69,10 @@ public class EntranceTile extends Tile
     public void removeTile()
     {
         cannotLeaveYet.stop();
-        checkForPlayer.start();
+        if (checkForPlayer != null)
+        {
+        checkForPlayer.stop();
+        }
     }
     
 }

@@ -66,7 +66,8 @@ public class TrapTile extends Tile
         if ( (victem = world.detectPlayer( c, r, 1 )) != null )
         {
             check.stop();
-            world.playerDeath( victem );
+            victem.takeDamage( 15, "Tile Trap" );
+            this.color = Color.CYAN;
             return;
         }
     }

@@ -118,7 +118,7 @@ public class Enemy extends Character
      * @param damage
      *            damage
      */
-    public void takeDamage( double damage )
+    public void takeDamage( double damage, String whoHitMe )
     {
         setHP( getHP() - damage );
         if ( !isAlive() )
@@ -148,7 +148,7 @@ public class Enemy extends Character
      */
     public void enemyAttack( Player c )
     {
-        c.takeDamage( 1 );
+        c.takeDamage( 1, "A monster" );
         w.addAttackSprite( c.getX(), c.getY(), .1 );
     }
     

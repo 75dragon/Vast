@@ -31,7 +31,7 @@ public class Player extends Character
 
     Weapon holding;
 
-
+    String killedBy;
     /**
      * @param x
      *            x
@@ -65,7 +65,7 @@ public class Player extends Character
      *            damage value
      * 
      */
-    public void takeDamage( double damage )
+    public void takeDamage( double damage, String whatHitMe )
     {
         if ( isAlive() )
         {
@@ -74,6 +74,7 @@ public class Player extends Character
         }
         if ( !isAlive() )
         {
+            getWorld().endText[getWorld().getPlayers().indexOf( this )] = "Killed by: " + whatHitMe;
             getWorld().playerDeath( this );
         }
     }
