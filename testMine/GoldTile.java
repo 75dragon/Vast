@@ -2,6 +2,7 @@ package testMine;
 
 import java.awt.Color;
 
+
 /**
  * GoldTile class.
  *
@@ -27,4 +28,18 @@ public class GoldTile extends Tile
         super( false, 1000, Color.YELLOW, c, r, world );
     }
 
+
+    public void blownUp()
+    {
+        if ( destroyed == false )
+        {
+            pass = true;
+            color = World.brown;
+            world.addGoldBar( c, r );
+            loot = 0;
+            image = null;
+            destroyed = true;
+            health = 0;
+        }
+    }
 }

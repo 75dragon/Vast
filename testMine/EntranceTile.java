@@ -19,7 +19,7 @@ public class EntranceTile extends Tile
     }
     
     @Override
-    public void destroyTile()
+    public void blownUp()
     {
         //cant destroy me hahaha!
     }

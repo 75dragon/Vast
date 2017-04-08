@@ -72,7 +72,7 @@ public class TrapTile extends Tile
     }
 
     @Override
-    public void destroyTile()
+    public void blownUp()
     {
         check.stop();
     }

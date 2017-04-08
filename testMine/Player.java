@@ -54,7 +54,7 @@ public class Player extends Character
     {
         super( x, y, vX, vY, hitPoints, color, world, speed );
         gold = 0;
-        bombs = 100;
+        bombs = 5;
         light = 1000;
         startMoving();
     }

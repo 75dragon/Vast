@@ -30,7 +30,7 @@ public class World
     Displayer dis;
 
     Image playerImage, bombImage, attackImage, treasureImage, enemyImage, goldTileImage, silverTileImage, 
-    bombSackImage, healthPotImage;
+    bombSackImage, healthPotImage, goldBarImage;
 
     Listener lis;
 
@@ -109,6 +109,7 @@ public class World
             goldTileImage = ImageIO.read( new File( "goldtile2.jpg" ) );
             silverTileImage = ImageIO.read( new File( "silvertile.jpg" ) );
             healthPotImage = ImageIO.read(  new File( "HealthPot.png") );
+            goldBarImage = ImageIO.read(  new File( "GoldBar.png") );
         }
         catch ( IOException e )
         {
@@ -284,6 +285,11 @@ public class World
         theItems.add(  new BombItem(x, y, 3, bombImage, this) );
         System.out.println( x + " " + y + " start ticking!" );
     }
+    
+    public void addGoldBar( double x, double y)
+    {
+        theItems.add(  new GoldBarItem(x, y, 1000, goldBarImage, this) );
+    }
 
     /**
      * add atk sprite for time seconds
@@ -316,12 +322,12 @@ public class World
                 {
                     if ( theWorld[yy][xx] instanceof TrapTile )
                     {
-                        theWorld[yy][xx].destroyTile();
+                        theWorld[yy][xx].blownUp();
                         theWorld[yy][xx] = new RegularTile( true, 0, brown, xx, yy, this );
                     }
                     else
                     {
-                        theWorld[yy][xx].destroyTile();
+                        theWorld[yy][xx].blownUp();
                     }
                 }
             }

@@ -24,15 +24,15 @@ public class Tile
 
     int health;
 
-    public int c;
+    int c;
 
-    public int r;
+    int r;
 
-    private Image image;
+    Image image;
 
-    private Color color;// color of the tile.
+    Color color;// color of the tile.
 
-    public World world;
+    World world;
 
     double wid;
 
@@ -79,7 +79,7 @@ public class Tile
      */
     public void mineTile()
     {
-        if ( health < 1 )
+        if ( health < 1 || pass)
         {
             return;
         }
@@ -88,22 +88,23 @@ public class Tile
             health--;
             if ( health == 0 )
             {
-                destroyTile();
+                tileMined();
             }
         }
     }
 
 
     /**
-     * Destroys tile.
+     * Happens when the tile is mined
      */
-    public void destroyTile()
+    public void tileMined()
     {
         if ( destroyed == false )
         {
             pass = true;
             color = World.brown;
             world.thePlayers.get( 0 ).addGold( loot );
+            //world.addGoldBar( c, r );
             loot = 0;
             image = null;
             destroyed = true;
@@ -111,7 +112,18 @@ public class Tile
         }
     }
 
-
+    public void blownUp()
+    {
+        if ( destroyed == false )
+        {
+            pass = true;
+            color = World.brown;
+            loot = 0;
+            image = null;
+            destroyed = true;
+            health = 0;
+        }
+    }
     /**
      * Returns this tile.s
      * 
