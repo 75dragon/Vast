@@ -50,11 +50,11 @@ public class Item
         }
         else
         {
-            g.setColor( Color.ORANGE );
-            g.fillRect( (int)( d.getX() * 40 ), (int)( d.getY() * 40 ), (int)( 40 * wid ), (int)( 40 * hei ) );
+            //g.setColor( Color.ORANGE );
+            //g.fillRect( (int)( d.getX() * 40 ), (int)( d.getY() * 40 ), (int)( 40 * wid ), (int)( 40 * hei ) );
             g.drawImage( img,
-                (int)( d.getX() * 40 ) + (int)( 10 * wid ),
-                (int)( d.getY() * 40 ) + (int)( 10 * hei ),
+                (int)( d.getX() * 40 ),
+                (int)( d.getY() * 40 ),
                 null );
 //            g.setColor( Color.MAGENTA );
 //            g.drawString( d.getX() + ", " + d.getY(), (int)(d.getX() * 40), (int)(d.getY() * 40) );

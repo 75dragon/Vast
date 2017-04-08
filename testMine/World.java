@@ -103,7 +103,7 @@ public class World
             //bombImage = ImageIO.read( new File( "Bomb10x10.jpg" ) );
             bombImage = ImageIO.read( new File( "BlueShell.jpg" ) );
             attackImage = ImageIO.read( new File( "attackImage.jpg" ) );
-            treasureImage = ImageIO.read( new File( "treasure.jpg" ) );
+            treasureImage = ImageIO.read( new File( "TreasureChest.png" ) );
             bombSackImage = ImageIO.read( new File( "bombSack.png" ) );
             enemyImage = ImageIO.read( new File( "enemy1.jpg" ) );
             goldTileImage = ImageIO.read( new File( "goldtile2.jpg" ) );
