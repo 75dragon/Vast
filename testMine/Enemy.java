@@ -17,29 +17,21 @@ public class Enemy extends Character
     Timer attackTimer;
 
     Random rand = new Random();
-    // To do for enemy class
-    // Take damage from Bomb
-    // Give HP parameters to Enemy
-    // Shoot player from a unit distance
-
 
     /**
+     * Makes a default enemy.
+     * High speed, keeps going in a direction till It stops, then repeats
      * @param x
-     *            x position
      * @param y
-     *            y position
-     * @param vX
-     *            x velocity
-     * @param vY
-     *            y velocity
+     * @param velX
+     * @param velY
      * @param hitPoints
-     *            hitPoints
+     * @param c
      * @param world
-     *            World
      */
     public Enemy( int x, int y, int velX, int velY, int hitPoints, Color c, World world )
     {
-        super( x, y, velX, velY, hitPoints, c, world, 7 );
+        super( x, y, velX, velY, hitPoints, c, world, 14 );
         vX = velX;
         vY = velY;
         ai();

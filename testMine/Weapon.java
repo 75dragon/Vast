@@ -13,7 +13,7 @@ import javax.swing.Timer;
 public class Weapon
 {
     String weaponName;
-    
+
     Timer attackSend;
 
     int range;
@@ -51,15 +51,14 @@ public class Weapon
             @Override
             public void actionPerformed( ActionEvent e )
             {
-                System.out.println( "HAHAHAHAHAHA" );
             }
         } );
     }
 
 
-    public void duablityChange( double amount, int percent )
+    public void duabilityChange( double amount, int percent )
     {
-        dura = ( dura + amount ) * percent;
+        dura = ( dura + amount ) * percent / 100;
         if ( dura < 0 )
         {
             weaponBreak();
@@ -84,11 +83,12 @@ public class Weapon
         attackSend.stop();
     }
 
-    public void drawMe(Graphics g)
+
+    public void drawMe( Graphics g )
     {
         g.setFont( new Font( "Courier", Font.BOLD, 30 ) );
         g.setColor( Color.WHITE );
-        g.drawString( "Weapon: " + weaponName,
+        g.drawString( "Weapon: " + weaponName + " " + dura + "%",
             (int)( theWeilder.getX() * 40 ) - 300,
             (int)( theWeilder.getY() * 40 ) + 300 );
     }

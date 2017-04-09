@@ -77,11 +77,11 @@ public class Tile
     /**
      * slowly mines the tile
      */
-    public void mineTile()
+    public boolean mineTile()
     {
         if ( health < 1 || pass)
         {
-            return;
+            return false;
         }
         else
         {
@@ -90,6 +90,7 @@ public class Tile
             {
                 tileMined();
             }
+            return true;
         }
     }
 

@@ -12,13 +12,16 @@ public class PickaxeWeapon extends Weapon
 
     public PickaxeWeapon( Image image, Image atkImg, Player had )
     {
-        super( 1, 1, .3 , image, atkImg, 100, had );
+        super( 1, 1, .3, image, atkImg, 100, had );
         weaponName = "Pickaxe";
     }
 
+    double centerVY;
+    double centerVX; 
     /**
      * This weapon cannot attack, however it can be used to clear solid walls.
-     * basically, it takes the direction you are going in, and checks if its in bounds. then, it hits that tile for 1.
+     * basically, it takes the direction you are going in, and checks if its in
+     * bounds. then, it hits that tile for 1.
      */
     public void attack()
     {
@@ -27,22 +30,24 @@ public class PickaxeWeapon extends Weapon
             @Override
             public void actionPerformed( ActionEvent e )
             {
+                centerVY = theWeilder.getY() + theWeilder.getVY() + theWeilder.hei / 2;
+                centerVX = theWeilder.getX() + theWeilder.getVX() + theWeilder.wid / 2;
                 if ( theWeilder.getVX() == 0 && theWeilder.getVY() == 0 )
                 {
                     System.out.println( "move!" );
                 }
-                else if ( theWeilder.getY() + theWeilder.getVY() + theWeilder.hei / 2 < 0
-                    || theWeilder.getY() + theWeilder.getVY() + theWeilder.hei / 2 > theWeilder.getWorld().yDim
-                    || theWeilder.getX() + theWeilder.getVX() + theWeilder.wid / 2 < 0
-                    || theWeilder.getX() + theWeilder.getVX() + theWeilder.wid / 2 > theWeilder.getWorld().xDim )
+                else if ( centerVY < 0 || centerVY > theWeilder.getWorld().yDim || centerVX < 0
+                    || centerVX > theWeilder.getWorld().xDim )
                 {
                     System.out.println( "cant mine the abyss..." );
                 }
                 else
                 {
-                    theWeilder.getWorld().theWorld[(int)( theWeilder.getY() + theWeilder.getVY()
-                        + theWeilder.hei / 2 )][(int)( theWeilder.getX() + theWeilder.getVX() + theWeilder.wid / 2 )]
-                            .getTile().mineTile();
+                    if ( theWeilder.getWorld().theWorld[(int)centerVY][(int)centerVX].getTile().mineTile() )
+                    {
+                        duabilityChange( -1, 100 );
+                    }
+
                     theWeilder.getWorld().addAttackSprite( theWeilder.getX() + theWeilder.getVX(),
                         theWeilder.getY() + theWeilder.getVY(),
                         .1 );
