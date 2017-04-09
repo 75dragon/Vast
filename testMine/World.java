@@ -29,8 +29,8 @@ public class World
 
     Displayer dis;
 
-    Image playerImage, bombImage, attackImage, treasureImage, enemyImage, goldTileImage, silverTileImage, 
-    bombSackImage, healthPotImage, goldBarImage, rubyImage;
+    Image playerImage, bombImage, attackImage, treasureImage, enemyImage, goldTileImage, silverTileImage, bombSackImage,
+                    healthPotImage, goldBarImage, rubyImage;
 
     Listener lis;
 
@@ -43,12 +43,14 @@ public class World
     int entranceY = 0;
 
     int TileSize;
-    
+
     int[] endGold;
-    
+
     String[] endText;
 
     int totalPlayers;
+
+
     /**
      * lets create a whole new world!
      * 
@@ -84,7 +86,7 @@ public class World
         {
             thePlayers.add( new Player( entranceX, entranceY, 0, 0, 10, Color.PINK, this, 5 ) );
             thePlayers.get( i ).setImage( playerImage );
-            thePlayers.get( i ).setWeapon( new PickaxeWeapon(attackImage, attackImage, thePlayers.get( i )) );
+            thePlayers.get( i ).setWeapon( new PickaxeWeapon( attackImage, attackImage, thePlayers.get( i ) ) );
         }
         this.dis.setGameRun( true );
         runWorld();
@@ -100,18 +102,29 @@ public class World
         System.out.println( "Loading images" );
         try
         {
-            playerImage = ImageIO.read( new File( "gautum - Copy.jpg" ) );
-            //bombImage = ImageIO.read( new File( "Bomb10x10.jpg" ) );
-            bombImage = ImageIO.read( new File( "BlueShell.jpg" ) );
-            attackImage = ImageIO.read( new File( "attackImage.jpg" ) );
-            treasureImage = ImageIO.read( new File( "TreasureChest.png" ) );
-            bombSackImage = ImageIO.read( new File( "bombSack.png" ) );
-            enemyImage = ImageIO.read( new File( "enemy1.jpg" ) );
-            goldTileImage = ImageIO.read( new File( "goldtile2.jpg" ) );
-            silverTileImage = ImageIO.read( new File( "silvertile.jpg" ) );
-            healthPotImage = ImageIO.read(  new File( "HealthPot.png") );
-            goldBarImage = ImageIO.read(  new File( "GoldBar.png") );
-            rubyImage = ImageIO.read(  new File("Ruby.png") );
+            // playerImage = ImageIO.read( new File( "gautum - Copy.jpg" ) );
+            // bombImage = ImageIO.read( new File( "Bomb10x10.jpg" ) );
+            // bombImage = ImageIO.read( new File( "BlueShell.jpg" ) );
+            // attackImage = ImageIO.read( new File( "attackImage.jpg" ) );
+            // treasureImage = ImageIO.read( new File( "TreasureChest.png" ) );
+            // bombSackImage = ImageIO.read( new File( "bombSack.png" ) );
+            // enemyImage = ImageIO.read( new File( "enemy1.jpg" ) );
+            // goldTileImage = ImageIO.read( new File( "goldtile2.jpg" ) );
+            // silverTileImage = ImageIO.read( new File( "silvertile.jpg" ) );
+            // healthPotImage = ImageIO.read( new File( "HealthPot.png") );
+            // goldBarImage = ImageIO.read( new File( "GoldBar.png") );
+            // rubyImage = ImageIO.read( new File("Ruby.png") );
+            playerImage = ImageIO.read( getClass().getResource( "/gautum - Copy.jpg" ) );
+            bombImage = ImageIO.read( getClass().getResource( "/BlueShell.jpg" ) );
+            attackImage = ImageIO.read( getClass().getResource( "/attackImage.jpg" ) );
+            treasureImage = ImageIO.read( getClass().getResource( "/TreasureChest.png" ) );
+            bombSackImage = ImageIO.read( getClass().getResource( "/bombSack.png" ) );
+            enemyImage = ImageIO.read( getClass().getResource( "/enemy1.jpg" ) );
+            goldTileImage = ImageIO.read( getClass().getResource( "/goldtile2.jpg" ) );
+            silverTileImage = ImageIO.read( getClass().getResource( "/silvertile.jpg" ) );
+            healthPotImage = ImageIO.read( getClass().getResource( "/HealthPot.png" ) );
+            goldBarImage = ImageIO.read( getClass().getResource( "/GoldBar.png" ) );
+            rubyImage = ImageIO.read( getClass().getResource( "/Ruby.png" ) );
         }
         catch ( IOException e )
         {
@@ -205,6 +218,8 @@ public class World
     }
 
     int playerhold;
+
+
     /**
      * removes a player from the list
      * 
@@ -284,29 +299,35 @@ public class World
      */
     public void bombArea( double x, double y, int delay )
     {
-        theItems.add(  new BombItem(x, y, 3, bombImage, this) );
+        theItems.add( new BombItem( x, y, 3, bombImage, this ) );
         System.out.println( x + " " + y + " start ticking!" );
     }
-    
-    public void addGoldBar( double x, double y)
+
+
+    public void addGoldBar( double x, double y )
     {
-        theItems.add(  new GoldBarItem(x, y, goldBarImage, this) );
+        theItems.add( new GoldBarItem( x, y, goldBarImage, this ) );
     }
 
-    public void addRuby( double x, double y)
+
+    public void addRuby( double x, double y )
     {
-        theItems.add(  new RubyItem(x, y, rubyImage, this) );
+        theItems.add( new RubyItem( x, y, rubyImage, this ) );
     }
+
+
     /**
      * add atk sprite for time seconds
+     * 
      * @param x
      * @param y
      * @param time
      */
-    public void addAttackSprite(double x, double y, double time)
+    public void addAttackSprite( double x, double y, double time )
     {
-        theItems.add( new TemporaryItem(x, y, time, attackImage, this) );
+        theItems.add( new TemporaryItem( x, y, time, attackImage, this ) );
     }
+
 
     /**
      * Clears an area, like creating a cavern but also killing things in it!
@@ -343,7 +364,7 @@ public class World
         {
             if ( distance( thePlayers.get( i ).getX(), x ) + distance( thePlayers.get( i ).getY(), y ) < radius )
             {
-                //playerDeath( thePlayers.get( i ) );
+                // playerDeath( thePlayers.get( i ) );
                 thePlayers.get( i ).takeDamage( 15, "Explosion" );
             }
         }
@@ -351,7 +372,7 @@ public class World
         {
             if ( distance( theEnemies.get( i ).getX(), x ) + distance( theEnemies.get( i ).getY(), y ) < radius )
             {
-                //enemyDeath( theEnemies.get( i ) );
+                // enemyDeath( theEnemies.get( i ) );
                 theEnemies.get( i ).takeDamage( 15, "Explosion" );
                 i--;
             }
@@ -418,7 +439,8 @@ public class World
     {
         return thePlayers;
     }
-    
+
+
     public ArrayList<Item> getItems()
     {
         return theItems;
@@ -459,10 +481,11 @@ public class World
             for ( int j = 0; j < xDim; j++ )
             {
                 theWorld[i][j].removeTile();
-            }            
+            }
         }
     }
-    
+
+
     public int getTotalPlayers()
     {
         return totalPlayers;
