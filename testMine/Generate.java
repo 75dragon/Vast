@@ -17,7 +17,7 @@ public class Generate
         rand = new Random();
         row = y;
         col = x;
-        //makeTestWorld2();
+//        makeTestWorld2();
         makeWorld();
         printWorld();
         iterateWorld();
@@ -50,7 +50,7 @@ public class Generate
                 world[i][j] = " ";
                 if ( i == 2 && j == 2)
                 {
-                    world[i][j] = "t";
+                    world[i][j] = "#";
                 }
             }
         }

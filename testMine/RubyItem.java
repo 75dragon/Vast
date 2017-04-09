@@ -6,16 +6,16 @@ import java.awt.event.ActionListener;
 
 import javax.swing.Timer;
 
-public class GoldBarItem extends Item
+public class RubyItem extends Item
 {
     Timer check;
     int amount;
     Player victem;
     
-    public GoldBarItem( double x, double y, Image img, World world )
+    public RubyItem( double x, double y, Image img, World world )
     {
         super( x, y, 0, img, world );
-        amount = 1000;
+        amount = 750;
         pickupTimer();
     }
     

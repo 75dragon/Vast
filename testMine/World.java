@@ -30,7 +30,7 @@ public class World
     Displayer dis;
 
     Image playerImage, bombImage, attackImage, treasureImage, enemyImage, goldTileImage, silverTileImage, 
-    bombSackImage, healthPotImage, goldBarImage;
+    bombSackImage, healthPotImage, goldBarImage, rubyImage;
 
     Listener lis;
 
@@ -111,6 +111,7 @@ public class World
             silverTileImage = ImageIO.read( new File( "silvertile.jpg" ) );
             healthPotImage = ImageIO.read(  new File( "HealthPot.png") );
             goldBarImage = ImageIO.read(  new File( "GoldBar.png") );
+            rubyImage = ImageIO.read(  new File("Ruby.png") );
         }
         catch ( IOException e )
         {
@@ -289,9 +290,13 @@ public class World
     
     public void addGoldBar( double x, double y)
     {
-        theItems.add(  new GoldBarItem(x, y, 1000, goldBarImage, this) );
+        theItems.add(  new GoldBarItem(x, y, goldBarImage, this) );
     }
 
+    public void addRuby( double x, double y)
+    {
+        theItems.add(  new RubyItem(x, y, rubyImage, this) );
+    }
     /**
      * add atk sprite for time seconds
      * @param x
@@ -346,7 +351,8 @@ public class World
         {
             if ( distance( theEnemies.get( i ).getX(), x ) + distance( theEnemies.get( i ).getY(), y ) < radius )
             {
-                enemyDeath( theEnemies.get( i ) );
+                //enemyDeath( theEnemies.get( i ) );
+                theEnemies.get( i ).takeDamage( 15, "Explosion" );
                 i--;
             }
         }

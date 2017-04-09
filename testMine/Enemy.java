@@ -123,8 +123,8 @@ public class Enemy extends Character
         setHP( getHP() - damage );
         if ( !isAlive() )
         {
+            getWorld().addRuby( x, y );
             getWorld().enemyDeath( this );
-            move.stop();
         }
     }
 

@@ -128,12 +128,12 @@ public abstract class Character
         {
             y = y + getVY() * speed / 200;
             movedy = true;
-            if ( -1 < y + getVY() && y + 1 < getWorld().yDim )
+            if ( -1 < y + getVY() && y + .8 < getWorld().yDim )
             {
                 if ( getWorld().getTile( x, y ).rColl( x, y, wid, hei )
-                    || getWorld().getTile( x + 1, y ).rColl( x, y, wid, hei )
-                    || getWorld().getTile( x, y + 1 ).rColl( x, y, wid, hei )
-                    || getWorld().getTile( x + 1, y + 1 ).rColl( x, y, wid, hei ) )
+                    || getWorld().getTile( x + .8, y ).rColl( x, y, wid, hei )
+                    || getWorld().getTile( x, y + .8 ).rColl( x, y, wid, hei )
+                    || getWorld().getTile( x + .8, y + .8 ).rColl( x, y, wid, hei ) )
                 {
                     y = y - getVY() * speed / 200;
                     movedy = false;
@@ -151,12 +151,12 @@ public abstract class Character
 
             x = x + getVX() * speed / 200;
             movedx = true;
-            if ( -1 < x + getVX() && x + 1 < getWorld().xDim )
+            if ( -1 < x + getVX() && x + .8 < getWorld().xDim )
             {
                 if ( getWorld().getTile( x, y ).rColl( x, y, wid, hei )
-                    || getWorld().getTile( x + 1, y ).rColl( x, y, wid, hei )
-                    || getWorld().getTile( x, y + 1 ).rColl( x, y, wid, hei )
-                    || getWorld().getTile( x + 1, y + 1 ).rColl( x, y, wid, hei ) )
+                    || getWorld().getTile( x + .8, y ).rColl( x, y, wid, hei )
+                    || getWorld().getTile( x, y + .8 ).rColl( x, y, wid, hei )
+                    || getWorld().getTile( x + .8, y + .8 ).rColl( x, y, wid, hei ) )
                 {
                     x = x - getVX() * speed / 200;
                     movedx = false;

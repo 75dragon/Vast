@@ -104,7 +104,6 @@ public class Tile
             pass = true;
             color = World.brown;
             world.thePlayers.get( 0 ).addGold( loot );
-            //world.addGoldBar( c, r );
             loot = 0;
             image = null;
             destroyed = true;
