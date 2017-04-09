@@ -9,8 +9,8 @@ public class GameStart
 {
     int frameX = 800;
     int frameY = 800;
-    int X = 10;
-    int Y = 10;
+    int X = 100;
+    int Y = 100;
     int defaultTilePixelSize = 40;
     int players = 1;
     boolean test = false;
