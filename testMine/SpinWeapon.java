@@ -30,6 +30,7 @@ public class SpinWeapon extends Weapon
             }
             canAttack = false;
             attackSend.start();
+            cooldownCount = 0;
         }
     }
 }

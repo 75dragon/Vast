@@ -3,8 +3,10 @@ package testMine;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.geom.Arc2D;
 import java.awt.image.BufferedImage;
 
 import javax.swing.Timer;
@@ -16,9 +18,9 @@ public class Weapon
 
     Timer attackSend;
 
-    int range;
-
-    int damage;
+    int range, damage;
+    
+    int cooldownCount, maxedOut;
 
     double attackSpeed;
 
@@ -42,20 +44,30 @@ public class Weapon
         theWeilder = gottem;
         canAttack = true;
         wantToAttack = false;
+        cooldownCount = 0;
+        maxedOut = 100;
         attack();
     }
 
 
     public void attack()
     {
-        attackSend = new Timer( (int)( attackSpeed * 1000 ), new ActionListener()
+        attackSend = new Timer( (int)( attackSpeed * 1000 / maxedOut ), new ActionListener()
         {
             @Override
             public void actionPerformed( ActionEvent e )
             {
-                canAttack = true;
-                attackAction();
-                attackSend.stop();
+                System.out.println( cooldownCount );
+                if (cooldownCount < maxedOut)
+                {
+                    cooldownCount++;
+                }
+                else
+                {
+                    canAttack = true;
+                    attackAction();
+                    attackSend.stop();
+                }
             }
         } );
     }
@@ -103,5 +115,9 @@ public class Weapon
         g.drawString( "Weapon: " + weaponName + " " + dura + "%",
             (int)( theWeilder.getX() * 40 ) - 300,
             (int)( theWeilder.getY() * 40 ) + 300 );
+        Graphics2D g2d = (Graphics2D) g.create();
+        g2d.setColor(Color.YELLOW);
+        Arc2D arc = new Arc2D.Double(theWeilder.getX() * 40 - 300, theWeilder.getY() * 40 + 300, 40, 40, 0, 3.6 * cooldownCount, Arc2D.PIE);
+        g2d.fill(arc);
     }
 }
