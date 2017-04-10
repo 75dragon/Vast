@@ -4,7 +4,6 @@ import java.awt.Color;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import javax.imageio.ImageIO;
@@ -30,7 +29,7 @@ public class World
     Displayer dis;
 
     Image playerImage, bombImage, attackImage, treasureImage, enemyImage, goldTileImage, silverTileImage, bombSackImage,
-                    healthPotImage, goldBarImage, rubyImage, pickAxeAttackImage;
+                    healthPotImage, goldBarImage, rubyImage, pickAxeAttackImage, spinAttackImage;
 
     Listener lis;
 
@@ -86,7 +85,8 @@ public class World
         {
             thePlayers.add( new Player( entranceX, entranceY, 10, Color.PINK, this, 5 ) );
             thePlayers.get( i ).setImage( playerImage );
-            thePlayers.get( i ).setWeapon( new PickaxeWeapon( attackImage, pickAxeAttackImage, thePlayers.get( i ) ) );
+            //thePlayers.get( i ).setWeapon( new PickaxeWeapon( attackImage, pickAxeAttackImage, thePlayers.get( i ) ) );
+            thePlayers.get( i ).setWeapon( new SpinWeapon( attackImage, spinAttackImage, thePlayers.get( i ) ) );
         }
         this.dis.setGameRun( true );
         runWorld();
@@ -126,6 +126,7 @@ public class World
             goldBarImage = ImageIO.read( getClass().getResource( "/GoldBar.png" ) );
             rubyImage = ImageIO.read( getClass().getResource( "/Ruby.png" ) );
             pickAxeAttackImage = ImageIO.read(  getClass().getResource( "/PickAxeStrike.png" ) );
+            spinAttackImage = ImageIO.read(  getClass().getResource( "/SpinAttack.png" ) );
         }
         catch ( IOException e )
         {
@@ -351,7 +352,7 @@ public class World
      * @param cavenRadius
      *            the radius
      */
-    public void clearArea( double x, double y, double radius )
+    public void clearArea( double x, double y, double radius, int damageDealt )
     {
         for ( int xx = 0; xx < xDim; xx++ )
         {
@@ -376,22 +377,33 @@ public class World
         {
             if ( distance( thePlayers.get( i ).getX(), x ) + distance( thePlayers.get( i ).getY(), y ) < radius )
             {
-                // playerDeath( thePlayers.get( i ) );
-                thePlayers.get( i ).takeDamage( 15, "Explosion" );
+                thePlayers.get( i ).takeDamage( damageDealt, "Explosion" );
             }
         }
         for ( int i = 0; i < theEnemies.size(); i++ )
         {
             if ( distance( theEnemies.get( i ).getX(), x ) + distance( theEnemies.get( i ).getY(), y ) < radius )
             {
-                // enemyDeath( theEnemies.get( i ) );
-                theEnemies.get( i ).takeDamage( 15, "Explosion" );
+                theEnemies.get( i ).takeDamage( damageDealt, "Explosion" );
                 i--;
             }
         }
     }
 
-
+    public boolean spinSwordClearArea(double x, double y, double radius, int damageDealt)
+    {
+        boolean hitEnemy = false;
+        for ( int i = 0; i < theEnemies.size(); i++ )
+        {
+            if ( distance( theEnemies.get( i ).getX(), x ) + distance( theEnemies.get( i ).getY(), y ) < radius )
+            {
+                theEnemies.get( i ).takeDamage( damageDealt, "Spin Sword" );
+                i--;
+                hitEnemy = true;
+            }
+        }
+        return hitEnemy;
+    }
     /**
      * Returns a player if it is in a radius to the given tile's location
      * basically, checks the center of a tile to the center of a player
