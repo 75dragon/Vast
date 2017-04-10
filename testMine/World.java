@@ -1,9 +1,9 @@
 package testMine;
 
 import java.awt.Color;
-import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.ArrayList;
 import javax.imageio.ImageIO;
@@ -28,7 +28,7 @@ public class World
 
     Displayer dis;
 
-    Image playerImage, bombImage, attackImage, treasureImage, enemyImage, goldTileImage, silverTileImage, bombSackImage,
+    BufferedImage playerImage, bombImage, attackImage, treasureImage, enemyImage, goldTileImage, silverTileImage, bombSackImage,
                     healthPotImage, goldBarImage, rubyImage, pickAxeAttackImage, spinAttackImage;
 
     Listener lis;
@@ -102,18 +102,7 @@ public class World
         System.out.println( "Loading images" );
         try
         {
-            // playerImage = ImageIO.read( new File( "gautum - Copy.jpg" ) );
             // bombImage = ImageIO.read( new File( "Bomb10x10.jpg" ) );
-            // bombImage = ImageIO.read( new File( "BlueShell.jpg" ) );
-            // attackImage = ImageIO.read( new File( "attackImage.jpg" ) );
-            // treasureImage = ImageIO.read( new File( "TreasureChest.png" ) );
-            // bombSackImage = ImageIO.read( new File( "bombSack.png" ) );
-            // enemyImage = ImageIO.read( new File( "enemy1.jpg" ) );
-            // goldTileImage = ImageIO.read( new File( "goldtile2.jpg" ) );
-            // silverTileImage = ImageIO.read( new File( "silvertile.jpg" ) );
-            // healthPotImage = ImageIO.read( new File( "HealthPot.png") );
-            // goldBarImage = ImageIO.read( new File( "GoldBar.png") );
-            // rubyImage = ImageIO.read( new File("Ruby.png") );
             playerImage = ImageIO.read( getClass().getResource( "/gautum - Copy.jpg" ) );
             bombImage = ImageIO.read( getClass().getResource( "/BlueShell.jpg" ) );
             attackImage = ImageIO.read( getClass().getResource( "/attackImage.jpg" ) );
@@ -337,7 +326,7 @@ public class World
      * @param y
      * @param time
      */
-    public void addAttackSprite(Image img, double x, double y, double time )
+    public void addAttackSprite(BufferedImage img, double x, double y, double time )
     {
         theItems.add( new TemporaryItem( x, y, time, img, this ) );
     }

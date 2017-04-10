@@ -1,6 +1,6 @@
 package testMine;
 
-import java.awt.Image;
+import java.awt.image.BufferedImage;
 
 public class PickaxeWeapon extends Weapon
 {
@@ -11,7 +11,7 @@ public class PickaxeWeapon extends Weapon
      * basically, it takes the direction you are going in, and checks if its in
      * bounds. then, it hits that tile for 1.
      */
-    public PickaxeWeapon( Image image, Image atkImg, Player had )
+    public PickaxeWeapon( BufferedImage image, BufferedImage atkImg, Player had )
     {
         super( 1, 1, .3, image, atkImg, 100, had );
         weaponName = "Pickaxe";

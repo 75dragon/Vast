@@ -1,8 +1,8 @@
 package testMine;
 
-import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
 
 import javax.swing.Timer;
 
@@ -10,7 +10,7 @@ public class BombItem extends Item
 {
     Timer timeBomb;
     int countDown;
-    public BombItem( double x, double y, int countDown, Image img, World world )
+    public BombItem( double x, double y, int countDown, BufferedImage img, World world )
     {
         super( x, y, 0, img, world );
         this.countDown = countDown;

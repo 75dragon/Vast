@@ -1,8 +1,8 @@
 package testMine;
 
-import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
 
 import javax.swing.Timer;
 
@@ -23,7 +23,7 @@ public class TemporaryItem extends Item
      * @param img
      * @param world
      */
-    public TemporaryItem( double x, double y, double countDown, Image img, World world )
+    public TemporaryItem( double x, double y, double countDown, BufferedImage img, World world )
     {
         super( x, y, 0, img, world );
         this.countDown = countDown;

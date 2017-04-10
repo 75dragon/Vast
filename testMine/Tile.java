@@ -2,7 +2,7 @@ package testMine;
 
 import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.Image;
+import java.awt.image.BufferedImage;
 
 /**
  * Tile class.
@@ -28,7 +28,7 @@ public class Tile
 
     int r;
 
-    Image image;
+    BufferedImage image;
 
     Color color;// color of the tile.
 
@@ -183,7 +183,7 @@ public class Tile
      * @param i
      *            image
      */
-    public void setImage( Image i )
+    public void setImage( BufferedImage i )
     {
         image = i;
     }

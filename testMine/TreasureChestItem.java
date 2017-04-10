@@ -1,8 +1,9 @@
 package testMine;
 
-import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
+
 import javax.swing.Timer;
 
 public class TreasureChestItem extends Item
@@ -11,7 +12,7 @@ public class TreasureChestItem extends Item
     
     Player victem;
     
-    public TreasureChestItem( double x, double y, int gold, Image img, World world )
+    public TreasureChestItem( double x, double y, int gold, BufferedImage img, World world )
     {
         super( x, y, gold, img, world );
         treasureTimer();

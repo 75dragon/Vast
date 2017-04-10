@@ -1,8 +1,8 @@
 package testMine;
 
-import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
 
 import javax.swing.Timer;
 
@@ -12,7 +12,7 @@ public class BombSackItem extends Item
     int amount;
     Player victem;
     
-    public BombSackItem( double x, double y, int bombs, Image img, World world )
+    public BombSackItem( double x, double y, int bombs, BufferedImage img, World world )
     {
         super( x, y, 0, img, world );
         amount = bombs;

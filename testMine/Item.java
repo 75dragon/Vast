@@ -2,8 +2,8 @@ package testMine;
 
 import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.Image;
 import java.awt.geom.Point2D;
+import java.awt.image.BufferedImage;
 
 
 public class Item
@@ -12,7 +12,7 @@ public class Item
 
     int gold;
 
-    Image img;
+    BufferedImage img;
 
     double hei;
 
@@ -27,7 +27,7 @@ public class Item
      * @param gold
      * @param img
      */
-    public Item( double x, double y, int gold, Image img, World world )
+    public Item( double x, double y, int gold, BufferedImage img, World world )
     {
         d = new Point2D.Double( x, y );
         this.world = world;
@@ -53,8 +53,8 @@ public class Item
             //g.setColor( Color.ORANGE );
             //g.fillRect( (int)( d.getX() * 40 ), (int)( d.getY() * 40 ), (int)( 40 * wid ), (int)( 40 * hei ) );
             g.drawImage( img,
-                (int)( d.getX() * 40 ),
-                (int)( d.getY() * 40 ),
+                (int)( d.getX() * 40 -  (img.getWidth() - 40) * .5 ),
+                (int)( d.getY() * 40 -  (img.getHeight() - 40) * .5 ),
                 null );
 //            g.setColor( Color.MAGENTA );
 //            g.drawString( d.getX() + ", " + d.getY(), (int)(d.getX() * 40), (int)(d.getY() * 40) );

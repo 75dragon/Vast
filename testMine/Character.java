@@ -2,8 +2,8 @@ package testMine;
 
 import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.Image;
 import java.awt.geom.Point2D;
+import java.awt.image.BufferedImage;
 
 
 /**
@@ -35,7 +35,7 @@ public abstract class Character
 
     Color color;
 
-    Image img; // image of the char
+    BufferedImage img; // image of the char
 
     Weapon holding;
 
@@ -361,7 +361,7 @@ public abstract class Character
      * @param i
      *            image
      */
-    public void setImage( Image i )
+    public void setImage( BufferedImage i )
     {
         img = i;
     }

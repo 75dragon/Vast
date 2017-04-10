@@ -1,6 +1,6 @@
 package testMine;
 
-import java.awt.Image;
+import java.awt.image.BufferedImage;
 
 
 public class SpinWeapon extends Weapon
@@ -12,7 +12,7 @@ public class SpinWeapon extends Weapon
      * @param atkImg
      * @param had
      */
-    public SpinWeapon( Image image, Image atkImg, Player had )
+    public SpinWeapon( BufferedImage image, BufferedImage atkImg, Player had )
     {
         super( 1, 1, 3, image, atkImg, 100, had );
         weaponName = "Spin Sword";
