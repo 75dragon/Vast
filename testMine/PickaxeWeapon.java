@@ -17,42 +17,45 @@ public class PickaxeWeapon extends Weapon
     }
 
     double centerVY;
-    double centerVX; 
+
+    double centerVX;
+
+
     /**
      * This weapon cannot attack, however it can be used to clear solid walls.
      * basically, it takes the direction you are going in, and checks if its in
      * bounds. then, it hits that tile for 1.
      */
-    public void attack()
+    
+    public void attackAction()
     {
-        attackSend = new Timer( (int)( attackSpeed * 1000 ), new ActionListener()
+        if ( canAttack && wantToAttack )
         {
-            @Override
-            public void actionPerformed( ActionEvent e )
+            centerVY = theWeilder.getY() + theWeilder.getVY() + theWeilder.hei / 2;
+            centerVX = theWeilder.getX() + theWeilder.getVX() + theWeilder.wid / 2;
+            if ( theWeilder.getVX() == 0 && theWeilder.getVY() == 0 )
             {
-                centerVY = theWeilder.getY() + theWeilder.getVY() + theWeilder.hei / 2;
-                centerVX = theWeilder.getX() + theWeilder.getVX() + theWeilder.wid / 2;
-                if ( theWeilder.getVX() == 0 && theWeilder.getVY() == 0 )
-                {
-                    System.out.println( "move!" );
-                }
-                else if ( centerVY < 0 || centerVY > theWeilder.getWorld().yDim || centerVX < 0
-                    || centerVX > theWeilder.getWorld().xDim )
-                {
-                    System.out.println( "cant mine the abyss..." );
-                }
-                else
-                {
-                    if ( theWeilder.getWorld().theWorld[(int)centerVY][(int)centerVX].getTile().mineTile() )
-                    {
-                        duabilityChange( -1, 100 );
-                    }
-
-                    theWeilder.getWorld().addAttackSprite( theWeilder.getX() + theWeilder.getVX(),
-                        theWeilder.getY() + theWeilder.getVY(),
-                        .1 );
-                }
+                System.out.println( "move!" );
             }
-        } );
+            else if ( centerVY < 0 || centerVY > theWeilder.getWorld().yDim || centerVX < 0
+                || centerVX > theWeilder.getWorld().xDim )
+            {
+                System.out.println( "cant mine the abyss..." );
+            }
+            else
+            {
+                if ( theWeilder.getWorld().theWorld[(int)centerVY][(int)centerVX].getTile().mineTile() )
+                {
+                    duabilityChange( -1, 100 );
+                }
+
+                theWeilder.getWorld().addAttackSprite( theWeilder.getX() + theWeilder.getVX(),
+                    theWeilder.getY() + theWeilder.getVY(),
+                    .1 );
+            }
+            
+            canAttack = false;
+            attackSend.start();
+        }
     }
 }

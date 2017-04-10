@@ -11,6 +11,9 @@ public class Generate
     int col, row;
 
     Random rand;
+    
+    int iE = 0;
+    int jE = 0;
 
     public Generate( int x, int y )
     {
@@ -25,6 +28,7 @@ public class Generate
         iterateWorld();
         finalTouch();
         entrance();
+        clearAroundEntrance();
         printWorld();
     }
     
@@ -167,24 +171,44 @@ public class Generate
     
     void entrance()
     {
-        int i = 0;
-        int j = 0;
-        while( !world[i][j].equals(" "))
+        iE = 0;
+        jE = 0;
+        while( !world[iE][jE].equals(" "))
         {
-            j++;
-            if (j >= col)
+            jE++;
+            if (jE >= col)
             {
-                j = 0;
-                i++;
+                jE = 0;
+                iE++;
             }
         }
-        System.out.println( "E at" + j + ", " + i );
-        while ( i >= 0 )
+        System.out.println( "E at" + jE + ", " + iE );
+        while ( iE >= 0 )
         {
-            world[i][j] = "E";
-            i--;
+            world[iE][jE] = "E";
+            iE--;
+        }
+        iE++;
+    }
+    
+    public void clearAroundEntrance()
+    {
+        for ( int i = 0; i < row; i++ )
+        {
+            for ( int j = 0; j < col; j++ )
+            {
+                if ( i == iE && j == jE)
+                {
+                    
+                }
+                else if (distance(i, iE) + distance(j, jE) < 4)
+                {
+                    world[i][j] = " ";
+                }
+            }
         }
     }
+    
     
     int getWall( int y, int x )
     {
@@ -211,5 +235,10 @@ public class Generate
                 }
             }
         }
+    }
+    
+    public int distance(int x, int y)
+    {
+        return Math.abs( x - y );
     }
 }

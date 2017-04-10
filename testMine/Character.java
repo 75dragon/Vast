@@ -41,12 +41,13 @@ public abstract class Character
 
     public World w;
 
-    boolean alive;
+    boolean alive, wantToAttack;
 
     Color color;
 
     Image img; // image of the char
 
+    Weapon holding;
 
     /**
      * @param x
@@ -76,13 +77,13 @@ public abstract class Character
         this.speed = speed;
         wid = .8;
         hei = .8;
+        wantToAttack = false;
     }
 
 
     /**
-     * TODO Write your method description here.
-     * 
-     * @return
+     * Returns if alive
+     * @return boolean of healthy
      */
     public boolean isAlive()
     {
@@ -397,5 +398,33 @@ public abstract class Character
             return true;
         }
         return false;
+    }
+    
+    public void setWantToAttack( boolean yes)
+    {
+        wantToAttack = yes;
+    }
+    
+    public boolean getWantToAttack()
+    {
+        return wantToAttack;
+    }
+    
+    /**
+     * Sets the player's weapon
+     * @param x the weapon, oh how kind
+     */
+    public void setWeapon( Weapon x )
+    {
+        holding = x;
+    }
+
+    /**
+     * Get the player's weapon
+     * @return Weapon weap-on
+     */
+    public Weapon getWeapon()
+    {
+        return holding;
     }
 }

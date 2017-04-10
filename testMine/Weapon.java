@@ -28,10 +28,12 @@ public class Weapon
 
     double dura;
 
-    Player theWeilder;
+    Character theWeilder;
+    
+    boolean canAttack, wantToAttack;
 
 
-    public Weapon( int rng, int dmg, double atkspd, Image image, Image atkImg, double durability, Player gottem )
+    public Weapon( int rng, int dmg, double atkspd, Image image, Image atkImg, double durability, Character gottem )
     {
         range = rng;
         damage = dmg;
@@ -40,6 +42,8 @@ public class Weapon
         attackImg = atkImg;
         dura = durability;
         theWeilder = gottem;
+        canAttack = true;
+        wantToAttack = false;
         attack();
     }
 
@@ -51,10 +55,16 @@ public class Weapon
             @Override
             public void actionPerformed( ActionEvent e )
             {
+                canAttack = true;
+                attackAction();
+                attackSend.stop();
             }
         } );
     }
-
+    
+    public void attackAction()
+    {
+    }
 
     public void duabilityChange( double amount, int percent )
     {
@@ -74,13 +84,15 @@ public class Weapon
 
     public void startAttacking()
     {
+        wantToAttack = true;
         attackSend.start();
+        attackAction();
     }
 
 
     public void stopAttacking()
     {
-        attackSend.stop();
+        wantToAttack = false;
     }
 
 

@@ -29,8 +29,6 @@ public class Player extends Character
 
     int light;// TODO
 
-    Weapon holding;
-
     String killedBy;
     /**
      * @param x
@@ -163,23 +161,6 @@ public class Player extends Character
         }
     }
 
-    /**
-     * Sets the player's weapon
-     * @param x the weapon, oh how kind
-     */
-    public void setWeapon( Weapon x )
-    {
-        holding = x;
-    }
-
-    /**
-     * Get the player's weapon
-     * @return Weapon weap-on
-     */
-    public Weapon getWeapon()
-    {
-        return holding;
-    }
     /**
      * Returns player's gold amount.
      * 
