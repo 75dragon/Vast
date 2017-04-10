@@ -47,7 +47,7 @@ public class Listener implements KeyListener
                 world.thePlayers.get( 0 ).bomb();
                 break;
             case KeyEvent.VK_F:
-                world.thePlayers.get( 0 ).getWeapon().startAttacking();
+                world.thePlayers.get( 0 ).useWeapon();
                 break;
         }
     }
@@ -71,7 +71,7 @@ public class Listener implements KeyListener
                 world.thePlayers.get( 0 ).setVY( 0);
                 break;
             case KeyEvent.VK_F:
-                world.thePlayers.get( 0 ).getWeapon().stopAttacking();
+                world.thePlayers.get( 0 ).stopUsingWeapon();
                 break;
         }
     }

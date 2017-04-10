@@ -49,7 +49,7 @@ public class PickaxeWeapon extends Weapon
                     duabilityChange( -1, 100 );
                 }
 
-                theWeilder.getWorld().addAttackSprite( theWeilder.getX() + theWeilder.getVX(),
+                theWeilder.getWorld().addAttackSprite( attackImg, theWeilder.getX() + theWeilder.getVX(),
                     theWeilder.getY() + theWeilder.getVY(),
                     .1 );
             }

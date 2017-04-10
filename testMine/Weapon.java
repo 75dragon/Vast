@@ -69,7 +69,7 @@ public class Weapon
     public void duabilityChange( double amount, int percent )
     {
         dura = ( dura + amount ) * percent / 100;
-        if ( dura < 0 )
+        if ( dura <= 0 )
         {
             weaponBreak();
         }
@@ -78,7 +78,8 @@ public class Weapon
 
     public void weaponBreak()
     {
-        // TODO
+        attackSend.stop();
+        theWeilder.holding = null;
     }
 
 

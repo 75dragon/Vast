@@ -20,34 +20,27 @@ import java.awt.geom.Point2D;
 public abstract class Character
 {
     Point2D.Double location;
-    
-    double wid;
 
-    double hei;
+    double wid, hei;
 
-    double x;
-
-    double y;
-
-    double vX; // velocity along horizontal axis
-
-    double vY; // velocity along vertical axis
+    double x, y, vX, vY;
 
     double speed;
 
-    double maxHp;
-
-    double hp; // health points
+    double maxHp, hp;
 
     public World w;
 
-    boolean alive, wantToAttack;
+    boolean alive;
 
     Color color;
 
     Image img; // image of the char
 
     Weapon holding;
+
+    boolean movedx, movedy;
+
 
     /**
      * @param x
@@ -77,23 +70,6 @@ public abstract class Character
         this.speed = speed;
         wid = .8;
         hei = .8;
-        wantToAttack = false;
-    }
-
-
-    /**
-     * Returns if alive
-     * @return boolean of healthy
-     */
-    public boolean isAlive()
-    {
-        return hp > 0;
-    }
-
-
-    public void setAlive( boolean newStatus )
-    {
-        alive = newStatus;
     }
 
 
@@ -116,10 +92,6 @@ public abstract class Character
         return updatePos();
     }
 
-    boolean movedx;
-
-    boolean movedy;
-
 
     public boolean updatePos()
     {
@@ -129,12 +101,12 @@ public abstract class Character
         {
             y = y + getVY() * speed / 200;
             movedy = true;
-            if ( -1 < y + getVY() && y + .8 < getWorld().yDim )
+            if ( -1 < y + getVY() && y + hei < getWorld().yDim )
             {
                 if ( getWorld().getTile( x, y ).rColl( x, y, wid, hei )
-                    || getWorld().getTile( x + .8, y ).rColl( x, y, wid, hei )
-                    || getWorld().getTile( x, y + .8 ).rColl( x, y, wid, hei )
-                    || getWorld().getTile( x + .8, y + .8 ).rColl( x, y, wid, hei ) )
+                    || getWorld().getTile( x + wid, y ).rColl( x, y, wid, hei )
+                    || getWorld().getTile( x, y + hei ).rColl( x, y, wid, hei )
+                    || getWorld().getTile( x + wid, y + hei ).rColl( x, y, wid, hei ) )
                 {
                     y = y - getVY() * speed / 200;
                     movedy = false;
@@ -146,18 +118,18 @@ public abstract class Character
             }
             else
             {
-              y = y - getVY() * speed / 200;
+                y = y - getVY() * speed / 200;
                 movedy = false;
             }
 
             x = x + getVX() * speed / 200;
             movedx = true;
-            if ( -1 < x + getVX() && x + .8 < getWorld().xDim )
+            if ( -1 < x + getVX() && x + wid < getWorld().xDim )
             {
                 if ( getWorld().getTile( x, y ).rColl( x, y, wid, hei )
-                    || getWorld().getTile( x + .8, y ).rColl( x, y, wid, hei )
-                    || getWorld().getTile( x, y + .8 ).rColl( x, y, wid, hei )
-                    || getWorld().getTile( x + .8, y + .8 ).rColl( x, y, wid, hei ) )
+                    || getWorld().getTile( x + wid, y ).rColl( x, y, wid, hei )
+                    || getWorld().getTile( x, y + hei ).rColl( x, y, wid, hei )
+                    || getWorld().getTile( x + wid, y + hei ).rColl( x, y, wid, hei ) )
                 {
                     x = x - getVX() * speed / 200;
                     movedx = false;
@@ -177,6 +149,71 @@ public abstract class Character
     }
 
 
+    /**
+     * Give this method a point, and if it happens to be inside them then yeah
+     * 
+     * @param givenX
+     * @param givenY
+     * @return if its inside
+     */
+    public boolean insideMe( double givenX, double givenY )
+    {
+        if ( givenX > x && givenX < x + wid && givenY > y && givenY < y + hei )
+        {
+            return true;
+        }
+        return false;
+    }
+
+
+    /**
+     * Draws character.
+     * 
+     * @param g
+     *            graphics
+     */
+    public void drawMe( Graphics g )
+    {
+        if ( img == null )
+        {
+            g.setColor( color );
+            g.fillRect( (int)( x * 40 ), (int)( y * 40 ), 40, 40 );
+            g.setColor( Color.WHITE );
+            g.fillRect( (int)( x * 40 ), (int)( y * 40 ), 40, 5 );
+            g.setColor( Color.RED );
+            g.fillRect( (int)( x * 40 ), (int)( y * 40 ), (int)( 40 * hp / maxHp ), 5 );
+            // g.setColor( Color.MAGENTA );
+            // g.drawString( x + ", " + y, (int)( x * 40 ), (int)( y * 40 ) );
+        }
+        else
+        {
+            g.setColor( color );
+            g.fillRect( (int)( x * 40 ), (int)( y * 40 ), (int)( 40 * wid ), (int)( 40 * hei ) );
+            g.drawImage( img, (int)( x * 40 ) + (int)( 10 * wid ), (int)( y * 40 ) + (int)( 10 * hei ), null );
+            g.setColor( Color.WHITE );
+            g.fillRect( (int)( x * 40 ), (int)( y * 40 ), 40, 5 );
+            g.setColor( Color.RED );
+            g.fillRect( (int)( x * 40 ), (int)( y * 40 ), (int)( 40 * hp / maxHp ), 5 );
+            // g.setColor( Color.MAGENTA );
+            // g.drawString( x + ", " + y, (int)( x * 40 ), (int)( y * 40 ) );
+        }
+    }
+
+    public void useWeapon()
+    {
+        if (holding != null)
+        {
+            holding.startAttacking();
+        }
+    }
+    
+    public void stopUsingWeapon()
+    {
+        if ( holding != null)
+        {
+            holding.stopAttacking();
+        }
+    }
     /**
      * Return the value of hp for this player.
      * 
@@ -331,39 +368,6 @@ public abstract class Character
 
 
     /**
-     * Draws character.
-     * 
-     * @param g
-     *            graphics
-     */
-    public void drawMe( Graphics g )
-    {
-        if ( img == null )
-        {
-            g.setColor( color );
-            g.fillRect( (int)( x * 40 ), (int)( y * 40 ), 40, 40 );
-            g.setColor( Color.WHITE );
-            g.fillRect( (int)( x * 40 ), (int)( y * 40 ), 40, 5 );
-            g.setColor( Color.RED );
-            g.fillRect( (int)( x * 40 ), (int)( y * 40 ), (int)( 40 * hp / maxHp ), 5 );
-            // g.setColor( Color.MAGENTA );
-            // g.drawString( x + ", " + y, (int)( x * 40 ), (int)( y * 40 ) );
-        }
-        else
-        {
-            g.setColor( color );
-            g.fillRect( (int)( x * 40 ), (int)( y * 40 ), (int)( 40 * wid ), (int)( 40 * hei ) );
-            g.drawImage( img, (int)( x * 40 ) + (int)( 10 * wid ), (int)( y * 40 ) + (int)( 10 * hei ), null );
-            g.setColor( Color.WHITE );
-            g.fillRect( (int)( x * 40 ), (int)( y * 40 ), 40, 5 );
-            g.setColor( Color.RED );
-            g.fillRect( (int)( x * 40 ), (int)( y * 40 ), (int)( 40 * hp / maxHp ), 5 );
-            // g.setColor( Color.MAGENTA );
-            // g.drawString( x + ", " + y, (int)( x * 40 ), (int)( y * 40 ) );
-        }
-    }
-
-    /**
      * Returns world.
      * 
      * @return world
@@ -384,43 +388,40 @@ public abstract class Character
     {
         this.w = w;
     }
-    
+
+
     /**
-     * Give this method a point, and if it happens to be inside them then yeah
-     * @param givenX
-     * @param givenY
-     * @return if its inside
+     * Returns if alive
+     * 
+     * @return boolean of healthy
      */
-    public boolean insideMe( double givenX, double givenY)
+    public boolean isAlive()
     {
-        if (givenX > x && givenX < x + wid && givenY > y && givenY < y + hei)
-        {
-            return true;
-        }
-        return false;
+        return hp > 0;
     }
-    
-    public void setWantToAttack( boolean yes)
+
+
+    public void setAlive( boolean newStatus )
     {
-        wantToAttack = yes;
+        alive = newStatus;
     }
-    
-    public boolean getWantToAttack()
-    {
-        return wantToAttack;
-    }
-    
+
+
     /**
      * Sets the player's weapon
-     * @param x the weapon, oh how kind
+     * 
+     * @param x
+     *            the weapon, oh how kind
      */
     public void setWeapon( Weapon x )
     {
         holding = x;
     }
 
+
     /**
      * Get the player's weapon
+     * 
      * @return Weapon weap-on
      */
     public Weapon getWeapon()

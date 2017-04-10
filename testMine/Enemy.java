@@ -31,7 +31,7 @@ public class Enemy extends Character
      */
     public Enemy( int x, int y, int velX, int velY, int hitPoints, Color c, World world )
     {
-        super( x, y, velX, velY, hitPoints, c, world, 14 );
+        super( x, y, velX, velY, hitPoints, c, world, 12 );
         vX = velX;
         vY = velY;
         ai();

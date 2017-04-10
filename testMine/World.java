@@ -30,7 +30,7 @@ public class World
     Displayer dis;
 
     Image playerImage, bombImage, attackImage, treasureImage, enemyImage, goldTileImage, silverTileImage, bombSackImage,
-                    healthPotImage, goldBarImage, rubyImage;
+                    healthPotImage, goldBarImage, rubyImage, pickAxeAttackImage;
 
     Listener lis;
 
@@ -84,9 +84,9 @@ public class World
         convertWorld( x, y );
         for ( int i = 0; i < playersx; i++ )
         {
-            thePlayers.add( new Player( entranceX, entranceY, 0, 0, 10, Color.PINK, this, 5 ) );
+            thePlayers.add( new Player( entranceX, entranceY, 10, Color.PINK, this, 5 ) );
             thePlayers.get( i ).setImage( playerImage );
-            thePlayers.get( i ).setWeapon( new PickaxeWeapon( attackImage, attackImage, thePlayers.get( i ) ) );
+            thePlayers.get( i ).setWeapon( new PickaxeWeapon( attackImage, pickAxeAttackImage, thePlayers.get( i ) ) );
         }
         this.dis.setGameRun( true );
         runWorld();
@@ -125,6 +125,7 @@ public class World
             healthPotImage = ImageIO.read( getClass().getResource( "/HealthPot.png" ) );
             goldBarImage = ImageIO.read( getClass().getResource( "/GoldBar.png" ) );
             rubyImage = ImageIO.read( getClass().getResource( "/Ruby.png" ) );
+            pickAxeAttackImage = ImageIO.read(  getClass().getResource( "/PickAxeStrike.png" ) );
         }
         catch ( IOException e )
         {
@@ -318,7 +319,7 @@ public class World
 
     /**
      * add atk sprite for time seconds
-     * 
+     * TODO: get rid of this
      * @param x
      * @param y
      * @param time
@@ -328,6 +329,17 @@ public class World
         theItems.add( new TemporaryItem( x, y, time, attackImage, this ) );
     }
 
+    /**
+     * add sprite for time seconds
+     * @param img
+     * @param x
+     * @param y
+     * @param time
+     */
+    public void addAttackSprite(Image img, double x, double y, double time )
+    {
+        theItems.add( new TemporaryItem( x, y, time, img, this ) );
+    }
 
     /**
      * Clears an area, like creating a cavern but also killing things in it!

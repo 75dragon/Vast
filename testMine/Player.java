@@ -48,9 +48,9 @@ public class Player extends Character
      * @param speed
      *            how fast
      */
-    public Player( int x, int y, int vX, int vY, int hitPoints, Color color, World world, double speed )
+    public Player( int x, int y, int hitPoints, Color color, World world, double speed )
     {
-        super( x, y, vX, vY, hitPoints, color, world, speed );
+        super( x, y, 0, 0, hitPoints, color, world, speed );
         gold = 0;
         bombs = 5;
         light = 1000;
@@ -159,6 +159,12 @@ public class Player extends Character
         {
             holding.drawMe( g );
         }
+        else
+        {
+            g.drawString( "Weapon: None!",
+                (int)( getX() * 40 ) - 300,
+                (int)( getY() * 40 ) + 300 );
+        }
     }
 
     /**
@@ -223,7 +229,7 @@ public class Player extends Character
         moveMe.stop();
         if ( holding != null )
         {
-            holding.stopAttacking();
+            holding.attackSend.stop();
         }
     }
 }
