@@ -46,7 +46,7 @@ public class PickaxeWeapon extends Weapon
             {
                 if ( theWeilder.getWorld().theWorld[(int)centerVY][(int)centerVX].getTile().mineTile() )
                 {
-                    duabilityChange( -1, 100 );
+                    duabilityChange( -3, 100 );
                 }
 
                 theWeilder.getWorld().addAttackSprite( attackImg, theWeilder.getX() + theWeilder.getVX(),

@@ -42,7 +42,7 @@ public class TrapTile extends Tile
      */
     public TrapTile( boolean passable, int loot, Color color, int c, int r, World world )
     {
-        super( passable, loot, color, c, r, world );
+        super( passable, loot, color, c, r, 0, world );
         trapTimer();
     }
 

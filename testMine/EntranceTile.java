@@ -14,7 +14,7 @@ public class EntranceTile extends Tile
     
     public EntranceTile(int x, int y, World world )
     {
-        super( true, 0, Color.BLUE, x, y, world );
+        super( true, 0, Color.BLUE, x, y, 0, world );
         cantExit();
     }
     

@@ -25,7 +25,7 @@ public class GoldTile extends Tile
      */
     public GoldTile( int c, int r, World world )
     {
-        super( false, 1000, Color.YELLOW, c, r, world );
+        super( false, 1000, Color.YELLOW, c, r, 3, world );
     }
 
 

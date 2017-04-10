@@ -53,7 +53,7 @@ public class Tile
      * @param world
      *            world
      */
-    public Tile( boolean passable, int loot, Color color, int c, int r, World world )
+    public Tile( boolean passable, int loot, Color color, int c, int r, int hp, World world )
     {
         pass = passable;
         this.loot = loot;
@@ -61,14 +61,7 @@ public class Tile
         this.c = c;
         this.r = r;
         this.world = world;
-        if ( !passable )
-        {
-            health = 5;
-        }
-        else
-        {
-            health = 0;
-        }
+        health = hp;
         wid = 1;
         hei = 1;
     }
