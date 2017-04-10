@@ -30,6 +30,8 @@ public class Player extends Character
     int light;// TODO
 
     String killedBy;
+
+
     /**
      * @param x
      *            x
@@ -105,6 +107,7 @@ public class Player extends Character
         }
     }
 
+
     public void startMoving()
     {
         moveMe = new Timer( 10, new ActionListener()
@@ -117,7 +120,8 @@ public class Player extends Character
         } );
         moveMe.start();
     }
-    
+
+
     /**
      * Draws character.
      * 
@@ -151,9 +155,7 @@ public class Player extends Character
         }
         g.setFont( new Font( "Courier", Font.BOLD, 30 ) );
         g.setColor( Color.WHITE );
-        g.drawString( "Bombs: " + getBombs(),
-            (int)( getX() * 40 ) - 300,
-            (int)( getY() * 40 ) + 250 );
+        g.drawString( "Bombs: " + getBombs(), (int)( getX() * 40 ) - 300, (int)( getY() * 40 ) + 250 );
 
         if ( holding != null )
         {
@@ -161,11 +163,10 @@ public class Player extends Character
         }
         else
         {
-            g.drawString( "Weapon: None!",
-                (int)( getX() * 40 ) - 300,
-                (int)( getY() * 40 ) + 300 );
+            g.drawString( "Weapon: None!", (int)( getX() * 40 ) - 300, (int)( getY() * 40 ) + 300 );
         }
     }
+
 
     /**
      * Returns player's gold amount.

@@ -2,10 +2,14 @@ package testMine;
 
 import java.awt.image.BufferedImage;
 
+
 public class PickaxeWeapon extends Weapon
 {
     double centerVY;
+
     double centerVX;
+
+
     /**
      * This weapon cannot attack, however it can be used to clear solid walls.
      * basically, it takes the direction you are going in, and checks if its in
@@ -16,7 +20,8 @@ public class PickaxeWeapon extends Weapon
         super( 1, 1, .3, image, atkImg, 100, had );
         weaponName = "Pickaxe";
     }
-    
+
+
     public void attackAction()
     {
         if ( canAttack && wantToAttack )
@@ -39,12 +44,14 @@ public class PickaxeWeapon extends Weapon
                     duabilityChange( -3, 100 );
                 }
 
-                theWeilder.getWorld().addAttackSprite( attackImg, theWeilder.getX() + theWeilder.getVX(),
+                theWeilder.getWorld().addAttackSprite( attackImg,
+                    theWeilder.getX() + theWeilder.getVX(),
                     theWeilder.getY() + theWeilder.getVY(),
                     .1 );
             }
-            
+
             canAttack = false;
+            cooldownCount = 0;
             attackSend.start();
         }
     }

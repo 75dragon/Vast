@@ -23,7 +23,7 @@ public abstract class Character
 
     double wid, hei;
 
-    double x, y, vX, vY;
+    double x, y, vX, vY, SvX, SvY;
 
     double speed;
 
@@ -199,21 +199,25 @@ public abstract class Character
         }
     }
 
+
     public void useWeapon()
     {
-        if (holding != null)
+        if ( holding != null )
         {
             holding.startAttacking();
         }
     }
-    
+
+
     public void stopUsingWeapon()
     {
-        if ( holding != null)
+        if ( holding != null )
         {
             holding.stopAttacking();
         }
     }
+
+
     /**
      * Return the value of hp for this player.
      * 
@@ -261,6 +265,10 @@ public abstract class Character
     public void setVX( double newVX )
     {
         vX = newVX;
+        if ( vX != 0 )
+        {
+            SvX = newVX;
+        }
     }
 
 
@@ -284,6 +292,10 @@ public abstract class Character
     public void setVY( double newVY )
     {
         vY = newVY;
+        if ( vY != 0 )
+        {
+            SvY = newVY;
+        }
     }
 
 

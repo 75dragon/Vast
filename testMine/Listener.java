@@ -7,9 +7,13 @@ import java.awt.event.KeyListener;
 public class Listener implements KeyListener
 {
     World world;
+
     boolean gameStart = false;
+
     boolean gameRun = false;
+
     boolean gameFinish = false;
+
 
     public Listener()
     {
@@ -32,16 +36,16 @@ public class Listener implements KeyListener
         switch ( e.getKeyCode() )
         {
             case KeyEvent.VK_LEFT:
-                world.thePlayers.get( 0 ).setVX(-1);
+                world.thePlayers.get( 0 ).setVX( -1 );
                 break;
             case KeyEvent.VK_RIGHT:
-                world.thePlayers.get( 0 ).setVX( 1);
+                world.thePlayers.get( 0 ).setVX( 1 );
                 break;
             case KeyEvent.VK_UP:
-                world.thePlayers.get( 0 ).setVY(-1);
+                world.thePlayers.get( 0 ).setVY( -1 );
                 break;
             case KeyEvent.VK_DOWN:
-                world.thePlayers.get( 0 ).setVY( 1);
+                world.thePlayers.get( 0 ).setVY( 1 );
                 break;
             case KeyEvent.VK_SPACE:
                 world.thePlayers.get( 0 ).bomb();
@@ -59,16 +63,16 @@ public class Listener implements KeyListener
         switch ( e.getKeyCode() )
         {
             case KeyEvent.VK_LEFT:
-                world.thePlayers.get( 0 ).setVX(0);
+                world.thePlayers.get( 0 ).setVX( 0 );
                 break;
             case KeyEvent.VK_RIGHT:
-                world.thePlayers.get( 0 ).setVX( 0);
+                world.thePlayers.get( 0 ).setVX( 0 );
                 break;
             case KeyEvent.VK_UP:
-                world.thePlayers.get( 0 ).setVY(0);
+                world.thePlayers.get( 0 ).setVY( 0 );
                 break;
             case KeyEvent.VK_DOWN:
-                world.thePlayers.get( 0 ).setVY( 0);
+                world.thePlayers.get( 0 ).setVY( 0 );
                 break;
             case KeyEvent.VK_F:
                 world.thePlayers.get( 0 ).stopUsingWeapon();
@@ -83,17 +87,20 @@ public class Listener implements KeyListener
         // TODO Auto-generated method stub
 
     }
-    
+
+
     public void gameStart( boolean x )
     {
         gameStart = x;
     }
-    
+
+
     public void gameRun( boolean x )
     {
         gameRun = x;
     }
-    
+
+
     public void gameFinish( boolean x )
     {
         gameFinish = x;

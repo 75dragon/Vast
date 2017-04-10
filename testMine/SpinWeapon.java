@@ -29,8 +29,8 @@ public class SpinWeapon extends Weapon
                 duabilityChange( -10, 100 );
             }
             canAttack = false;
-            attackSend.start();
             cooldownCount = 0;
+            attackSend.start();
         }
     }
 }

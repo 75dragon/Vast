@@ -19,7 +19,7 @@ public class Weapon
     Timer attackSend;
 
     int range, damage;
-    
+
     int cooldownCount, maxedOut;
 
     double attackSpeed;
@@ -29,11 +29,18 @@ public class Weapon
     double dura;
 
     Character theWeilder;
-    
+
     boolean canAttack, wantToAttack;
 
 
-    public Weapon( int rng, int dmg, double atkspd, BufferedImage image, BufferedImage atkImg, double durability, Character gottem )
+    public Weapon(
+        int rng,
+        int dmg,
+        double atkspd,
+        BufferedImage image,
+        BufferedImage atkImg,
+        double durability,
+        Character gottem )
     {
         range = rng;
         damage = dmg;
@@ -57,8 +64,7 @@ public class Weapon
             @Override
             public void actionPerformed( ActionEvent e )
             {
-                System.out.println( cooldownCount );
-                if (cooldownCount < maxedOut)
+                if ( cooldownCount < maxedOut )
                 {
                     cooldownCount++;
                 }
@@ -71,10 +77,12 @@ public class Weapon
             }
         } );
     }
-    
+
+
     public void attackAction()
     {
     }
+
 
     public void duabilityChange( double amount, int percent )
     {
@@ -115,9 +123,15 @@ public class Weapon
         g.drawString( "Weapon: " + weaponName + " " + dura + "%",
             (int)( theWeilder.getX() * 40 ) - 300,
             (int)( theWeilder.getY() * 40 ) + 300 );
-        Graphics2D g2d = (Graphics2D) g.create();
-        g2d.setColor(Color.YELLOW);
-        Arc2D arc = new Arc2D.Double(theWeilder.getX() * 40 - 300, theWeilder.getY() * 40 + 300, 40, 40, 0, 3.6 * cooldownCount, Arc2D.PIE);
-        g2d.fill(arc);
+        Graphics2D g2d = (Graphics2D)g.create();
+        g2d.setColor( Color.YELLOW );
+        Arc2D arc = new Arc2D.Double( theWeilder.getX() * 40 - 300,
+            theWeilder.getY() * 40 + 320,
+            40,
+            40,
+            0,
+            3.6 * cooldownCount,
+            Arc2D.PIE );
+        g2d.fill( arc );
     }
 }

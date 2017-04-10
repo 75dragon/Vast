@@ -18,9 +18,11 @@ public class Enemy extends Character
 
     Random rand = new Random();
 
+
     /**
-     * Makes a default enemy.
-     * High speed, keeps going in a direction till It stops, then repeats
+     * Makes a default enemy. High speed, keeps going in a direction till It
+     * stops, then repeats
+     * 
      * @param x
      * @param y
      * @param velX
@@ -38,6 +40,7 @@ public class Enemy extends Character
         attackPattern( 1000 );
 
     }
+
 
     /**
      * Works the AI of the enemy with a timer.
@@ -57,6 +60,7 @@ public class Enemy extends Character
         } );
         move.start();
     }
+
 
     /**
      * Works the Attack of the enemy with a timer.
@@ -78,8 +82,10 @@ public class Enemy extends Character
 
     int aiY = rand.nextInt( 3 ) - 1;
 
+
     /**
-     * Move in a straight line until you run into a wall, then ramdomize direction and repeat
+     * Move in a straight line until you run into a wall, then ramdomize
+     * direction and repeat
      */
     public void move()
     {
@@ -90,6 +96,7 @@ public class Enemy extends Character
             }
         }
     }
+
 
     /**
      * Attack the player if he is nearby
@@ -143,7 +150,8 @@ public class Enemy extends Character
         c.takeDamage( 3, "A monster" );
         w.addAttackSprite( c.getX(), c.getY(), .1 );
     }
-    
+
+
     public void removeEnemy()
     {
         move.stop();
