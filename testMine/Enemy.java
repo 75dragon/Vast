@@ -13,10 +13,14 @@ public class Enemy extends Character
     int speed = 200;
 
     Timer move, attackTimer;
-    
+
     int cooldownCount, maxedOut;
 
     Random rand = new Random();
+
+    int aiX = rand.nextInt( 3 ) - 1;
+
+    int aiY = rand.nextInt( 3 ) - 1;
 
 
     /**
@@ -37,7 +41,6 @@ public class Enemy extends Character
         vX = velX;
         vY = velY;
         ai();
-        //attackPattern( 1000 );
         maxedOut = 50;
         cooldownCount = -200;
     }
@@ -55,7 +58,7 @@ public class Enemy extends Character
             @Override
             public void actionPerformed( ActionEvent e )
             {
-                if (cooldownCount < maxedOut)
+                if ( cooldownCount < maxedOut )
                 {
                     cooldownCount++;
                 }
@@ -69,27 +72,6 @@ public class Enemy extends Character
         } );
         move.start();
     }
-
-
-//    /**
-//     * Works the Attack of the enemy with a timer.
-//     */
-//    public void attackPattern( int delay )
-//    {
-//        attackTimer = new Timer( delay, new ActionListener()
-//        {
-//            @Override
-//            public void actionPerformed( ActionEvent e )
-//            {
-//                attemptToAttack();
-//            }
-//        } );
-//        attackTimer.start();
-//    }
-
-    int aiX = rand.nextInt( 3 ) - 1;
-
-    int aiY = rand.nextInt( 3 ) - 1;
 
 
     /**
@@ -165,6 +147,5 @@ public class Enemy extends Character
     public void removeEnemy()
     {
         move.stop();
-        attackTimer.stop();
     }
 }
