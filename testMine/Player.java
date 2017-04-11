@@ -103,7 +103,7 @@ public class Player extends Character
         if ( bombs > 0 )
         {
             bombs--;
-            getWorld().bombArea( getX(), getY(), 3000 );
+            getWorld().bombArea( getX(), getY(), 2000 );
         }
     }
 

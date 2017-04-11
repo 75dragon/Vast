@@ -36,16 +36,16 @@ public class Listener implements KeyListener
         switch ( e.getKeyCode() )
         {
             case KeyEvent.VK_LEFT:
-                world.thePlayers.get( 0 ).setVX( -1 );
+                world.thePlayers.get( 0 ).setLeft( true );
                 break;
             case KeyEvent.VK_RIGHT:
-                world.thePlayers.get( 0 ).setVX( 1 );
+                world.thePlayers.get( 0 ).setRight( true );
                 break;
             case KeyEvent.VK_UP:
-                world.thePlayers.get( 0 ).setVY( -1 );
+                world.thePlayers.get( 0 ).setUp( true );
                 break;
             case KeyEvent.VK_DOWN:
-                world.thePlayers.get( 0 ).setVY( 1 );
+                world.thePlayers.get( 0 ).setDown( true );
                 break;
             case KeyEvent.VK_SPACE:
                 world.thePlayers.get( 0 ).bomb();
@@ -63,16 +63,16 @@ public class Listener implements KeyListener
         switch ( e.getKeyCode() )
         {
             case KeyEvent.VK_LEFT:
-                world.thePlayers.get( 0 ).setVX( 0 );
+                world.thePlayers.get( 0 ).setLeft( false );
                 break;
             case KeyEvent.VK_RIGHT:
-                world.thePlayers.get( 0 ).setVX( 0 );
+                world.thePlayers.get( 0 ).setRight( false );
                 break;
             case KeyEvent.VK_UP:
-                world.thePlayers.get( 0 ).setVY( 0 );
+                world.thePlayers.get( 0 ).setUp( false );
                 break;
             case KeyEvent.VK_DOWN:
-                world.thePlayers.get( 0 ).setVY( 0 );
+                world.thePlayers.get( 0 ).setDown( false );
                 break;
             case KeyEvent.VK_F:
                 world.thePlayers.get( 0 ).stopUsingWeapon();

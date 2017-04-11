@@ -32,7 +32,7 @@ public class BombItem extends Item
             public void actionPerformed( ActionEvent e )
             {
                 timeBomb.stop();
-                world.clearArea( d.getX(), d.getY(), 3, 15 );
+                world.clearArea( d.getX(), d.getY(), 3.5, 15 );
                 System.out.println( d.getX() + " " + d.getY() + " BOOM!" );
                 world.itemDeath( theBomb );
             }

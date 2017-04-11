@@ -21,9 +21,11 @@ public abstract class Character
 {
     Point2D.Double location;
 
+    boolean left, right, up, down;
+
     double wid, hei;
 
-    double x, y, vX, vY, SvX, SvY;
+    double x, y, vX, vY;
 
     double speed;
 
@@ -70,6 +72,7 @@ public abstract class Character
         this.speed = speed;
         wid = .8;
         hei = .8;
+        up = right = left = down = false;
     }
 
 
@@ -146,6 +149,29 @@ public abstract class Character
             }
         }
         return ( movedx || movedy );
+    }
+
+
+    public void setVelocitys()
+    {
+        vX = 0;
+        vY = 0;
+        if ( up )
+        {
+            vY--;
+        }
+        if ( down )
+        {
+            vY++;
+        }
+        if ( right )
+        {
+            vX++;
+        }
+        if ( left )
+        {
+            vX--;
+        }
     }
 
 
@@ -265,10 +291,12 @@ public abstract class Character
     public void setVX( double newVX )
     {
         vX = newVX;
-        if ( vX != 0 )
-        {
-            SvX = newVX;
-        }
+    }
+
+
+    public void changeVX( double addVX )
+    {
+        vX = vX + addVX;
     }
 
 
@@ -292,10 +320,12 @@ public abstract class Character
     public void setVY( double newVY )
     {
         vY = newVY;
-        if ( vY != 0 )
-        {
-            SvY = newVY;
-        }
+    }
+
+
+    public void changeVY( double addY )
+    {
+        vY = vY + addY;
     }
 
 
@@ -443,5 +473,33 @@ public abstract class Character
     public Weapon getWeapon()
     {
         return holding;
+    }
+
+
+    public void setLeft( boolean left )
+    {
+        this.left = left;
+        setVelocitys();
+    }
+
+
+    public void setRight( boolean right )
+    {
+        this.right = right;
+        setVelocitys();
+    }
+
+
+    public void setUp( boolean up )
+    {
+        this.up = up;
+        setVelocitys();
+    }
+
+
+    public void setDown( boolean down )
+    {
+        this.down = down;
+        setVelocitys();
     }
 }
