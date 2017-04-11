@@ -427,6 +427,10 @@ public abstract class Character
      */
     public void setWeapon( Weapon x )
     {
+        if ( holding != null )
+        {
+            holding.weaponBreak();
+        }
         holding = x;
     }
 

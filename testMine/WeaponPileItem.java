@@ -7,21 +7,23 @@ import java.awt.image.BufferedImage;
 import javax.swing.Timer;
 
 
-public class TreasureChestItem extends Item
+public class WeaponPileItem extends Item
 {
     Timer check;
+
+    int amount;
 
     Player victem;
 
 
-    public TreasureChestItem( double x, double y, int gold, BufferedImage img, World world )
+    public WeaponPileItem( double x, double y, BufferedImage img, World world )
     {
-        super( x, y, gold, img, world );
-        treasureTimer();
+        super( x, y, 0, img, world );
+        pickupTimer();
     }
 
 
-    public void treasureTimer()
+    public void pickupTimer()
     {
         check = new Timer( 1000, new ActionListener()
         {
@@ -40,7 +42,7 @@ public class TreasureChestItem extends Item
         if ( ( victem = world.detectPlayer( d.getX(), d.getY(), 1 ) ) != null )
         {
             check.stop();
-            victem.addGold( 2500 );
+            world.giveRandomItem( victem );
             world.itemDeath( this );
             return;
         }

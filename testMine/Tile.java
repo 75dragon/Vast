@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 
+
 /**
  * Tile class.
  *
@@ -72,7 +73,7 @@ public class Tile
      */
     public boolean mineTile()
     {
-        if ( health < 1 || pass)
+        if ( health < 1 || pass )
         {
             return false;
         }
@@ -105,6 +106,7 @@ public class Tile
         }
     }
 
+
     public void blownUp()
     {
         if ( destroyed == false )
@@ -117,6 +119,8 @@ public class Tile
             health = 0;
         }
     }
+
+
     /**
      * Returns this tile.s
      * 
@@ -163,16 +167,16 @@ public class Tile
         {
             g.setColor( color );
             g.fillRect( c * 40, r * 40, 40, 40 );
-//            g.setColor( Color.MAGENTA );
-//            g.drawString( c + ", " + r, c * 40, r * 40 + 10 );
+            // g.setColor( Color.MAGENTA );
+            // g.drawString( c + ", " + r, c * 40, r * 40 + 10 );
         }
         else
         {
             g.setColor( color );
             g.fillRect( c * 40, r * 40, 40, 40 );
             g.drawImage( image, c * 40 + 10, r * 40 + 10, null );
-//            g.setColor( Color.MAGENTA );
-//            g.drawString( c + ", " + r, c * 40, r * 40 );
+            // g.setColor( Color.MAGENTA );
+            // g.drawString( c + ", " + r, c * 40, r * 40 );
         }
     }
 
@@ -228,12 +232,13 @@ public class Tile
         }
         return false;
     }
-    
+
+
     /**
      * for stopping timers tiles...
      */
     public void removeTile()
     {
-        
+
     }
 }

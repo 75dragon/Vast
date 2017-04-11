@@ -17,11 +17,14 @@ public class Item
     double hei;
 
     double wid;
-    
+
     World world;
 
+
     /**
-     * Use this class if you want to draw a PermantSprite. or else, just use the other classes.
+     * Use this class if you want to draw a PermantSprite. or else, just use the
+     * other classes.
+     * 
      * @param x
      * @param y
      * @param gold
@@ -44,20 +47,23 @@ public class Item
         {
             g.setColor( Color.ORANGE );
             g.fillRect( (int)( d.getX() * 40 ), (int)( d.getY() * 40 ), 40, 40 );
-//            g.setColor( Color.MAGENTA );
-//            g.drawString( d.getX() + ", " + d.getY(), (int)(d.getX() * 40), (int)(d.getY() * 40) );
+            // g.setColor( Color.MAGENTA );
+            // g.drawString( d.getX() + ", " + d.getY(), (int)(d.getX() * 40),
+            // (int)(d.getY() * 40) );
 
         }
         else
         {
-            //g.setColor( Color.ORANGE );
-            //g.fillRect( (int)( d.getX() * 40 ), (int)( d.getY() * 40 ), (int)( 40 * wid ), (int)( 40 * hei ) );
+            // g.setColor( Color.ORANGE );
+            // g.fillRect( (int)( d.getX() * 40 ), (int)( d.getY() * 40 ),
+            // (int)( 40 * wid ), (int)( 40 * hei ) );
             g.drawImage( img,
-                (int)( d.getX() * 40 -  (img.getWidth() - 40) * .5 ),
-                (int)( d.getY() * 40 -  (img.getHeight() - 40) * .5 ),
+                (int)( d.getX() * 40 - ( img.getWidth() - 40 ) * .5 ),
+                (int)( d.getY() * 40 - ( img.getHeight() - 40 ) * .5 ),
                 null );
-//            g.setColor( Color.MAGENTA );
-//            g.drawString( d.getX() + ", " + d.getY(), (int)(d.getX() * 40), (int)(d.getY() * 40) );
+            // g.setColor( Color.MAGENTA );
+            // g.drawString( d.getX() + ", " + d.getY(), (int)(d.getX() * 40),
+            // (int)(d.getY() * 40) );
         }
     }
 
@@ -66,6 +72,7 @@ public class Item
     {
         return d;
     }
+
 
     /**
      * Return the distance between something's center and the player's center
@@ -89,12 +96,13 @@ public class Item
             + ( ( player.getY() + player.getHeight() / 2 ) - ( gy + hei / 2 ) )
                 * ( ( player.getY() + player.getHeight() / 2 ) - ( gy + hei / 2 ) ) );
     }
-    
+
+
     /**
      * Removes the timers, if any
      */
     public void removeItem()
-    {       
+    {
         return;
     }
 }

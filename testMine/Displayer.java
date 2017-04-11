@@ -66,7 +66,7 @@ public class Displayer extends JPanel
         {
             drawGame();
         }
-        if (gameFinish)
+        if ( gameFinish )
         {
             drawEnd();
         }
@@ -119,22 +119,24 @@ public class Displayer extends JPanel
             (int)( world.thePlayers.get( 0 ).getY() * tileSize ) - 260 );
     }
 
+
     public void drawEnd()
     {
         g.setFont( new Font( "Courier", Font.BOLD, 30 ) );
         g.setColor( Color.BLACK );
-        g.fillRect( 0, 0, disX, disY);
+        g.fillRect( 0, 0, disX, disY );
         g.setColor( Color.WHITE );
         g.drawString( "Game Over", 50, 100 );
-        for( int i = 1; i < world.getTotalPlayers() + 1; i++)
+        for ( int i = 1; i < world.getTotalPlayers() + 1; i++ )
         {
             g.drawString( "Player " + i + " Final gold: " + world.endGold[i - 1], 100, 100 * i + 100 );
         }
-        for( int i = 1; i < world.getTotalPlayers() + 1; i++)
+        for ( int i = 1; i < world.getTotalPlayers() + 1; i++ )
         {
             g.drawString( world.endText[i - 1], 150, 100 * i + 150 );
         }
     }
+
 
     private void drawItem( Item item )
     {
@@ -175,13 +177,15 @@ public class Displayer extends JPanel
     {
         return Math.abs( x - y );
     }
-    
+
+
     public void setGameRun( boolean x )
     {
         gameRun = x;
     }
-    
-    public void setGameFinish( boolean x)
+
+
+    public void setGameFinish( boolean x )
     {
         gameFinish = x;
     }

@@ -63,7 +63,7 @@ public class TrapTile extends Tile
 
     public void sneakAttack()
     {
-        if ( (victem = world.detectPlayer( c, r, 1 )) != null )
+        if ( ( victem = world.detectPlayer( c, r, 1 ) ) != null )
         {
             check.stop();
             victem.takeDamage( 15, "Tile Trap" );
@@ -72,12 +72,14 @@ public class TrapTile extends Tile
         }
     }
 
+
     @Override
     public void blownUp()
     {
         check.stop();
     }
-    
+
+
     public void removeTile()
     {
         check.stop();

@@ -6,6 +6,8 @@ import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Random;
+
 import javax.imageio.ImageIO;
 import javax.swing.Timer;
 
@@ -28,8 +30,9 @@ public class World
 
     Displayer dis;
 
-    BufferedImage playerImage, bombImage, attackImage, treasureImage, enemyImage, goldTileImage, silverTileImage, bombSackImage,
-                    healthPotImage, goldBarImage, rubyImage, pickAxeAttackImage, spinAttackImage;
+    BufferedImage playerImage, bombImage, attackImage, treasureImage, enemyImage, goldTileImage, silverTileImage,
+                    bombSackImage, healthPotImage, goldBarImage, rubyImage, pickAxeAttackImage, spinAttackImage,
+                    weaponPileImage;
 
     Listener lis;
 
@@ -48,6 +51,8 @@ public class World
     String[] endText;
 
     int totalPlayers;
+
+    Random rand;
 
 
     /**
@@ -70,6 +75,7 @@ public class World
      */
     public World( int x, int y, int playersx, Listener lis, Displayer dis, int TileSize )
     {
+        rand = new Random();
         this.TileSize = TileSize;
         xDim = x;
         yDim = y;
@@ -85,8 +91,9 @@ public class World
         {
             thePlayers.add( new Player( entranceX, entranceY, 10, Color.PINK, this, 5 ) );
             thePlayers.get( i ).setImage( playerImage );
-            //thePlayers.get( i ).setWeapon( new PickaxeWeapon( attackImage, pickAxeAttackImage, thePlayers.get( i ) ) );
-            thePlayers.get( i ).setWeapon( new SpinWeapon( attackImage, spinAttackImage, thePlayers.get( i ) ) );
+            thePlayers.get( i ).setWeapon( new PickaxeWeapon( attackImage, pickAxeAttackImage, thePlayers.get( i ) ) );
+            // thePlayers.get( i ).setWeapon( new SpinWeapon( attackImage,
+            // spinAttackImage, thePlayers.get( i ) ) );
         }
         this.dis.setGameRun( true );
         runWorld();
@@ -114,8 +121,9 @@ public class World
             healthPotImage = ImageIO.read( getClass().getResource( "/HealthPot.png" ) );
             goldBarImage = ImageIO.read( getClass().getResource( "/GoldBar.png" ) );
             rubyImage = ImageIO.read( getClass().getResource( "/Ruby.png" ) );
-            pickAxeAttackImage = ImageIO.read(  getClass().getResource( "/PickAxeStrike.png" ) );
-            spinAttackImage = ImageIO.read(  getClass().getResource( "/SpinAttack.png" ) );
+            pickAxeAttackImage = ImageIO.read( getClass().getResource( "/PickAxeStrike.png" ) );
+            spinAttackImage = ImageIO.read( getClass().getResource( "/SpinAttack.png" ) );
+            weaponPileImage = ImageIO.read( getClass().getResource( "/WeaponPile.png" ) );
         }
         catch ( IOException e )
         {
@@ -185,6 +193,11 @@ public class World
                 else if ( gen.world[i][j].equals( "H" ) )
                 {
                     theItems.add( new HealthPotItem( j, i, 5, healthPotImage, this ) );
+                    theWorld[i][j] = new RegularTile( true, 0, Color.GREEN, j, i, this );
+                }
+                else if ( gen.world[i][j].equals( "W" ) )
+                {
+                    theItems.add( new WeaponPileItem( j, i, weaponPileImage, this ) );
                     theWorld[i][j] = new RegularTile( true, 0, Color.GREEN, j, i, this );
                 }
                 else
@@ -307,9 +320,22 @@ public class World
     }
 
 
+    public void giveRandomItem( Player x )
+    {
+        if ( rand.nextInt( 2 ) == 0 )
+        {
+            x.setWeapon( new PickaxeWeapon( attackImage, pickAxeAttackImage, x ) );
+        }
+        else
+        {
+            x.setWeapon( new SpinWeapon( attackImage, spinAttackImage, x ) );
+        }
+    }
+
+
     /**
-     * add atk sprite for time seconds
-     * TODO: get rid of this
+     * add atk sprite for time seconds TODO: get rid of this
+     * 
      * @param x
      * @param y
      * @param time
@@ -319,17 +345,20 @@ public class World
         theItems.add( new TemporaryItem( x, y, time, attackImage, this ) );
     }
 
+
     /**
      * add sprite for time seconds
+     * 
      * @param img
      * @param x
      * @param y
      * @param time
      */
-    public void addAttackSprite(BufferedImage img, double x, double y, double time )
+    public void addAttackSprite( BufferedImage img, double x, double y, double time )
     {
         theItems.add( new TemporaryItem( x, y, time, img, this ) );
     }
+
 
     /**
      * Clears an area, like creating a cavern but also killing things in it!
@@ -379,7 +408,8 @@ public class World
         }
     }
 
-    public boolean spinSwordClearArea(double x, double y, double radius, int damageDealt)
+
+    public boolean spinSwordClearArea( double x, double y, double radius, int damageDealt )
     {
         boolean hitEnemy = false;
         for ( int i = 0; i < theEnemies.size(); i++ )
@@ -393,6 +423,8 @@ public class World
         }
         return hitEnemy;
     }
+
+
     /**
      * Returns a player if it is in a radius to the given tile's location
      * basically, checks the center of a tile to the center of a player

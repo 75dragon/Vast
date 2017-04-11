@@ -6,19 +6,24 @@ import java.awt.image.BufferedImage;
 
 import javax.swing.Timer;
 
+
 public class HealthPotItem extends Item
 {
     Timer check;
+
     int amount;
+
     Player victem;
-    
+
+
     public HealthPotItem( double x, double y, int heal, BufferedImage img, World world )
     {
         super( x, y, 0, img, world );
         amount = heal;
         pickupTimer();
     }
-    
+
+
     public void pickupTimer()
     {
         check = new Timer( 1000, new ActionListener()
@@ -35,7 +40,7 @@ public class HealthPotItem extends Item
 
     public void checkArea()
     {
-        if ( (victem = world.detectPlayer( d.getX(), d.getY(), 1 )) != null )
+        if ( ( victem = world.detectPlayer( d.getX(), d.getY(), 1 ) ) != null )
         {
             check.stop();
             victem.healHealth( amount );
