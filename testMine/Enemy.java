@@ -95,7 +95,7 @@ public class Enemy extends Character
     public void attemptToAttack()
     {
         Player canHit;
-        if ( ( canHit = getWorld().detectPlayer( getX(), getY(), 1.5 ) ) != null )
+        if ( ( canHit = getWorld().detectPlayer( getX(), getY(), 1 ) ) != null )
         {
             enemyAttack( canHit );
             cooldownCount = 0;
@@ -112,6 +112,7 @@ public class Enemy extends Character
     public void takeDamage( double damage, String whoHitMe )
     {
         setHP( getHP() - damage );
+        System.out.println( hp );
         if ( !isAlive() )
         {
             getWorld().addRuby( x, y );

@@ -51,7 +51,7 @@ public class Weapon
         theWeilder = gottem;
         canAttack = true;
         wantToAttack = false;
-        cooldownCount = 0;
+        cooldownCount = 100;
         maxedOut = 100;
         attack();
     }

@@ -24,6 +24,13 @@ public class PickaxeWeapon extends Weapon
 
     public void attackAction()
     {
+        if ( theWeilder.getWorld().spinSwordClearArea( theWeilder.getX() + theWeilder.getVX(),
+            theWeilder.getY() + theWeilder.getVY(),
+            .75,
+            3 ) )
+        {
+            duabilityChange( -10, 100 );
+        }
         if ( canAttack && wantToAttack )
         {
             centerVY = theWeilder.getY() + theWeilder.getVY() + theWeilder.hei / 2;

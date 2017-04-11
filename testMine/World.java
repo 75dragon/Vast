@@ -390,20 +390,18 @@ public class World
                 }
             }
         }
-
-        for ( int i = 0; i < thePlayers.size(); i++ )
+        for ( int i = thePlayers.size() - 1; i > -1; i-- )
         {
             if ( distance( thePlayers.get( i ).getX(), x ) + distance( thePlayers.get( i ).getY(), y ) < radius )
             {
                 thePlayers.get( i ).takeDamage( damageDealt, "Explosion" );
             }
         }
-        for ( int i = 0; i < theEnemies.size(); i++ )
+        for ( int i = theEnemies.size() - 1; i > -1; i-- )
         {
             if ( distance( theEnemies.get( i ).getX(), x ) + distance( theEnemies.get( i ).getY(), y ) < radius )
             {
                 theEnemies.get( i ).takeDamage( damageDealt, "Explosion" );
-                i--;
             }
         }
     }
@@ -412,12 +410,11 @@ public class World
     public boolean spinSwordClearArea( double x, double y, double radius, int damageDealt )
     {
         boolean hitEnemy = false;
-        for ( int i = 0; i < theEnemies.size(); i++ )
+        for ( int i = theEnemies.size() - 1; i > -1; i-- )
         {
             if ( distance( theEnemies.get( i ).getX(), x ) + distance( theEnemies.get( i ).getY(), y ) < radius )
             {
                 theEnemies.get( i ).takeDamage( damageDealt, "Spin Sword" );
-                i--;
                 hitEnemy = true;
             }
         }
