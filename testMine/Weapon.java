@@ -71,7 +71,6 @@ public class Weapon
                 else
                 {
                     canAttack = true;
-                    attackAction();
                     attackSend.stop();
                 }
             }

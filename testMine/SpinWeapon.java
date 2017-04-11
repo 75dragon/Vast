@@ -26,7 +26,7 @@ public class SpinWeapon extends Weapon
             theWeilder.getWorld().addAttackSprite( attackImg, theWeilder.getX(), theWeilder.getY(), .1 );
             if ( theWeilder.getWorld().spinSwordClearArea( theWeilder.getX(), theWeilder.getY(), 2, 3 ) )
             {
-                duabilityChange( -10, 100 );
+                duabilityChange( -12, 100 );
             }
             canAttack = false;
             cooldownCount = 0;
