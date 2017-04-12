@@ -75,6 +75,7 @@ public class Player extends Character
         if ( !isAlive() )
         {
             getWorld().endText[getWorld().getPlayers().indexOf( this )] = "Killed by: " + whatHitMe;
+            gold = gold / 2;
             getWorld().playerDeath( this );
         }
     }

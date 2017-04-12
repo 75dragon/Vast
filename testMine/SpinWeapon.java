@@ -14,7 +14,7 @@ public class SpinWeapon extends Weapon
      */
     public SpinWeapon( BufferedImage image, BufferedImage atkImg, Player had )
     {
-        super( 1, 1, 3, image, atkImg, 100, had );
+        super( 1, 1, 4, image, atkImg, 100, had );
         weaponName = "Spin Sword";
     }
 

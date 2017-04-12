@@ -29,7 +29,7 @@ public class PickaxeWeapon extends Weapon
             .75,
             3 ) )
         {
-            duabilityChange( -10, 100 );
+            duabilityChange( -5, 100 );
         }
         if ( canAttack && wantToAttack )
         {

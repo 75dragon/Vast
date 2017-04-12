@@ -71,7 +71,8 @@ public class EntranceTile extends Tile
 
     public void playerLeaves( Player left )
     {
-        left.takeDamage( left.getHP(), "Nothing. Left safely." );
+        world.endText[world.getPlayers().indexOf( left )] = "Left Safely!";
+        world.playerDeath( left );
     }
 
 
