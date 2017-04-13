@@ -35,9 +35,11 @@ public class Tile
 
     World world;
 
-    double wid;
+    double wid = 1;
 
-    double hei;
+    double hei = 1;
+
+    int playerProximity;
 
 
     /**
@@ -63,8 +65,7 @@ public class Tile
         this.r = r;
         this.world = world;
         health = hp;
-        wid = 1;
-        hei = 1;
+        playerProximity = -1;
     }
 
 
@@ -122,40 +123,6 @@ public class Tile
 
 
     /**
-     * Returns this tile.s
-     * 
-     * @return tile
-     */
-    public Tile getTile()
-    {
-
-        return this;
-    }
-
-
-    /**
-     * Returns true if tile is passable--false otherwise.
-     * 
-     * @return if passables
-     */
-    public boolean isPassable()
-    {
-        return pass;
-    }
-
-
-    /**
-     * Returns color of tile.
-     * 
-     * @return color
-     */
-    public Color getColor()
-    {
-        return color;
-    }
-
-
-    /**
      * Draws tile.
      * 
      * @param g
@@ -167,29 +134,17 @@ public class Tile
         {
             g.setColor( color );
             g.fillRect( c * 40, r * 40, 40, 40 );
-            // g.setColor( Color.MAGENTA );
-            // g.drawString( c + ", " + r, c * 40, r * 40 + 10 );
+            g.setColor( Color.MAGENTA );
+            g.drawString("" + playerProximity, c * 40, r * 40 + 10 );
         }
         else
         {
             g.setColor( color );
             g.fillRect( c * 40, r * 40, 40, 40 );
             g.drawImage( image, c * 40 + 10, r * 40 + 10, null );
-            // g.setColor( Color.MAGENTA );
-            // g.drawString( c + ", " + r, c * 40, r * 40 );
+            g.setColor( Color.MAGENTA );
+            //g.drawString( c + ", " + r +  " " + playerProximity, c * 40, r * 40 );
         }
-    }
-
-
-    /**
-     * Sets image of tile.
-     * 
-     * @param i
-     *            image
-     */
-    public void setImage( BufferedImage i )
-    {
-        image = i;
     }
 
 
@@ -231,6 +186,64 @@ public class Tile
             }
         }
         return false;
+    }
+
+
+    public int getPlayerProximity()
+    {
+        return playerProximity;
+    }
+
+
+    public void setPlayerProximity( int closeness )
+    {
+        playerProximity = closeness;
+    }
+
+
+    /**
+     * Returns this tile.s
+     * 
+     * @return tile
+     */
+    public Tile getTile()
+    {
+
+        return this;
+    }
+
+
+    /**
+     * Returns true if tile is passable--false otherwise.
+     * 
+     * @return if passables
+     */
+    public boolean isPassable()
+    {
+        return pass;
+    }
+
+
+    /**
+     * Returns color of tile.
+     * 
+     * @return color
+     */
+    public Color getColor()
+    {
+        return color;
+    }
+
+
+    /**
+     * Sets image of tile.
+     * 
+     * @param i
+     *            image
+     */
+    public void setImage( BufferedImage i )
+    {
+        image = i;
     }
 
 

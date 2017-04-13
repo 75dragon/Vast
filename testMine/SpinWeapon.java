@@ -23,7 +23,7 @@ public class SpinWeapon extends Weapon
     {
         if ( canAttack && wantToAttack )
         {
-            theWeilder.getWorld().addAttackSprite( attackImg, theWeilder.getX(), theWeilder.getY(), .1 );
+            theWeilder.getWorld().addSprite( attackImg, theWeilder.getX(), theWeilder.getY(), .1 );
             if ( theWeilder.getWorld().spinSwordClearArea( theWeilder.getX(), theWeilder.getY(), 2, 3 ) )
             {
                 duabilityChange( -12, 100 );

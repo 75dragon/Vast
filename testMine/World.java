@@ -14,19 +14,19 @@ import javax.swing.Timer;
 
 public class World
 {
-    int xDim;// x lenght of the world
+    int xDim;
 
-    int yDim;// y lenght of the world
+    int yDim;
 
-    public Tile[][] theWorld;// store all our blocks
+    public Tile[][] theWorld;
 
-    ArrayList<Player> thePlayers = new ArrayList<Player>();// players
+    ArrayList<Player> thePlayers = new ArrayList<Player>();
 
-    ArrayList<Enemy> theEnemies = new ArrayList<Enemy>();// enemies
+    ArrayList<Enemy> theEnemies = new ArrayList<Enemy>();
 
     ArrayList<Item> theItems = new ArrayList<Item>();
 
-    Timer worldTimer; // our world time, its our animation!
+    Timer worldTimer;
 
     Displayer dis;
 
@@ -93,6 +93,7 @@ public class World
             thePlayers.get( i ).setImage( playerImage );
             thePlayers.get( i ).setWeapon( new PickaxeWeapon( attackImage, pickAxeAttackImage, thePlayers.get( i ) ) );
         }
+        
         this.dis.setGameRun( true );
         runWorld();
         lis.addWorld( this );
@@ -167,7 +168,7 @@ public class World
                 }
                 else if ( gen.world[i][j].equals( "g" ) )
                 {
-                    theEnemies.add( new Enemy( j, i, 1, 1, 3, Color.PINK, this ) );
+                    theEnemies.add( new Enemy( j, i, 1, 1, 3, Color.PINK, attackImage, this ) );
                     theEnemies.get( enemyIndex ).setImage( enemyImage );
                     enemyIndex++;
                     theWorld[i][j] = new RegularTile( true, 0, Color.GREEN, j, i, this );
@@ -206,7 +207,46 @@ public class World
         }
     }
 
-
+    public void generateDistrikaMap(int currentX, int currentY, int proxy)
+    {
+        if (proxy > 5)
+        {
+            return;
+        }
+        if (currentX >= xDim || currentX < 0 || currentY >= yDim || currentY < 0)
+        {
+            return;
+        }
+        if (!theWorld[currentY][currentX].isPassable())
+        {
+            return;
+        }
+        if (theWorld[currentY][currentX].getPlayerProximity() < proxy)
+        {
+            return;
+        }
+        theWorld[currentY][currentX].setPlayerProximity( proxy );
+        generateDistrikaMap(currentX - 1, currentY - 1, proxy + 1);
+        generateDistrikaMap(currentX - 1, currentY, proxy + 1);
+        generateDistrikaMap(currentX - 1, currentY + 1, proxy + 1);
+        generateDistrikaMap(currentX, currentY - 1, proxy + 1);
+        generateDistrikaMap(currentX, currentY + 1, proxy + 1);
+        generateDistrikaMap(currentX + 1, currentY - 1, proxy + 1);
+        generateDistrikaMap(currentX + 1, currentY, proxy + 1);
+        generateDistrikaMap(currentX + 1, currentY + 1, proxy + 1);
+        return;
+    }
+    
+    public void resetDistrikaMap()
+    {
+        for ( int i = 0; i < yDim; i++ )
+        {
+            for ( int j = 0; j < xDim; j++ )
+            {
+                theWorld[i][j].setPlayerProximity( xDim * yDim );
+            }
+        }
+    }
     /**
      * removes a enemy from the list.
      * 
@@ -277,6 +317,12 @@ public class World
             {
                 dis.repaint();
                 countoftime++;
+                if (countoftime % 100 == 0)
+                {
+                    resetDistrikaMap();
+                    generateDistrikaMap((int)thePlayers.get( 0 ).getX(), (int)thePlayers.get( 0 ).getY(), 0);
+                    System.out.println( "made new map" );
+                }
             }
 
         } );
@@ -285,7 +331,7 @@ public class World
 
 
     /**
-     * Bombs an area in the world, clearing the blocks in a 2 block radius. Can
+     * Bombs an area in the world, clearing the blocks in a 3 block radius. Can
      * kill stuff!
      * 
      * @param x
@@ -298,7 +344,6 @@ public class World
     public void bombArea( double x, double y, int delay )
     {
         theItems.add( new BombItem( x, y, 3, bombImage, this ) );
-        System.out.println( x + " " + y + " start ticking!" );
     }
 
 
@@ -326,20 +371,6 @@ public class World
         }
     }
 
-
-    /**
-     * add atk sprite for time seconds TODO: get rid of this
-     * 
-     * @param x
-     * @param y
-     * @param time
-     */
-    public void addAttackSprite( double x, double y, double time )
-    {
-        theItems.add( new TemporaryItem( x, y, time, attackImage, this ) );
-    }
-
-
     /**
      * add sprite for time seconds
      * 
@@ -348,7 +379,7 @@ public class World
      * @param y
      * @param time
      */
-    public void addAttackSprite( BufferedImage img, double x, double y, double time )
+    public void addSprite( BufferedImage img, double x, double y, double time )
     {
         theItems.add( new TemporaryItem( x, y, time, img, this ) );
     }

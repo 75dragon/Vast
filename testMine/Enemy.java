@@ -3,6 +3,7 @@ package testMine;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
 import java.util.Random;
 
 import javax.swing.Timer;
@@ -17,7 +18,8 @@ public class Enemy extends Character
     int cooldownCount, maxedOut;
 
     Random rand = new Random();
-
+    
+    BufferedImage attkImg;
 
     /**
      * Makes a default enemy. High speed, keeps going in a direction till It
@@ -31,7 +33,7 @@ public class Enemy extends Character
      * @param c
      * @param world
      */
-    public Enemy( int x, int y, int velX, int velY, int hitPoints, Color c, World world )
+    public Enemy( int x, int y, int velX, int velY, int hitPoints, Color c, BufferedImage atkimg,  World world )
     {
         super( x, y, velX, velY, hitPoints, c, world, 12 );
         vX = velX;
@@ -39,6 +41,7 @@ public class Enemy extends Character
         ai();
         maxedOut = 50;
         cooldownCount = -200;
+        attkImg = atkimg;
     }
 
 
@@ -139,7 +142,7 @@ public class Enemy extends Character
     public void enemyAttack( Player c )
     {
         c.takeDamage( 3, "A monster" );
-        w.addAttackSprite( c.getX(), c.getY(), .1 );
+        w.addSprite(attkImg,  c.getX(), c.getY(),.1 );
     }
 
 
