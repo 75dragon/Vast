@@ -78,24 +78,6 @@ public abstract class Character
 
     abstract void takeDamage( double damage, String whatHitMe );
 
-
-    /**
-     * Update the char's position
-     * 
-     * @param changeX
-     *            right of left
-     * @param changeY
-     *            up or down
-     * @return if you moved or not
-     */
-    public boolean updatePos( int changeX, int changeY )
-    {
-        setVX( changeX );
-        setVY( changeY );
-        return updatePos();
-    }
-
-
     public boolean updatePos()
     {
         movedx = false;
@@ -259,7 +241,7 @@ public abstract class Character
      * Sets hp to new hp value
      * 
      * @param newHP
-     *            new hp valye
+     *            new hp value
      */
     public void setHP( double newHP )
     {

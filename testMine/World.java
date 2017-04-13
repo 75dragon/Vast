@@ -92,8 +92,6 @@ public class World
             thePlayers.add( new Player( entranceX, entranceY, 10, Color.PINK, this, 5 ) );
             thePlayers.get( i ).setImage( playerImage );
             thePlayers.get( i ).setWeapon( new PickaxeWeapon( attackImage, pickAxeAttackImage, thePlayers.get( i ) ) );
-            // thePlayers.get( i ).setWeapon( new SpinWeapon( attackImage,
-            // spinAttackImage, thePlayers.get( i ) ) );
         }
         this.dis.setGameRun( true );
         runWorld();
@@ -221,9 +219,6 @@ public class World
         theEnemies.remove( enemy );
     }
 
-    int playerhold;
-
-
     /**
      * removes a player from the list
      * 
@@ -232,8 +227,7 @@ public class World
      */
     public void playerDeath( Player player )
     {
-        playerhold = thePlayers.indexOf( player );
-        endGold[playerhold] = player.getGold();
+        endGold[thePlayers.indexOf( player )] = player.getGold();
         if ( thePlayers.size() == 1 )
         {
             endGame();

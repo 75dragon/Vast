@@ -18,10 +18,6 @@ public class Enemy extends Character
 
     Random rand = new Random();
 
-    int aiX = rand.nextInt( 3 ) - 1;
-
-    int aiY = rand.nextInt( 3 ) - 1;
-
 
     /**
      * Makes a default enemy. High speed, keeps going in a direction till It
@@ -80,10 +76,12 @@ public class Enemy extends Character
      */
     public void move()
     {
-        if ( !updatePos( aiX, aiY ) )
+        if ( !updatePos() )
         {
-            while ( !updatePos( ( aiX = rand.nextInt( 3 ) - 1 ), ( aiY = rand.nextInt( 3 ) - 1 ) ) )
+            while ( !updatePos() )
             {
+                vX = rand.nextInt( 3 ) - 1;
+                vY = rand.nextInt( 3 ) - 1;
             }
         }
     }
