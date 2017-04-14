@@ -168,7 +168,7 @@ public class World
                 }
                 else if ( gen.world[i][j].equals( "g" ) )
                 {
-                    theEnemies.add( new Enemy( j, i, 1, 1, 3, Color.PINK, attackImage, this ) );
+                    theEnemies.add( new FollowEnemy( j, i, 1, 1, 3, Color.PINK, attackImage, this ) );
                     theEnemies.get( enemyIndex ).setImage( enemyImage );
                     enemyIndex++;
                     theWorld[i][j] = new RegularTile( true, 0, Color.GREEN, j, i, this );
@@ -226,14 +226,14 @@ public class World
             return;
         }
         theWorld[currentY][currentX].setPlayerProximity( proxy );
-        generateDistrikaMap(currentX - 1, currentY - 1, proxy + 1);
+        //generateDistrikaMap(currentX - 1, currentY - 1, proxy + 1);
         generateDistrikaMap(currentX - 1, currentY, proxy + 1);
-        generateDistrikaMap(currentX - 1, currentY + 1, proxy + 1);
+        //generateDistrikaMap(currentX - 1, currentY + 1, proxy + 1);
         generateDistrikaMap(currentX, currentY - 1, proxy + 1);
         generateDistrikaMap(currentX, currentY + 1, proxy + 1);
-        generateDistrikaMap(currentX + 1, currentY - 1, proxy + 1);
+        //generateDistrikaMap(currentX + 1, currentY - 1, proxy + 1);
         generateDistrikaMap(currentX + 1, currentY, proxy + 1);
-        generateDistrikaMap(currentX + 1, currentY + 1, proxy + 1);
+        //generateDistrikaMap(currentX + 1, currentY + 1, proxy + 1);
         return;
     }
     
