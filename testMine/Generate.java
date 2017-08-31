@@ -182,7 +182,7 @@ public class Generate
     }
 
 
-    void entrance()
+    void oldentrance()
     {
         iE = 0;
         jE = 0;
@@ -202,6 +202,21 @@ public class Generate
             iE--;
         }
         iE++;
+    }
+
+
+    void entrance()
+    {
+        iE = rand.nextInt( row );
+        jE = rand.nextInt( col );
+        while ( !world[iE][jE].equals( " " ) )
+        {
+            iE = rand.nextInt( row );
+            jE = rand.nextInt( col );
+        }
+        System.out.println( "E at" + jE + ", " + iE );
+        world[iE][jE] = "E";
+
     }
 
 
