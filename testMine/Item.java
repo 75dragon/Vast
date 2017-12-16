@@ -5,7 +5,8 @@ import java.awt.Graphics;
 import java.awt.geom.Point2D;
 import java.awt.image.BufferedImage;
 
-import World.World;
+import entity.Player;
+import world.World;
 
 
 public class Item
@@ -93,10 +94,10 @@ public class Item
      */
     public double distanceFromPlayer( Player player, int gx, int gy, int wid, int hei )
     {
-        return Math.sqrt( ( ( player.getX() + player.getWidth() / 2 ) - ( gx + wid / 2 ) )
-            * ( ( player.getX() + player.getWidth() / 2 ) - ( gx + wid / 2 ) )
-            + ( ( player.getY() + player.getHeight() / 2 ) - ( gy + hei / 2 ) )
-                * ( ( player.getY() + player.getHeight() / 2 ) - ( gy + hei / 2 ) ) );
+        return Math.sqrt( ( ( player.getX() + player.getWid() / 2 ) - ( gx + wid / 2 ) )
+            * ( ( player.getX() + player.getWid() / 2 ) - ( gx + wid / 2 ) )
+            + ( ( player.getY() + player.getHei() / 2 ) - ( gy + hei / 2 ) )
+                * ( ( player.getY() + player.getHei() / 2 ) - ( gy + hei / 2 ) ) );
     }
 
 

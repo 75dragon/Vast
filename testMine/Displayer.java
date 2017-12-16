@@ -7,7 +7,9 @@ import java.awt.Graphics;
 
 import javax.swing.JPanel;
 
-import World.World;
+import entity.Enemy;
+import entity.Player;
+import world.World;
 
 
 public class Displayer extends JPanel

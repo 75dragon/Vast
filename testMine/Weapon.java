@@ -11,6 +11,8 @@ import java.awt.image.BufferedImage;
 
 import javax.swing.Timer;
 
+import entity.Character;
+
 
 public class Weapon
 {
@@ -97,7 +99,7 @@ public class Weapon
     public void weaponBreak()
     {
         attackSend.stop();
-        theWeilder.holding = null;
+        theWeilder.setHolding( null );
     }
 
 

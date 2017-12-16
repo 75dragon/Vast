@@ -1,4 +1,4 @@
-package World;
+package world;
 
 import java.awt.Color;
 import java.awt.event.ActionEvent;
@@ -11,10 +11,11 @@ import java.util.Random;
 import javax.imageio.ImageIO;
 import javax.swing.Timer;
 
+import entity.Enemy;
+import entity.Player;
 import testMine.BombItem;
 import testMine.BombSackItem;
 import testMine.Displayer;
-import testMine.Enemy;
 import testMine.EntranceTile;
 import testMine.Generate;
 import testMine.GoldBarItem;
@@ -23,7 +24,6 @@ import testMine.HealthPotItem;
 import testMine.Item;
 import testMine.Listener;
 import testMine.PickaxeWeapon;
-import testMine.Player;
 import testMine.RegularTile;
 import testMine.RubyItem;
 import testMine.SilverTile;
@@ -489,8 +489,8 @@ public class World
     {
         for ( Player p : thePlayers )
         {
-            if ( distance( p.getX() + p.getWidth() / 2, x + .5 )
-                + distance( p.getY() + p.getHeight() / 2, y + .5 ) < radius )
+            if ( distance( p.getX() + p.getWid() / 2, x + .5 )
+                + distance( p.getY() + p.getHei() / 2, y + .5 ) < radius )
             {
                 System.out.println( "detected!" );
                 return p;

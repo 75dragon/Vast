@@ -3,7 +3,7 @@ package testMine;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
-import World.World;
+import world.World;
 
 
 public class Listener implements KeyListener

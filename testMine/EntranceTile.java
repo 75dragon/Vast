@@ -6,7 +6,8 @@ import java.awt.event.ActionListener;
 
 import javax.swing.Timer;
 
-import World.World;
+import entity.Player;
+import world.World;
 
 
 public class EntranceTile extends Tile

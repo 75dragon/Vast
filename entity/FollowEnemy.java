@@ -1,4 +1,4 @@
-package testMine;
+package entity;
 
 import java.awt.Color;
 import java.awt.event.ActionEvent;
@@ -8,7 +8,7 @@ import java.util.Random;
 
 import javax.swing.Timer;
 
-import World.World;
+import world.World;
 
 
 public class FollowEnemy extends Enemy

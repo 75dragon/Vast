@@ -6,7 +6,7 @@ import java.awt.image.BufferedImage;
 
 import javax.swing.Timer;
 
-import World.World;
+import world.World;
 
 
 public class BombItem extends Item

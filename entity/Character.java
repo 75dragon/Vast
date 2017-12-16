@@ -1,11 +1,12 @@
-package testMine;
+ package entity;
 
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.geom.Point2D;
 import java.awt.image.BufferedImage;
 
-import World.World;
+import testMine.Weapon;
+import world.World;
 
 
 /**
@@ -41,7 +42,7 @@ public abstract class Character
 
     BufferedImage img; // image of the char
 
-    Weapon holding;
+    private Weapon holding;
 
     boolean movedx, movedy;
 
@@ -212,18 +213,18 @@ public abstract class Character
 
     public void useWeapon()
     {
-        if ( holding != null )
+        if ( getHolding() != null )
         {
-            holding.startAttacking();
+            getHolding().startAttacking();
         }
     }
 
 
     public void stopUsingWeapon()
     {
-        if ( holding != null )
+        if ( getHolding() != null )
         {
-            holding.stopAttacking();
+            getHolding().stopAttacking();
         }
     }
 
@@ -441,11 +442,11 @@ public abstract class Character
      */
     public void setWeapon( Weapon x )
     {
-        if ( holding != null )
+        if ( getHolding() != null )
         {
-            holding.weaponBreak();
+            getHolding().weaponBreak();
         }
-        holding = x;
+        setHolding( x );
     }
 
 
@@ -456,7 +457,7 @@ public abstract class Character
      */
     public Weapon getWeapon()
     {
-        return holding;
+        return getHolding();
     }
 
 
@@ -485,5 +486,41 @@ public abstract class Character
     {
         this.down = down;
         setVelocitys();
+    }
+
+
+    public double getWid()
+    {
+        return wid;
+    }
+
+
+    public void setWid( double wid )
+    {
+        this.wid = wid;
+    }
+
+
+    public double getHei()
+    {
+        return hei;
+    }
+
+
+    public void setHei( double hei )
+    {
+        this.hei = hei;
+    }
+
+
+    public Weapon getHolding()
+    {
+        return holding;
+    }
+
+
+    public void setHolding( Weapon holding )
+    {
+        this.holding = holding;
     }
 }

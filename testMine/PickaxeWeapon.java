@@ -2,6 +2,8 @@ package testMine;
 
 import java.awt.image.BufferedImage;
 
+import entity.Player;
+
 
 public class PickaxeWeapon extends Weapon
 {
@@ -33,8 +35,8 @@ public class PickaxeWeapon extends Weapon
         }
         if ( canAttack && wantToAttack )
         {
-            centerVY = theWeilder.getY() + theWeilder.getVY() + theWeilder.hei / 2;
-            centerVX = theWeilder.getX() + theWeilder.getVX() + theWeilder.wid / 2;
+            centerVY = theWeilder.getY() + theWeilder.getVY() + theWeilder.getHei() / 2;
+            centerVX = theWeilder.getX() + theWeilder.getVX() + theWeilder.getWid() / 2;
             if ( theWeilder.getVX() == 0 && theWeilder.getVY() == 0 )
             {
                 System.out.println( "move!" );

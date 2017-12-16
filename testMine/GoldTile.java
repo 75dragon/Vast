@@ -2,7 +2,7 @@ package testMine;
 
 import java.awt.Color;
 
-import World.World;
+import world.World;
 
 
 /**

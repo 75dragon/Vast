@@ -2,6 +2,8 @@ package testMine;
 
 import java.awt.image.BufferedImage;
 
+import entity.Player;
+
 
 public class SpinWeapon extends Weapon
 {

@@ -6,7 +6,8 @@ import java.awt.image.BufferedImage;
 
 import javax.swing.Timer;
 
-import World.World;
+import entity.Player;
+import world.World;
 
 
 public class TreasureChestItem extends Item

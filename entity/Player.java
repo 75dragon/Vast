@@ -1,4 +1,4 @@
-package testMine;
+package entity;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -8,7 +8,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.Timer;
 
-import World.World;
+import world.World;
 
 
 /**
@@ -160,9 +160,9 @@ public class Player extends Character
         g.setColor( Color.WHITE );
         g.drawString( "Bombs: " + getBombs(), (int)( getX() * 40 ) - 300, (int)( getY() * 40 ) + 250 );
 
-        if ( holding != null )
+        if ( getHolding() != null )
         {
-            holding.drawMe( g );
+            getHolding().drawMe( g );
         }
         else
         {
@@ -216,24 +216,12 @@ public class Player extends Character
     }
 
 
-    public double getWidth()
-    {
-        return wid;
-    }
-
-
-    public double getHeight()
-    {
-        return hei;
-    }
-
-
     public void removePlayer()
     {
         moveMe.stop();
-        if ( holding != null )
+        if ( getHolding() != null )
         {
-            holding.attackSend.stop();
+            getHolding().weaponBreak();
         }
     }
 }
