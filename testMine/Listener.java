@@ -33,6 +33,10 @@ public class Listener implements KeyListener
      */
     public void keyPressed( KeyEvent e )
     {
+        if(world.getPlayers().size() == 0)
+        {
+            return;
+        }
         switch ( e.getKeyCode() )
         {
             case KeyEvent.VK_LEFT:
@@ -60,6 +64,10 @@ public class Listener implements KeyListener
     @Override
     public void keyReleased( KeyEvent e )
     {
+        if(world.getPlayers().size() == 0)
+        {
+            return;
+        }
         switch ( e.getKeyCode() )
         {
             case KeyEvent.VK_LEFT:

@@ -308,6 +308,7 @@ public class World
      */
     public void runWorld()
     {
+        System.out.println( ".gameTime" );
         int delay = 10;
         worldTimer = new Timer( delay, new ActionListener()
         {
@@ -320,7 +321,10 @@ public class World
                 if (countoftime % 100 == 0)
                 {
                     resetDistrikaMap();
-                    generateDistrikaMap((int)thePlayers.get( 0 ).getX(), (int)thePlayers.get( 0 ).getY(), 0);
+                    for (int i = 0; i < thePlayers.size(); i++)
+                    {
+                        generateDistrikaMap((int)thePlayers.get( i ).getX(), (int)thePlayers.get( i ).getY(), 0);
+                    }
                     System.out.println( "made new map" );
                 }
             }
@@ -525,7 +529,16 @@ public class World
         System.out.println( "GaMe OvEr" );
         dis.setGameRun( false );
         dis.setGameFinish( true );
+        if (worldTimer.isRunning())
+        {
+            System.out.println( "hello" );
+        }
         worldTimer.stop();
+        if (worldTimer.isRunning())
+        {
+            System.out.println( "bye" );
+        }
+        System.out.println( "GaMe OvEr" );
         while ( theItems.size() > 0 )
         {
             theItems.get( 0 ).removeItem();
