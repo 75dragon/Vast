@@ -1,4 +1,4 @@
-package testMine;
+package items;
 
 import java.awt.Color;
 import java.awt.Graphics;

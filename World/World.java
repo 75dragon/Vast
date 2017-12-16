@@ -13,26 +13,26 @@ import javax.swing.Timer;
 
 import entity.Enemy;
 import entity.Player;
-import testMine.BombItem;
-import testMine.BombSackItem;
+import items.BombItem;
+import items.BombSackItem;
+import items.GoldBarItem;
+import items.HealthPotItem;
+import items.Item;
+import items.RubyItem;
+import items.TemporaryItem;
+import items.TreasureChestItem;
+import items.WeaponPileItem;
 import testMine.Displayer;
 import testMine.EntranceTile;
 import testMine.Generate;
-import testMine.GoldBarItem;
 import testMine.GoldTile;
-import testMine.HealthPotItem;
-import testMine.Item;
 import testMine.Listener;
 import testMine.PickaxeWeapon;
 import testMine.RegularTile;
-import testMine.RubyItem;
 import testMine.SilverTile;
 import testMine.SpinWeapon;
-import testMine.TemporaryItem;
 import testMine.Tile;
 import testMine.TrapTile;
-import testMine.TreasureChestItem;
-import testMine.WeaponPileItem;
 
 
 public class World

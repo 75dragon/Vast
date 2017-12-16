@@ -9,6 +9,7 @@ import javax.swing.JPanel;
 
 import entity.Enemy;
 import entity.Player;
+import items.Item;
 import world.World;
 
 

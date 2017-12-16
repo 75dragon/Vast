@@ -1,4 +1,4 @@
-package testMine;
+package items;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -10,7 +10,7 @@ import entity.Player;
 import world.World;
 
 
-public class HealthPotItem extends Item
+public class GoldBarItem extends Item
 {
     Timer check;
 
@@ -19,10 +19,10 @@ public class HealthPotItem extends Item
     Player victem;
 
 
-    public HealthPotItem( double x, double y, int heal, BufferedImage img, World world )
+    public GoldBarItem( double x, double y, BufferedImage img, World world )
     {
         super( x, y, 0, img, world );
-        amount = heal;
+        amount = 1000;
         pickupTimer();
     }
 
@@ -46,7 +46,7 @@ public class HealthPotItem extends Item
         if ( ( victem = world.detectPlayer( d.getX(), d.getY(), 1 ) ) != null )
         {
             check.stop();
-            victem.healHealth( amount );
+            victem.addGold( amount );
             world.itemDeath( this );
             return;
         }

@@ -1,4 +1,4 @@
-package testMine;
+package items;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -10,7 +10,7 @@ import entity.Player;
 import world.World;
 
 
-public class RubyItem extends Item
+public class WeaponPileItem extends Item
 {
     Timer check;
 
@@ -19,10 +19,9 @@ public class RubyItem extends Item
     Player victem;
 
 
-    public RubyItem( double x, double y, BufferedImage img, World world )
+    public WeaponPileItem( double x, double y, BufferedImage img, World world )
     {
         super( x, y, 0, img, world );
-        amount = 750;
         pickupTimer();
     }
 
@@ -46,7 +45,7 @@ public class RubyItem extends Item
         if ( ( victem = world.detectPlayer( d.getX(), d.getY(), 1 ) ) != null )
         {
             check.stop();
-            victem.addGold( amount );
+            world.giveRandomItem( victem );
             world.itemDeath( this );
             return;
         }

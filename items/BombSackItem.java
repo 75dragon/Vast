@@ -1,4 +1,4 @@
-package testMine;
+package items;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -10,7 +10,7 @@ import entity.Player;
 import world.World;
 
 
-public class WeaponPileItem extends Item
+public class BombSackItem extends Item
 {
     Timer check;
 
@@ -19,9 +19,10 @@ public class WeaponPileItem extends Item
     Player victem;
 
 
-    public WeaponPileItem( double x, double y, BufferedImage img, World world )
+    public BombSackItem( double x, double y, int bombs, BufferedImage img, World world )
     {
         super( x, y, 0, img, world );
+        amount = bombs;
         pickupTimer();
     }
 
@@ -45,9 +46,10 @@ public class WeaponPileItem extends Item
         if ( ( victem = world.detectPlayer( d.getX(), d.getY(), 1 ) ) != null )
         {
             check.stop();
-            world.giveRandomItem( victem );
+            victem.addBombs( amount );
             world.itemDeath( this );
             return;
         }
     }
+
 }
