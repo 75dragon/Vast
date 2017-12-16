@@ -529,16 +529,8 @@ public class World
         System.out.println( "GaMe OvEr" );
         dis.setGameRun( false );
         dis.setGameFinish( true );
-        if (worldTimer.isRunning())
-        {
-            System.out.println( "hello" );
-        }
+        dis.repaint();
         worldTimer.stop();
-        if (worldTimer.isRunning())
-        {
-            System.out.println( "bye" );
-        }
-        System.out.println( "GaMe OvEr" );
         while ( theItems.size() > 0 )
         {
             theItems.get( 0 ).removeItem();
