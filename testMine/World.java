@@ -86,8 +86,14 @@ public class World
         endGold = new int[playersx];
         endText = new String[playersx];
         loadImages();
+        newGame(x, y, playersx);
+        lis.addWorld( this );
+    }
+    
+    public void newGame(int x, int y, int numPlayers)
+    {
         convertWorld( x, y );
-        for ( int i = 0; i < playersx; i++ )
+        for ( int i = 0; i < numPlayers; i++ )
         {
             thePlayers.add( new Player( entranceX, entranceY, 10, Color.PINK, this, 5 ) );
             thePlayers.get( i ).setImage( playerImage );
@@ -96,7 +102,6 @@ public class World
         
         this.dis.setGameRun( true );
         runWorld();
-        lis.addWorld( this );
     }
 
 
@@ -426,24 +431,18 @@ public class World
                 thePlayers.get( i ).takeDamage( damageDealt, "Explosion" );
             }
         }
-        for ( int i = theEnemies.size() - 1; i > -1; i-- )
-        {
-            if ( distance( theEnemies.get( i ).getX(), x ) + distance( theEnemies.get( i ).getY(), y ) < radius )
-            {
-                theEnemies.get( i ).takeDamage( damageDealt, "Explosion" );
-            }
-        }
+        hitEnemiesInArea( x, y, radius, damageDealt, "Explosion" );
     }
 
 
-    public boolean spinSwordClearArea( double x, double y, double radius, int damageDealt )
+    public boolean hitEnemiesInArea( double x, double y, double radius, int damageDealt, String cause )
     {
         boolean hitEnemy = false;
         for ( int i = theEnemies.size() - 1; i > -1; i-- )
         {
             if ( distance( theEnemies.get( i ).getX(), x ) + distance( theEnemies.get( i ).getY(), y ) < radius )
             {
-                theEnemies.get( i ).takeDamage( damageDealt, "Spin Sword" );
+                theEnemies.get( i ).takeDamage( damageDealt, cause );
                 hitEnemy = true;
             }
         }
