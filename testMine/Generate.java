@@ -5,7 +5,7 @@ import java.util.Random;
 
 public class Generate
 {
-    String[][] world;
+    private String[][] world;
 
     int[][] numbers;
 
@@ -38,12 +38,12 @@ public class Generate
 
     void makeTestWorld()
     {
-        world = new String[row][col];
+        setWorld( new String[row][col] );
         for ( int i = 0; i < row; i++ )
         {
             for ( int j = 0; j < col; j++ )
             {
-                world[i][j] = " ";
+                getWorld()[i][j] = " ";
             }
         }
     }
@@ -51,15 +51,15 @@ public class Generate
 
     void makeTestWorld2()
     {
-        world = new String[row][col];
+        setWorld( new String[row][col] );
         for ( int i = 0; i < row; i++ )
         {
             for ( int j = 0; j < col; j++ )
             {
-                world[i][j] = " ";
+                getWorld()[i][j] = " ";
                 if ( i == 2 && j == 2 )
                 {
-                    world[i][j] = "#";
+                    getWorld()[i][j] = "#";
                 }
             }
         }
@@ -68,18 +68,18 @@ public class Generate
 
     void makeWorld()
     {
-        world = new String[row][col];
+        setWorld( new String[row][col] );
         for ( int i = 0; i < row; i++ )
         {
             for ( int j = 0; j < col; j++ )
             {
                 if ( rand.nextInt( 99 ) + 1 <= 45 )
                 {
-                    world[i][j] = "#";
+                    getWorld()[i][j] = "#";
                 }
                 else
                 {
-                    world[i][j] = " ";
+                    getWorld()[i][j] = " ";
                 }
             }
         }
@@ -94,7 +94,7 @@ public class Generate
         {
             for ( int j = 0; j < col; j++ )
             {
-                System.out.print( world[i][j] );
+                System.out.print( getWorld()[i][j] );
             }
             System.out.println();
         }
@@ -122,11 +122,11 @@ public class Generate
             {
                 if ( numbers[i][j] > 4 )
                 {
-                    world[i][j] = "#";
+                    getWorld()[i][j] = "#";
                 }
                 else
                 {
-                    world[i][j] = " ";
+                    getWorld()[i][j] = " ";
                 }
             }
         }
@@ -139,42 +139,42 @@ public class Generate
         {
             for ( int j = 0; j < col; j++ )
             {
-                if ( world[i][j].equals( "#" ) )
+                if ( getWorld()[i][j].equals( "#" ) )
                 {
                     if ( rand.nextInt( 20 ) == 0 )
                     {
-                        world[i][j] = "G";
+                        getWorld()[i][j] = "G";
                     }
                     else if ( rand.nextInt( 10 ) == 0 )
                     {
-                        world[i][j] = "S";
+                        getWorld()[i][j] = "S";
                     }
                 }
-                else if ( world[i][j].equals( " " ) )
+                else if ( getWorld()[i][j].equals( " " ) )
                 {
                     if ( rand.nextInt( 20 ) == 0 )
                     {
-                        world[i][j] = "g";
+                        getWorld()[i][j] = "g";
                     }
                     else if ( rand.nextInt( 50 ) == 0 )
                     {
-                        world[i][j] = "T";
+                        getWorld()[i][j] = "T";
                     }
                     else if ( rand.nextInt( 40 ) == 0 )
                     {
-                        world[i][j] = "t";
+                        getWorld()[i][j] = "t";
                     }
                     else if ( rand.nextInt( 100 ) == 0 )
                     {
-                        world[i][j] = "B";
+                        getWorld()[i][j] = "B";
                     }
                     else if ( rand.nextInt( 200 ) == 0 )
                     {
-                        world[i][j] = "H";
+                        getWorld()[i][j] = "H";
                     }
                     else if ( rand.nextInt( 500 ) == 0 )
                     {
-                        world[i][j] = "W";
+                        getWorld()[i][j] = "W";
                     }
                 }
             }
@@ -186,7 +186,7 @@ public class Generate
     {
         iE = 0;
         jE = 0;
-        while ( !world[iE][jE].equals( " " ) )
+        while ( !getWorld()[iE][jE].equals( " " ) )
         {
             jE++;
             if ( jE >= col )
@@ -198,7 +198,7 @@ public class Generate
         System.out.println( "E at" + jE + ", " + iE );
         while ( iE >= 0 )
         {
-            world[iE][jE] = "E";
+            getWorld()[iE][jE] = "E";
             iE--;
         }
         iE++;
@@ -209,13 +209,13 @@ public class Generate
     {
         iE = rand.nextInt( row );
         jE = rand.nextInt( col );
-        while ( !world[iE][jE].equals( " " ) )
+        while ( !getWorld()[iE][jE].equals( " " ) )
         {
             iE = rand.nextInt( row );
             jE = rand.nextInt( col );
         }
         System.out.println( "E at" + jE + ", " + iE );
-        world[iE][jE] = "E";
+        getWorld()[iE][jE] = "E";
 
     }
 
@@ -232,7 +232,7 @@ public class Generate
                 }
                 else if ( distance( i, iE ) + distance( j, jE ) < 4 )
                 {
-                    world[i][j] = " ";
+                    getWorld()[i][j] = " ";
                 }
             }
         }
@@ -245,7 +245,7 @@ public class Generate
         {
             return 1;
         }
-        if ( world[y][x].equals( "#" ) )
+        if ( getWorld()[y][x].equals( "#" ) )
         {
             return 1;
         }
@@ -259,7 +259,7 @@ public class Generate
         {
             for ( int j = 0; j < col; j++ )
             {
-                if ( world[i][j].equals( "G" ) )
+                if ( getWorld()[i][j].equals( "G" ) )
                 {
 
                 }
@@ -271,5 +271,17 @@ public class Generate
     public int distance( int x, int y )
     {
         return Math.abs( x - y );
+    }
+
+
+    public String[][] getWorld()
+    {
+        return world;
+    }
+
+
+    public void setWorld( String[][] world )
+    {
+        this.world = world;
     }
 }

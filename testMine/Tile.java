@@ -4,6 +4,8 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 
+import World.World;
+
 
 /**
  * Tile class.
@@ -98,8 +100,8 @@ public class Tile
         if ( destroyed == false )
         {
             pass = true;
-            color = World.brown;
-            world.thePlayers.get( 0 ).addGold( loot );
+            color = World.getBrown();
+            world.getPlayers().get( 0 ).addGold( loot );
             loot = 0;
             image = null;
             destroyed = true;
@@ -113,7 +115,7 @@ public class Tile
         if ( destroyed == false )
         {
             pass = true;
-            color = World.brown;
+            color = World.getBrown();
             loot = 0;
             image = null;
             destroyed = true;

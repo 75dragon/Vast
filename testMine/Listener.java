@@ -3,6 +3,8 @@ package testMine;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
+import World.World;
+
 
 public class Listener implements KeyListener
 {
@@ -40,22 +42,22 @@ public class Listener implements KeyListener
         switch ( e.getKeyCode() )
         {
             case KeyEvent.VK_LEFT:
-                world.thePlayers.get( 0 ).setLeft( true );
+                world.getPlayers().get( 0 ).setLeft( true );
                 break;
             case KeyEvent.VK_RIGHT:
-                world.thePlayers.get( 0 ).setRight( true );
+                world.getPlayers().get( 0 ).setRight( true );
                 break;
             case KeyEvent.VK_UP:
-                world.thePlayers.get( 0 ).setUp( true );
+                world.getPlayers().get( 0 ).setUp( true );
                 break;
             case KeyEvent.VK_DOWN:
-                world.thePlayers.get( 0 ).setDown( true );
+                world.getPlayers().get( 0 ).setDown( true );
                 break;
             case KeyEvent.VK_SPACE:
-                world.thePlayers.get( 0 ).bomb();
+                world.getPlayers().get( 0 ).bomb();
                 break;
             case KeyEvent.VK_F:
-                world.thePlayers.get( 0 ).useWeapon();
+                world.getPlayers().get( 0 ).useWeapon();
                 break;
         }
     }
@@ -71,19 +73,19 @@ public class Listener implements KeyListener
         switch ( e.getKeyCode() )
         {
             case KeyEvent.VK_LEFT:
-                world.thePlayers.get( 0 ).setLeft( false );
+                world.getPlayers().get( 0 ).setLeft( false );
                 break;
             case KeyEvent.VK_RIGHT:
-                world.thePlayers.get( 0 ).setRight( false );
+                world.getPlayers().get( 0 ).setRight( false );
                 break;
             case KeyEvent.VK_UP:
-                world.thePlayers.get( 0 ).setUp( false );
+                world.getPlayers().get( 0 ).setUp( false );
                 break;
             case KeyEvent.VK_DOWN:
-                world.thePlayers.get( 0 ).setDown( false );
+                world.getPlayers().get( 0 ).setDown( false );
                 break;
             case KeyEvent.VK_F:
-                world.thePlayers.get( 0 ).stopUsingWeapon();
+                world.getPlayers().get( 0 ).stopUsingWeapon();
                 break;
         }
     }

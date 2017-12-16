@@ -7,6 +7,8 @@ import java.awt.Graphics;
 
 import javax.swing.JPanel;
 
+import World.World;
+
 
 public class Displayer extends JPanel
 {
@@ -77,8 +79,8 @@ public class Displayer extends JPanel
     {
         g.setColor( Color.BLACK );
         g.fillRect( -disX, -disY, disX * 3, disY * 3 );
-        g.translate( disX / 2 - (int)( world.thePlayers.get( 0 ).getX() * tileSize ),
-            disY / 2 - (int)( world.thePlayers.get( 0 ).getY() * tileSize ) );
+        g.translate( disX / 2 - (int)( world.getPlayers().get( 0 ).getX() * tileSize ),
+            disY / 2 - (int)( world.getPlayers().get( 0 ).getY() * tileSize ) );
         for ( int x = 0; x < world.theWorld[0].length; x++ )
         {
             for ( int y = 0; y < world.theWorld.length; y++ )
@@ -87,36 +89,36 @@ public class Displayer extends JPanel
             }
         }
 
-        for ( int x = 0; x < world.theItems.size(); x++ )
+        for ( int x = 0; x < world.getItems().size(); x++ )
         {
-            drawItem( world.theItems.get( x ) );
+            drawItem( world.getItems().get( x ) );
         }
 
-        for ( int x = 0; x < world.theEnemies.size(); x++ )
+        for ( int x = 0; x < world.getEnemies().size(); x++ )
         {
-            drawEnemy( world.theEnemies.get( x ) );
+            drawEnemy( world.getEnemies().get( x ) );
         }
 
-        for ( int x = 0; x < world.thePlayers.size(); x++ )
+        for ( int x = 0; x < world.getPlayers().size(); x++ )
         {
-            drawPlayer( world.thePlayers.get( x ) );
+            drawPlayer( world.getPlayers().get( x ) );
         }
 
         g.setColor( Color.WHITE );
-        say = world.thePlayers.get( 0 ).getGold() + "";
+        say = world.getPlayers().get( 0 ).getGold() + "";
         say = words + say;
-        saytime = world.countoftime / 200 + "";
+        saytime = world.getCountoftime() / 200 + "";
         saytime = whatistime + saytime;
         g.setFont( new Font( "Courier", Font.BOLD, 30 ) );
 
         g.translate( 0, 0 );
 
         g.drawString( say,
-            (int)( world.thePlayers.get( 0 ).getX() * tileSize ) - 200,
-            (int)( world.thePlayers.get( 0 ).getY() * tileSize ) - 300 );
+            (int)( world.getPlayers().get( 0 ).getX() * tileSize ) - 200,
+            (int)( world.getPlayers().get( 0 ).getY() * tileSize ) - 300 );
         g.drawString( saytime,
-            (int)( world.thePlayers.get( 0 ).getX() * tileSize ) - 200,
-            (int)( world.thePlayers.get( 0 ).getY() * tileSize ) - 260 );
+            (int)( world.getPlayers().get( 0 ).getX() * tileSize ) - 200,
+            (int)( world.getPlayers().get( 0 ).getY() * tileSize ) - 260 );
     }
 
 
@@ -129,19 +131,19 @@ public class Displayer extends JPanel
         g.drawString( "Game Over", 50, 100 );
         for ( int i = 1; i < world.getTotalPlayers() + 1; i++ )
         {
-            g.drawString( "Player " + i + " Final gold: " + world.endGold[i - 1], 100, 100 * i + 100 );
+            g.drawString( "Player " + i + " Final gold: " + world.getEndGold()[i - 1], 100, 100 * i + 100 );
         }
         for ( int i = 1; i < world.getTotalPlayers() + 1; i++ )
         {
-            g.drawString( world.endText[i - 1], 150, 100 * i + 150 );
+            g.drawString( world.getEndText()[i - 1], 150, 100 * i + 150 );
         }
     }
 
 
     private void drawItem( Item item )
     {
-        if ( 6 > distance( world.thePlayers.get( 0 ).getX(), item.getPoint().getX() )
-            + distance( world.thePlayers.get( 0 ).getY(), item.getPoint().getY() ) )
+        if ( 6 > distance( world.getPlayers().get( 0 ).getX(), item.getPoint().getX() )
+            + distance( world.getPlayers().get( 0 ).getY(), item.getPoint().getY() ) )
         {
             item.drawMe( g );
         }
@@ -156,8 +158,8 @@ public class Displayer extends JPanel
 
     private void drawEnemy( Enemy enemy2 )
     {
-        if ( 6 > distance( world.thePlayers.get( 0 ).getX(), enemy2.getX() )
-            + distance( world.thePlayers.get( 0 ).getY(), enemy2.getY() ) )
+        if ( 6 > distance( world.getPlayers().get( 0 ).getX(), enemy2.getX() )
+            + distance( world.getPlayers().get( 0 ).getY(), enemy2.getY() ) )
         {
             enemy2.drawMe( g );
         }
@@ -166,7 +168,7 @@ public class Displayer extends JPanel
 
     public void drawTile( Tile dTile, int x, int y )
     {
-        if ( 6 > distance( world.thePlayers.get( 0 ).getX(), x ) + distance( world.thePlayers.get( 0 ).getY(), y ) )
+        if ( 6 > distance( world.getPlayers().get( 0 ).getX(), x ) + distance( world.getPlayers().get( 0 ).getY(), y ) )
         {
             dTile.drawSelf( g );
         }

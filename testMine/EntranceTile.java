@@ -6,6 +6,8 @@ import java.awt.event.ActionListener;
 
 import javax.swing.Timer;
 
+import World.World;
+
 
 public class EntranceTile extends Tile
 {
@@ -71,7 +73,7 @@ public class EntranceTile extends Tile
 
     public void playerLeaves( Player left )
     {
-        world.endText[world.getPlayers().indexOf( left )] = "Left Safely!";
+        world.getEndText()[world.getPlayers().indexOf( left )] = "Left Safely!";
         world.playerDeath( left );
     }
 

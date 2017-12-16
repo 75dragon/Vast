@@ -6,6 +6,8 @@ import java.awt.image.BufferedImage;
 
 import javax.swing.Timer;
 
+import World.World;
+
 
 public class WeaponPileItem extends Item
 {

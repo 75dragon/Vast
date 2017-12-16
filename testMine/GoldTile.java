@@ -2,6 +2,8 @@ package testMine;
 
 import java.awt.Color;
 
+import World.World;
+
 
 /**
  * GoldTile class.
@@ -34,7 +36,7 @@ public class GoldTile extends Tile
         if ( destroyed == false )
         {
             pass = true;
-            color = World.brown;
+            color = World.getBrown();
             world.addGoldBar( c, r );
             loot = 0;
             image = null;

@@ -8,6 +8,8 @@ import java.util.Random;
 
 import javax.swing.Timer;
 
+import World.World;
+
 
 public class Enemy extends Character
 {

@@ -8,6 +8,8 @@ import java.util.Random;
 
 import javax.swing.Timer;
 
+import World.World;
+
 
 public class FollowEnemy extends Enemy
 {
@@ -121,9 +123,9 @@ public class FollowEnemy extends Enemy
 
     public int getTilesPriority( double x, double y )
     {
-        if ( x < 0 || x > getWorld().xDim - 1 || y < 0 || y > getWorld().yDim - 1 )
+        if ( x < 0 || x > getWorld().getxDim() - 1 || y < 0 || y > getWorld().getyDim() - 1 )
         {
-            return getWorld().xDim * getWorld().yDim;
+            return getWorld().getxDim() * getWorld().getyDim();
         }
         return getWorld().getTile( x, y ).getPlayerProximity();
     }

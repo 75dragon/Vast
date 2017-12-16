@@ -6,6 +6,8 @@ import java.awt.event.ActionListener;
 
 import javax.swing.Timer;
 
+import World.World;
+
 
 /**
  * TrapTile class. Makes a tile a deadly trap with the top left corner being

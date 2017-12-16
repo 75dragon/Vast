@@ -1,4 +1,4 @@
-package testMine;
+package World;
 
 import java.awt.Color;
 import java.awt.event.ActionEvent;
@@ -11,12 +11,35 @@ import java.util.Random;
 import javax.imageio.ImageIO;
 import javax.swing.Timer;
 
+import testMine.BombItem;
+import testMine.BombSackItem;
+import testMine.Displayer;
+import testMine.Enemy;
+import testMine.EntranceTile;
+import testMine.Generate;
+import testMine.GoldBarItem;
+import testMine.GoldTile;
+import testMine.HealthPotItem;
+import testMine.Item;
+import testMine.Listener;
+import testMine.PickaxeWeapon;
+import testMine.Player;
+import testMine.RegularTile;
+import testMine.RubyItem;
+import testMine.SilverTile;
+import testMine.SpinWeapon;
+import testMine.TemporaryItem;
+import testMine.Tile;
+import testMine.TrapTile;
+import testMine.TreasureChestItem;
+import testMine.WeaponPileItem;
+
 
 public class World
 {
-    int xDim;
+    private int xDim;
 
-    int yDim;
+    private int yDim;
 
     public Tile[][] theWorld;
 
@@ -36,9 +59,9 @@ public class World
 
     Listener lis;
 
-    static Color brown = new Color( 90, 55, 20 );
+    private static Color brown = new Color( 90, 55, 20 );
 
-    long countoftime = 0;
+    private long countoftime = 0;
 
     int entranceX = 0;
 
@@ -46,9 +69,9 @@ public class World
 
     int TileSize;
 
-    int[] endGold;
+    private int[] endGold;
 
-    String[] endText;
+    private String[] endText;
 
     int totalPlayers;
 
@@ -77,14 +100,14 @@ public class World
     {
         rand = new Random();
         this.TileSize = TileSize;
-        xDim = x;
-        yDim = y;
+        setxDim( x );
+        setyDim( y );
         totalPlayers = playersx;
         this.lis = lis;
         this.dis = dis;
         theWorld = new Tile[y][x];
-        endGold = new int[playersx];
-        endText = new String[playersx];
+        setEndGold( new int[playersx] );
+        setEndText( new String[playersx] );
         loadImages();
         newGame(x, y, playersx);
         lis.addWorld( this );
@@ -153,53 +176,53 @@ public class World
         {
             for ( int j = 0; j < x; j++ )
             {
-                if ( gen.world[i][j].equals( "G" ) )
+                if ( gen.getWorld()[i][j].equals( "G" ) )
                 {
                     theWorld[i][j] = new GoldTile( j, i, this );
                     theWorld[i][j].setImage( goldTileImage );
                 }
-                else if ( gen.world[i][j].equals( "S" ) )
+                else if ( gen.getWorld()[i][j].equals( "S" ) )
                 {
                     theWorld[i][j] = new SilverTile( j, i, this );
                     theWorld[i][j].setImage( silverTileImage );
                 }
-                else if ( gen.world[i][j].equals( "t" ) )
+                else if ( gen.getWorld()[i][j].equals( "t" ) )
                 {
                     theWorld[i][j] = new TrapTile( true, 0, Color.RED, j, i, this );
                 }
-                else if ( gen.world[i][j].equals( "#" ) )
+                else if ( gen.getWorld()[i][j].equals( "#" ) )
                 {
                     theWorld[i][j] = new RegularTile( false, 0, Color.BLACK, j, i, this );
                 }
-                else if ( gen.world[i][j].equals( "g" ) )
+                else if ( gen.getWorld()[i][j].equals( "g" ) )
                 {
                     theEnemies.add( new Enemy( j, i, 1, 1, 3, Color.PINK, attackImage, this ) );
                     theEnemies.get( enemyIndex ).setImage( enemyImage );
                     enemyIndex++;
                     theWorld[i][j] = new RegularTile( true, 0, Color.GREEN, j, i, this );
                 }
-                else if ( gen.world[i][j].equals( "E" ) )
+                else if ( gen.getWorld()[i][j].equals( "E" ) )
                 {
                     entranceX = j;
                     entranceY = i;
                     theWorld[i][j] = new EntranceTile( j, i, this );
                 }
-                else if ( gen.world[i][j].equals( "T" ) )
+                else if ( gen.getWorld()[i][j].equals( "T" ) )
                 {
                     theItems.add( new TreasureChestItem( j, i, 2500, treasureImage, this ) );
                     theWorld[i][j] = new RegularTile( true, 0, Color.GREEN, j, i, this );
                 }
-                else if ( gen.world[i][j].equals( "B" ) )
+                else if ( gen.getWorld()[i][j].equals( "B" ) )
                 {
                     theItems.add( new BombSackItem( j, i, 5, bombSackImage, this ) );
                     theWorld[i][j] = new RegularTile( true, 0, Color.GREEN, j, i, this );
                 }
-                else if ( gen.world[i][j].equals( "H" ) )
+                else if ( gen.getWorld()[i][j].equals( "H" ) )
                 {
                     theItems.add( new HealthPotItem( j, i, 5, healthPotImage, this ) );
                     theWorld[i][j] = new RegularTile( true, 0, Color.GREEN, j, i, this );
                 }
-                else if ( gen.world[i][j].equals( "W" ) )
+                else if ( gen.getWorld()[i][j].equals( "W" ) )
                 {
                     theItems.add( new WeaponPileItem( j, i, weaponPileImage, this ) );
                     theWorld[i][j] = new RegularTile( true, 0, Color.GREEN, j, i, this );
@@ -218,7 +241,7 @@ public class World
         {
             return;
         }
-        if (currentX >= xDim || currentX < 0 || currentY >= yDim || currentY < 0)
+        if (currentX >= getxDim() || currentX < 0 || currentY >= getyDim() || currentY < 0)
         {
             return;
         }
@@ -244,11 +267,11 @@ public class World
     
     public void resetDistrikaMap()
     {
-        for ( int i = 0; i < yDim; i++ )
+        for ( int i = 0; i < getyDim(); i++ )
         {
-            for ( int j = 0; j < xDim; j++ )
+            for ( int j = 0; j < getxDim(); j++ )
             {
-                theWorld[i][j].setPlayerProximity( xDim * yDim );
+                theWorld[i][j].setPlayerProximity( getxDim() * getyDim() );
             }
         }
     }
@@ -272,7 +295,7 @@ public class World
      */
     public void playerDeath( Player player )
     {
-        endGold[thePlayers.indexOf( player )] = player.getGold();
+        getEndGold()[thePlayers.indexOf( player )] = player.getGold();
         if ( thePlayers.size() == 1 )
         {
             endGame();
@@ -322,8 +345,8 @@ public class World
             public void actionPerformed( ActionEvent e )
             {
                 dis.repaint();
-                countoftime++;
-                if (countoftime % 100 == 0)
+                setCountoftime( getCountoftime() + 1 );
+                if (getCountoftime() % 100 == 0)
                 {
                     resetDistrikaMap();
                     for (int i = 0; i < thePlayers.size(); i++)
@@ -406,16 +429,16 @@ public class World
      */
     public void clearArea( double x, double y, double radius, int damageDealt )
     {
-        for ( int xx = 0; xx < xDim; xx++ )
+        for ( int xx = 0; xx < getxDim(); xx++ )
         {
-            for ( int yy = 0; yy < yDim; yy++ )
+            for ( int yy = 0; yy < getyDim(); yy++ )
             {
                 if ( distance( xx, x ) + distance( yy, y ) <= radius )
                 {
                     if ( theWorld[yy][xx] instanceof TrapTile )
                     {
                         theWorld[yy][xx].blownUp();
-                        theWorld[yy][xx] = new RegularTile( true, 0, brown, xx, yy, this );
+                        theWorld[yy][xx] = new RegularTile( true, 0, getBrown(), xx, yy, this );
                     }
                     else
                     {
@@ -547,9 +570,9 @@ public class World
             thePlayers.get( 0 ).removePlayer();
             thePlayers.remove( 0 );
         }
-        for ( int i = 0; i < yDim; i++ )
+        for ( int i = 0; i < getyDim(); i++ )
         {
-            for ( int j = 0; j < xDim; j++ )
+            for ( int j = 0; j < getxDim(); j++ )
             {
                 theWorld[i][j].removeTile();
             }
@@ -560,5 +583,65 @@ public class World
     public int getTotalPlayers()
     {
         return totalPlayers;
+    }
+
+    public long getCountoftime()
+    {
+        return countoftime;
+    }
+
+    public void setCountoftime( long countoftime )
+    {
+        this.countoftime = countoftime;
+    }
+
+    public int[] getEndGold()
+    {
+        return endGold;
+    }
+
+    public void setEndGold( int[] endGold )
+    {
+        this.endGold = endGold;
+    }
+
+    public String[] getEndText()
+    {
+        return endText;
+    }
+
+    public void setEndText( String[] endText )
+    {
+        this.endText = endText;
+    }
+
+    public int getyDim()
+    {
+        return yDim;
+    }
+
+    public void setyDim( int yDim )
+    {
+        this.yDim = yDim;
+    }
+
+    public int getxDim()
+    {
+        return xDim;
+    }
+
+    public void setxDim( int xDim )
+    {
+        this.xDim = xDim;
+    }
+
+    public static Color getBrown()
+    {
+        return brown;
+    }
+
+    public static void setBrown( Color brown )
+    {
+        World.brown = brown;
     }
 }

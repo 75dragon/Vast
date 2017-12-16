@@ -5,6 +5,8 @@ import java.awt.Graphics;
 import java.awt.geom.Point2D;
 import java.awt.image.BufferedImage;
 
+import World.World;
+
 
 /**
  * Character class that holds parameters such as position (in rows and columns),
@@ -86,7 +88,7 @@ public abstract class Character
         {
             y = y + getVY() * speed / 200;
             movedy = true;
-            if ( -1 < y + getVY() && y + hei < getWorld().yDim )
+            if ( -1 < y + getVY() && y + hei < getWorld().getyDim() )
             {
                 if ( getWorld().getTile( x, y ).rColl( x, y, wid, hei )
                     || getWorld().getTile( x + wid, y ).rColl( x, y, wid, hei )
@@ -109,7 +111,7 @@ public abstract class Character
 
             x = x + getVX() * speed / 200;
             movedx = true;
-            if ( -1 < x + getVX() && x + wid < getWorld().xDim )
+            if ( -1 < x + getVX() && x + wid < getWorld().getxDim() )
             {
                 if ( getWorld().getTile( x, y ).rColl( x, y, wid, hei )
                     || getWorld().getTile( x + wid, y ).rColl( x, y, wid, hei )

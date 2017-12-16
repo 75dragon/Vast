@@ -8,6 +8,8 @@ import java.awt.event.ActionListener;
 
 import javax.swing.Timer;
 
+import World.World;
+
 
 /**
  * Player class.
@@ -74,7 +76,7 @@ public class Player extends Character
         }
         if ( !isAlive() )
         {
-            getWorld().endText[getWorld().getPlayers().indexOf( this )] = "Killed by: " + whatHitMe;
+            getWorld().getEndText()[getWorld().getPlayers().indexOf( this )] = "Killed by: " + whatHitMe;
             gold = gold / 2;
             getWorld().playerDeath( this );
         }

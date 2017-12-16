@@ -39,8 +39,8 @@ public class PickaxeWeapon extends Weapon
             {
                 System.out.println( "move!" );
             }
-            else if ( centerVY < 0 || centerVY > theWeilder.getWorld().yDim || centerVX < 0
-                || centerVX > theWeilder.getWorld().xDim )
+            else if ( centerVY < 0 || centerVY > theWeilder.getWorld().getyDim() || centerVX < 0
+                || centerVX > theWeilder.getWorld().getxDim() )
             {
                 System.out.println( "cant mine the abyss..." );
             }
