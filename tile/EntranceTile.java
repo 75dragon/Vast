@@ -1,4 +1,4 @@
-package testMine;
+package tile;
 
 import java.awt.Color;
 import java.awt.event.ActionEvent;

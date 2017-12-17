@@ -1,4 +1,4 @@
-package testMine;
+package weapons;
 
 import java.awt.image.BufferedImage;
 

@@ -52,9 +52,9 @@ public class Player extends Character
      * @param speed
      *            how fast
      */
-    public Player( int x, int y, int hitPoints, Color color, World world, double speed )
+    public Player( int x, int y, int hitPoints, Color color, World world, double speed, String name )
     {
-        super( x, y, 0, 0, hitPoints, color, world, speed );
+        super( x, y, 0, 0, hitPoints, color, world, speed, name );
         gold = 0;
         bombs = 5;
         light = 1000;
@@ -156,9 +156,9 @@ public class Player extends Character
             // g.setColor( Color.MAGENTA );
             // g.drawString( x + ", " + y, (int)( x * 40 ), (int)( y * 40 ) );
         }
-        g.setFont( new Font( "Courier", Font.BOLD, 30 ) );
+        g.setFont( new Font( "Courier", Font.BOLD, 20 ) );
         g.setColor( Color.WHITE );
-        g.drawString( "Bombs: " + getBombs(), (int)( getX() * 40 ) - 300, (int)( getY() * 40 ) + 250 );
+        g.drawString( "Bombs: " + getBombs(), (int)( getX() * 40 ), (int)( getY() * 40 ) - 250 );
 
         if ( getHolding() != null )
         {
@@ -166,7 +166,7 @@ public class Player extends Character
         }
         else
         {
-            g.drawString( "Weapon: None!", (int)( getX() * 40 ) - 300, (int)( getY() * 40 ) + 300 );
+            g.drawString( "Weapon: None!", (int)( getX() * 40 ), (int)( getY() * 40 ) - 350 );
         }
     }
 

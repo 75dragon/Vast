@@ -10,6 +10,7 @@ import javax.swing.JPanel;
 import entity.Enemy;
 import entity.Player;
 import items.Item;
+import tile.Tile;
 import world.World;
 
 
@@ -17,6 +18,8 @@ public class Displayer extends JPanel
 {
     World world;
 
+    private gameText writer;
+    
     Graphics g;
 
     Enemy enemy;
@@ -46,8 +49,9 @@ public class Displayer extends JPanel
     boolean gameFinish = false;
 
 
-    public Displayer( int disX, int disY, int tileSize )
+    public Displayer( int disX, int disY, int tileSize, gameText hold )
     {
+        setWriter( hold );
         this.disX = disX;
         this.disY = disY;
         this.tileSize = tileSize;
@@ -112,16 +116,18 @@ public class Displayer extends JPanel
         say = words + say;
         saytime = world.getCountoftime() / 200 + "";
         saytime = whatistime + saytime;
-        g.setFont( new Font( "Courier", Font.BOLD, 30 ) );
+        g.setFont( new Font( "Courier", Font.BOLD, 20 ) );
 
         g.translate( 0, 0 );
 
         g.drawString( say,
-            (int)( world.getPlayers().get( 0 ).getX() * tileSize ) - 200,
-            (int)( world.getPlayers().get( 0 ).getY() * tileSize ) - 300 );
+            (int)( world.getPlayers().get( 0 ).getX() * tileSize ) - 350,
+            (int)( world.getPlayers().get( 0 ).getY() * tileSize ) - 350 );
         g.drawString( saytime,
-            (int)( world.getPlayers().get( 0 ).getX() * tileSize ) - 200,
-            (int)( world.getPlayers().get( 0 ).getY() * tileSize ) - 260 );
+            (int)( world.getPlayers().get( 0 ).getX() * tileSize ) - 350,
+            (int)( world.getPlayers().get( 0 ).getY() * tileSize ) - 310 );
+        getWriter().printList( (int)( world.getPlayers().get( 0 ).getX() * tileSize ) - 200,
+            (int)( world.getPlayers().get( 0 ).getY() * tileSize ) + 260, g );
     }
 
 
@@ -193,5 +199,17 @@ public class Displayer extends JPanel
     public void setGameFinish( boolean x )
     {
         gameFinish = x;
+    }
+
+
+    public gameText getWriter()
+    {
+        return writer;
+    }
+
+
+    public void setWriter( gameText writer )
+    {
+        this.writer = writer;
     }
 }

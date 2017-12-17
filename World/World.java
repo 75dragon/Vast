@@ -23,16 +23,17 @@ import items.TemporaryItem;
 import items.TreasureChestItem;
 import items.WeaponPileItem;
 import testMine.Displayer;
-import testMine.EntranceTile;
 import testMine.Generate;
-import testMine.GoldTile;
 import testMine.Listener;
-import testMine.PickaxeWeapon;
-import testMine.RegularTile;
-import testMine.SilverTile;
-import testMine.SpinWeapon;
-import testMine.Tile;
-import testMine.TrapTile;
+import testMine.gameText;
+import tile.EntranceTile;
+import tile.GoldTile;
+import tile.RegularTile;
+import tile.SilverTile;
+import tile.Tile;
+import tile.TrapTile;
+import weapons.PickaxeWeapon;
+import weapons.SpinWeapon;
 
 
 public class World
@@ -96,7 +97,7 @@ public class World
      *            how many pixels by pixels each block is
      * 
      */
-    public World( int x, int y, int playersx, Listener lis, Displayer dis, int TileSize )
+    public World( int x, int y, int playersx, Listener lis, Displayer dis, int TileSize)
     {
         rand = new Random();
         this.TileSize = TileSize;
@@ -118,7 +119,7 @@ public class World
         convertWorld( x, y );
         for ( int i = 0; i < numPlayers; i++ )
         {
-            thePlayers.add( new Player( entranceX, entranceY, 10, Color.PINK, this, 5 ) );
+            thePlayers.add( new Player( entranceX, entranceY, 10, Color.PINK, this, 5, "human" ) );
             thePlayers.get( i ).setImage( playerImage );
             thePlayers.get( i ).setWeapon( new PickaxeWeapon( attackImage, pickAxeAttackImage, thePlayers.get( i ) ) );
         }
@@ -136,7 +137,6 @@ public class World
         System.out.println( "Loading images" );
         try
         {
-            // bombImage = ImageIO.read( new File( "Bomb10x10.jpg" ) );
             playerImage = ImageIO.read( getClass().getResource( "/gautum - Copy.jpg" ) );
             bombImage = ImageIO.read( getClass().getResource( "/BlueShell.jpg" ) );
             attackImage = ImageIO.read( getClass().getResource( "/attackImage.jpg" ) );
@@ -196,7 +196,7 @@ public class World
                 }
                 else if ( gen.getWorld()[i][j].equals( "g" ) )
                 {
-                    theEnemies.add( new Enemy( j, i, 1, 1, 3, Color.PINK, attackImage, this ) );
+                    theEnemies.add( new Enemy( j, i, 1, 1, 3, Color.PINK, attackImage, this, "Stalker" ) );
                     theEnemies.get( enemyIndex ).setImage( enemyImage );
                     enemyIndex++;
                     theWorld[i][j] = new RegularTile( true, 0, Color.GREEN, j, i, this );
@@ -353,7 +353,6 @@ public class World
                     {
                         generateDistrikaMap((int)thePlayers.get( i ).getX(), (int)thePlayers.get( i ).getY(), 0);
                     }
-                    System.out.println( "made new map" );
                 }
             }
 
@@ -466,6 +465,7 @@ public class World
             if ( distance( theEnemies.get( i ).getX(), x ) + distance( theEnemies.get( i ).getY(), y ) < radius )
             {
                 theEnemies.get( i ).takeDamage( damageDealt, cause );
+                dis.getWriter().addText( cause + " hit an enemy for " + damageDealt + " damage" );
                 hitEnemy = true;
             }
         }

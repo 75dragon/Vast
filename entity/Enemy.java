@@ -35,9 +35,9 @@ public class Enemy extends Character
      * @param c
      * @param world
      */
-    public Enemy( int x, int y, int velX, int velY, int hitPoints, Color c, BufferedImage atkimg,  World world )
+    public Enemy( int x, int y, int velX, int velY, int hitPoints, Color c, BufferedImage atkimg,  World world, String name )
     {
-        super( x, y, velX, velY, hitPoints, c, world, 12 );
+        super( x, y, velX, velY, hitPoints, c, world, 12, name );
         vX = velX;
         vY = velY;
         ai();

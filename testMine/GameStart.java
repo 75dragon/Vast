@@ -27,9 +27,9 @@ public class GameStart
     public GameStart()
     {
         Listener lis = new Listener();
-        Displayer dis = new Displayer( frameX, frameY, defaultTilePixelSize );
+        gameText writer = new gameText();
+        Displayer dis = new Displayer( frameX, frameY, defaultTilePixelSize, writer );   
         World world = new World( X, Y, players, lis, dis, defaultTilePixelSize );
-
         BorderLayout layout = new BorderLayout();
         dis.addWorld( world );
         JFrame frame = new JFrame();

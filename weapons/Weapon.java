@@ -1,4 +1,4 @@
-package testMine;
+package weapons;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -119,17 +119,17 @@ public class Weapon
 
     public void drawMe( Graphics g )
     {
-        g.setFont( new Font( "Courier", Font.BOLD, 30 ) );
+        g.setFont( new Font( "Courier", Font.BOLD, 20 ) );
         g.setColor( Color.WHITE );
         g.drawString( "Weapon: " + weaponName + " " + dura + "%",
-            (int)( theWeilder.getX() * 40 ) - 300,
-            (int)( theWeilder.getY() * 40 ) + 300 );
+            (int)( theWeilder.getX() * 40 ) ,
+            (int)( theWeilder.getY() * 40 ) - 350 );
         Graphics2D g2d = (Graphics2D)g.create();
         g2d.setColor( Color.YELLOW );
-        Arc2D arc = new Arc2D.Double( theWeilder.getX() * 40 - 300,
-            theWeilder.getY() * 40 + 320,
-            40,
-            40,
+        Arc2D arc = new Arc2D.Double( theWeilder.getX() * 40,
+            theWeilder.getY() * 40 - 320,
+            30,
+            30,
             0,
             3.6 * cooldownCount,
             Arc2D.PIE );

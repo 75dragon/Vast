@@ -5,7 +5,7 @@ import java.awt.Graphics;
 import java.awt.geom.Point2D;
 import java.awt.image.BufferedImage;
 
-import testMine.Weapon;
+import weapons.Weapon;
 import world.World;
 
 
@@ -45,6 +45,8 @@ public abstract class Character
     private Weapon holding;
 
     boolean movedx, movedy;
+    
+    String name;
 
 
     /**
@@ -61,8 +63,9 @@ public abstract class Character
      * @param world
      *            World
      */
-    public Character( int x, int y, int velX, int velY, int hitPoints, Color color, World world, double speed )
+    public Character( int x, int y, int velX, int velY, int hitPoints, Color color, World world, double speed, String givenName )
     {
+        name = givenName;
         this.setX( x );
         this.setY( y );
         setVX( velX );

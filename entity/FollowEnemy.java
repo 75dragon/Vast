@@ -24,9 +24,9 @@ public class FollowEnemy extends Enemy
      * @param c
      * @param world
      */
-    public FollowEnemy( int x, int y, int velX, int velY, int hitPoints, Color c, BufferedImage atkimg, World world )
+    public FollowEnemy( int x, int y, int velX, int velY, int hitPoints, Color c, BufferedImage atkimg, World world, String name )
     {
-        super( x, y, velX, velY, hitPoints, c, atkimg, world );
+        super( x, y, velX, velY, hitPoints, c, atkimg, world, name );
     }
 
 
