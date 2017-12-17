@@ -35,9 +35,12 @@ public class Listener implements KeyListener
      */
     public void keyPressed( KeyEvent e )
     {
-        if(world.getPlayers().size() == 0)
+        if(gameFinish)
         {
-            return;
+            if (KeyEvent.VK_G == e.getKeyCode())
+            {
+                world.newGame();
+            }
         }
         switch ( e.getKeyCode() )
         {
@@ -66,7 +69,7 @@ public class Listener implements KeyListener
     @Override
     public void keyReleased( KeyEvent e )
     {
-        if(world.getPlayers().size() == 0)
+        if(gameFinish)
         {
             return;
         }

@@ -52,7 +52,7 @@ public class World
 
     Timer worldTimer;
 
-    Displayer dis;
+    private Displayer dis;
 
     BufferedImage playerImage, bombImage, attackImage, treasureImage, enemyImage, goldTileImage, silverTileImage,
                     bombSackImage, healthPotImage, goldBarImage, rubyImage, pickAxeAttackImage, spinAttackImage,
@@ -105,26 +105,30 @@ public class World
         setyDim( y );
         totalPlayers = playersx;
         this.lis = lis;
-        this.dis = dis;
+        this.setDis( dis );
         theWorld = new Tile[y][x];
         setEndGold( new int[playersx] );
         setEndText( new String[playersx] );
         loadImages();
-        newGame(x, y, playersx);
+        newGame();
         lis.addWorld( this );
     }
     
-    public void newGame(int x, int y, int numPlayers)
+    public void newGame()
     {
-        convertWorld( x, y );
-        for ( int i = 0; i < numPlayers; i++ )
+        countoftime = 0;
+        convertWorld( xDim, yDim );
+        for ( int i = 0; i < totalPlayers; i++ )
         {
             thePlayers.add( new Player( entranceX, entranceY, 10, Color.PINK, this, 5, "human" ) );
             thePlayers.get( i ).setImage( playerImage );
             thePlayers.get( i ).setWeapon( new PickaxeWeapon( attackImage, pickAxeAttackImage, thePlayers.get( i ) ) );
         }
-        
-        this.dis.setGameRun( true );
+        dis.setGameRun( true );
+        dis.setGameFinish( false );
+        lis.gameRun( true );
+        lis.gameFinish( false );
+        dis.repaint();
         runWorld();
     }
 
@@ -344,7 +348,7 @@ public class World
             @Override
             public void actionPerformed( ActionEvent e )
             {
-                dis.repaint();
+                getDis().repaint();
                 setCountoftime( getCountoftime() + 1 );
                 if (getCountoftime() % 100 == 0)
                 {
@@ -465,7 +469,7 @@ public class World
             if ( distance( theEnemies.get( i ).getX(), x ) + distance( theEnemies.get( i ).getY(), y ) < radius )
             {
                 theEnemies.get( i ).takeDamage( damageDealt, cause );
-                dis.getWriter().addText( cause + " hit an enemy for " + damageDealt + " damage" );
+                getDis().getWriter().addText( cause + " hit an enemy for " + damageDealt + " damage" );
                 hitEnemy = true;
             }
         }
@@ -508,7 +512,7 @@ public class World
      */
     public void setDisplayer( Displayer d )
     {
-        dis = d;
+        setDis( d );
     }
 
 
@@ -643,5 +647,15 @@ public class World
     public static void setBrown( Color brown )
     {
         World.brown = brown;
+    }
+
+    public Displayer getDis()
+    {
+        return dis;
+    }
+
+    public void setDis( Displayer dis )
+    {
+        this.dis = dis;
     }
 }

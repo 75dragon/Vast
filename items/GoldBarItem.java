@@ -47,6 +47,7 @@ public class GoldBarItem extends Item
         {
             check.stop();
             victem.addGold( amount );
+            world.getDis().getWriter().addText( "Picked up gold" );
             world.itemDeath( this );
             return;
         }

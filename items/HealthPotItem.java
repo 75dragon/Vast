@@ -47,6 +47,7 @@ public class HealthPotItem extends Item
         {
             check.stop();
             victem.healHealth( amount );
+            world.getDis().getWriter().addText( "Picked up health" );
             world.itemDeath( this );
             return;
         }

@@ -100,6 +100,7 @@ public class Weapon
     {
         attackSend.stop();
         theWeilder.setHolding( null );
+        theWeilder.getWorld().getDis().getWriter().addText( weaponName + " has broken!" );
     }
 
 
