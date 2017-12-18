@@ -107,6 +107,7 @@ public class Player extends Character
         {
             bombs--;
             getWorld().bombArea( getX(), getY(), 2000 );
+            getWorld().getDis().getWriter().addText( "Placed a bomb" );
         }
     }
 

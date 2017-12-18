@@ -41,6 +41,7 @@ public class Listener implements KeyListener
             {
                 world.newGame();
             }
+            return;
         }
         switch ( e.getKeyCode() )
         {

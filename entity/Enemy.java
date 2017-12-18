@@ -23,6 +23,7 @@ public class Enemy extends Character
     
     BufferedImage attkImg;
 
+    Player canHit;
     /**
      * Makes a default enemy. High speed, keeps going in a direction till It
      * stops, then repeats
@@ -97,7 +98,6 @@ public class Enemy extends Character
      */
     public void attemptToAttack()
     {
-        Player canHit;
         if ( ( canHit = getWorld().detectPlayer( getX(), getY(), 1 ) ) != null )
         {
             enemyAttack( canHit );
@@ -118,8 +118,8 @@ public class Enemy extends Character
         System.out.println( hp );
         if ( !isAlive() )
         {
-            getWorld().addRuby( x, y );
-            getWorld().enemyDeath( this );
+            w.addRuby( x, y );
+            w.enemyDeath( this );
         }
     }
 
@@ -144,6 +144,7 @@ public class Enemy extends Character
     public void enemyAttack( Player c )
     {
         c.takeDamage( 3, "A monster" );
+        w.getDis().getWriter().addText( name + " has hit the player for " + 3 + " damage" );
         w.addSprite(attkImg,  c.getX(), c.getY(),.1 );
     }
 
