@@ -25,7 +25,7 @@ import items.WeaponPileItem;
 import testMine.Displayer;
 import testMine.Generate;
 import testMine.Listener;
-import testMine.gameText;
+import testMine.GameText;
 import tile.EntranceTile;
 import tile.GoldTile;
 import tile.RegularTile;
@@ -581,6 +581,7 @@ public class World
                 theWorld[i][j].removeTile();
             }
         }
+        dis.getWriter().resetText();
     }
 
 

@@ -6,14 +6,14 @@ import java.awt.Graphics;
 import java.util.Iterator;
 import java.util.LinkedList;
 
-public class gameText
+public class GameText
 {
     private static int SPACE_BETWEEN_TEXT = 20;
     int i = 0;
     String hold;
     Iterator<String> iter;
     LinkedList<String> gameText = new LinkedList<String>();
-    public gameText()
+    public GameText()
     {
     }
     
@@ -41,4 +41,8 @@ public class gameText
         i = 0;
     }
     
+    public void resetText()
+    {
+        gameText.clear();
+    }
 }

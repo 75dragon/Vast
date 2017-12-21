@@ -18,7 +18,7 @@ public class Displayer extends JPanel
 {
     World world;
 
-    private gameText writer;
+    private GameText writer;
     
     Graphics g;
 
@@ -49,7 +49,7 @@ public class Displayer extends JPanel
     boolean gameFinish = false;
 
 
-    public Displayer( int disX, int disY, int tileSize, gameText hold )
+    public Displayer( int disX, int disY, int tileSize, GameText hold )
     {
         setWriter( hold );
         this.disX = disX;
@@ -202,13 +202,13 @@ public class Displayer extends JPanel
     }
 
 
-    public gameText getWriter()
+    public GameText getWriter()
     {
         return writer;
     }
 
 
-    public void setWriter( gameText writer )
+    public void setWriter( GameText writer )
     {
         this.writer = writer;
     }

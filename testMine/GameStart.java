@@ -27,7 +27,7 @@ public class GameStart
     public GameStart()
     {
         Listener lis = new Listener();
-        gameText writer = new gameText();
+        GameText writer = new GameText();
         Displayer dis = new Displayer( frameX, frameY, defaultTilePixelSize, writer );   
         World world = new World( X, Y, players, lis, dis, defaultTilePixelSize );
         BorderLayout layout = new BorderLayout();
