@@ -12,6 +12,7 @@ import javax.imageio.ImageIO;
 import javax.swing.Timer;
 
 import entity.Enemy;
+import entity.FollowEnemy;
 import entity.Player;
 import items.BombItem;
 import items.BombSackItem;
@@ -33,6 +34,7 @@ import tile.SilverTile;
 import tile.Tile;
 import tile.TrapTile;
 import weapons.PickaxeWeapon;
+import weapons.SpearWeapon;
 import weapons.SpinWeapon;
 
 
@@ -56,7 +58,7 @@ public class World
 
     BufferedImage playerImage, bombImage, attackImage, treasureImage, enemyImage, goldTileImage, silverTileImage,
                     bombSackImage, healthPotImage, goldBarImage, rubyImage, pickAxeAttackImage, spinAttackImage,
-                    weaponPileImage;
+                    weaponPileImage, spearAttackImage;
 
     Listener lis;
 
@@ -155,6 +157,7 @@ public class World
             pickAxeAttackImage = ImageIO.read( getClass().getResource( "/PickAxeStrike.png" ) );
             spinAttackImage = ImageIO.read( getClass().getResource( "/SpinAttack.png" ) );
             weaponPileImage = ImageIO.read( getClass().getResource( "/WeaponPile.png" ) );
+            spearAttackImage = ImageIO.read( getClass().getResource( "/spear.png" ) );
         }
         catch ( IOException e )
         {
@@ -200,7 +203,14 @@ public class World
                 }
                 else if ( gen.getWorld()[i][j].equals( "g" ) )
                 {
-                    theEnemies.add( new Enemy( j, i, 1, 1, 3, Color.PINK, attackImage, this, "Stalker" ) );
+                    if (rand.nextInt(2) == 0)
+                    {
+                        theEnemies.add( new Enemy( j, i, 1, 1, 3, Color.PINK, attackImage, this, "Dasher" ) );
+                    }
+                    else
+                    {
+                        theEnemies.add( new FollowEnemy( j, i, 1, 1, 3, Color.PINK, attackImage, this, "Stalker" ) );
+                    }
                     theEnemies.get( enemyIndex ).setImage( enemyImage );
                     enemyIndex++;
                     theWorld[i][j] = new RegularTile( true, 0, Color.GREEN, j, i, this );
@@ -396,13 +406,18 @@ public class World
 
     public void giveRandomItem( Player x )
     {
-        if ( rand.nextInt( 2 ) == 0 )
+        int holdr = rand.nextInt( 3 );
+        if (holdr == 0 )
         {
             x.setWeapon( new PickaxeWeapon( attackImage, pickAxeAttackImage, x ) );
         }
-        else
+        else if ( holdr == 1 )
         {
             x.setWeapon( new SpinWeapon( attackImage, spinAttackImage, x ) );
+        }
+        else
+        {
+            x.setWeapon( new SpearWeapon( attackImage, spearAttackImage, x) );
         }
     }
 
@@ -466,6 +481,7 @@ public class World
         boolean hitEnemy = false;
         for ( int i = theEnemies.size() - 1; i > -1; i-- )
         {
+            //TODO fix square root
             if ( distance( theEnemies.get( i ).getX(), x ) + distance( theEnemies.get( i ).getY(), y ) < radius )
             {
                 theEnemies.get( i ).takeDamage( damageDealt, cause );

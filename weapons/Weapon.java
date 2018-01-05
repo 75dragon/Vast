@@ -30,7 +30,7 @@ public class Weapon
 
     double dura;
 
-    Character theWeilder;
+    Character theWielder;
 
     boolean canAttack, wantToAttack;
 
@@ -50,7 +50,7 @@ public class Weapon
         img = image;
         attackImg = atkImg;
         dura = durability;
-        theWeilder = gottem;
+        theWielder = gottem;
         canAttack = true;
         wantToAttack = false;
         cooldownCount = 100;
@@ -99,8 +99,8 @@ public class Weapon
     public void weaponBreak()
     {
         attackSend.stop();
-        theWeilder.setHolding( null );
-        theWeilder.getWorld().getDis().getWriter().addText( weaponName + " has broken!" );
+        theWielder.setHolding( null );
+        theWielder.getWorld().getDis().getWriter().addText( weaponName + " has broken!" );
     }
 
 
@@ -123,12 +123,12 @@ public class Weapon
         g.setFont( new Font( "Courier", Font.BOLD, 20 ) );
         g.setColor( Color.WHITE );
         g.drawString( "Weapon: " + weaponName + " " + dura + "%",
-            (int)( theWeilder.getX() * 40 ) ,
-            (int)( theWeilder.getY() * 40 ) - 350 );
+            (int)( theWielder.getX() * 40 ) ,
+            (int)( theWielder.getY() * 40 ) - 350 );
         Graphics2D g2d = (Graphics2D)g.create();
         g2d.setColor( Color.YELLOW );
-        Arc2D arc = new Arc2D.Double( theWeilder.getX() * 40,
-            theWeilder.getY() * 40 - 320,
+        Arc2D arc = new Arc2D.Double( theWielder.getX() * 40,
+            theWielder.getY() * 40 - 320,
             30,
             30,
             0,

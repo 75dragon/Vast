@@ -19,43 +19,43 @@ public class PickaxeWeapon extends Weapon
      */
     public PickaxeWeapon( BufferedImage image, BufferedImage atkImg, Player had )
     {
-        super( 1, 1, .3, image, atkImg, 100, had );
+        super( 1, 4, .3, image, atkImg, 100, had );
         weaponName = "Pickaxe";
     }
 
 
     public void attackAction()
     {
-        if ( theWeilder.getWorld().hitEnemiesInArea( theWeilder.getX() + theWeilder.getVX(),
-            theWeilder.getY() + theWeilder.getVY(),
+        if ( theWielder.getWorld().hitEnemiesInArea( theWielder.getX() + theWielder.getVX(),
+            theWielder.getY() + theWielder.getVY(),
             .75,
-            3 , weaponName) )
+            damage , weaponName) )
         {
             duabilityChange( -5, 100 );
         }
         if ( canAttack && wantToAttack )
         {
-            centerVY = theWeilder.getY() + theWeilder.getVY() + theWeilder.getHei() / 2;
-            centerVX = theWeilder.getX() + theWeilder.getVX() + theWeilder.getWid() / 2;
-            if ( theWeilder.getVX() == 0 && theWeilder.getVY() == 0 )
+            centerVY = theWielder.getY() + theWielder.getVY() + theWielder.getHei() / 2;
+            centerVX = theWielder.getX() + theWielder.getVX() + theWielder.getWid() / 2;
+            if ( theWielder.getVX() == 0 && theWielder.getVY() == 0 )
             {
                 System.out.println( "move!" );
             }
-            else if ( centerVY < 0 || centerVY > theWeilder.getWorld().getyDim() || centerVX < 0
-                || centerVX > theWeilder.getWorld().getxDim() )
+            else if ( centerVY < 0 || centerVY > theWielder.getWorld().getyDim() || centerVX < 0
+                || centerVX > theWielder.getWorld().getxDim() )
             {
                 System.out.println( "cant mine the abyss..." );
             }
             else
             {
-                if ( theWeilder.getWorld().theWorld[(int)centerVY][(int)centerVX].getTile().mineTile() )
+                if ( theWielder.getWorld().theWorld[(int)centerVY][(int)centerVX].getTile().mineTile() )
                 {
                     duabilityChange( -3, 100 );
                 }
 
-                theWeilder.getWorld().addSprite( attackImg,
-                    theWeilder.getX() + theWeilder.getVX(),
-                    theWeilder.getY() + theWeilder.getVY(),
+                theWielder.getWorld().addSprite( attackImg,
+                    theWielder.getX() + theWielder.getVX(),
+                    theWielder.getY() + theWielder.getVY(),
                     .1 );
             }
 

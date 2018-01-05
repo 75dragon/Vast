@@ -5,7 +5,7 @@ import java.awt.image.BufferedImage;
 import entity.Player;
 
 
-public class SpinWeapon extends Weapon
+public class SpearWeapon extends Weapon
 {
     /**
      * A heavy, brittle weapon that once going, will not stop.
@@ -14,10 +14,10 @@ public class SpinWeapon extends Weapon
      * @param atkImg
      * @param had
      */
-    public SpinWeapon( BufferedImage image, BufferedImage atkImg, Player had )
+    public SpearWeapon( BufferedImage image, BufferedImage atkImg, Player had )
     {
-        super( 1, 5, 4, image, atkImg, 100, had );
-        weaponName = "Spin Sword";
+        super( 2, 7, 1, image, atkImg, 100, had );
+        weaponName = "Spear";
     }
 
 
@@ -25,10 +25,13 @@ public class SpinWeapon extends Weapon
     {
         if ( canAttack && wantToAttack )
         {
-            theWielder.getWorld().addSprite( attackImg, theWielder.getX(), theWielder.getY(), .1 );
+            theWielder.getWorld().addSprite( attackImg,
+                theWielder.getX() + theWielder.getVX(),
+                theWielder.getY() + theWielder.getVY(),
+                .1 );
             if ( theWielder.getWorld().hitEnemiesInArea( theWielder.getX(), theWielder.getY(), 2, damage, weaponName ) )
             {
-                duabilityChange( -12, 100 );
+                duabilityChange( -5, 100 );
             }
             canAttack = false;
             cooldownCount = 0;
