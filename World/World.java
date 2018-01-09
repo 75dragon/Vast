@@ -46,39 +46,39 @@ public class World
 
     public Tile[][] theWorld;
 
-    ArrayList<Player> thePlayers = new ArrayList<Player>();
+    private ArrayList<Player> thePlayers = new ArrayList<Player>();
 
-    ArrayList<Enemy> theEnemies = new ArrayList<Enemy>();
+    private ArrayList<Enemy> theEnemies = new ArrayList<Enemy>();
 
-    ArrayList<Item> theItems = new ArrayList<Item>();
+    private ArrayList<Item> theItems = new ArrayList<Item>();
 
-    Timer worldTimer;
+    private Timer worldTimer;
 
     private Displayer dis;
 
-    BufferedImage playerImage, bombImage, attackImage, treasureImage, enemyImage, goldTileImage, silverTileImage,
+    private BufferedImage playerImage, bombImage, attackImage, treasureImage, enemyImage, goldTileImage, silverTileImage,
                     bombSackImage, healthPotImage, goldBarImage, rubyImage, pickAxeAttackImage, spinAttackImage,
                     weaponPileImage, spearAttackImage;
 
-    Listener lis;
+    private Listener lis;
 
     private static Color brown = new Color( 90, 55, 20 );
 
     private long countoftime = 0;
 
-    int entranceX = 0;
+    private int entranceX = 0;
 
-    int entranceY = 0;
+    private int entranceY = 0;
 
-    int TileSize;
+    private int TileSize;
 
     private int[] endGold;
 
     private String[] endText;
 
-    int totalPlayers;
+    private int totalPlayers;
 
-    Random rand;
+    private Random rand;
 
 
     /**
@@ -417,7 +417,7 @@ public class World
         }
         else
         {
-            x.setWeapon( new SpearWeapon( attackImage, spearAttackImage, x) );
+            x.setWeapon( new SpearWeapon( attackImage, spearAttackImage, x ) );
         }
     }
 
