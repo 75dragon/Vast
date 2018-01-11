@@ -114,7 +114,7 @@ public class Displayer extends JPanel
         g.setColor( Color.WHITE );
         say = world.getPlayers().get( 0 ).getGold() + "";
         say = words + say;
-        saytime = world.getCountoftime() / 200 + "";
+        saytime = world.getCountoftime() / 100 + "";
         saytime = whatistime + saytime;
         g.setFont( new Font( "Courier", Font.BOLD, 20 ) );
 
@@ -137,7 +137,7 @@ public class Displayer extends JPanel
         g.setColor( Color.BLACK );
         g.fillRect( 0, 0, disX, disY );
         g.setColor( Color.WHITE );
-        g.drawString( "Game Over", 50, 100 );
+        g.drawString( "Game Over, Press G to Restart", 50, 100 );
         for ( int i = 1; i < world.getTotalPlayers() + 1; i++ )
         {
             g.drawString( "Player " + i + " Final gold: " + world.getEndGold()[i - 1], 100, 100 * i + 100 );

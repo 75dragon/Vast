@@ -22,7 +22,6 @@ import world.World;
  */
 public abstract class Character
 {
-    Point2D.Double location;
 
     boolean left, right, up, down;
 
