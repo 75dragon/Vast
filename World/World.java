@@ -403,7 +403,10 @@ public class World
         theItems.add( new RubyItem( x, y, rubyImage, this ) );
     }
 
-
+    /**
+     * Gives a random weapon to the player. Replaces the old one
+     * @param x Player
+     */
     public void giveRandomItem( Player x )
     {
         int holdr = rand.nextInt( 3 );
@@ -475,7 +478,15 @@ public class World
         hitEnemiesInArea( x, y, radius, damageDealt, "Explosion" );
     }
 
-
+    /**
+     * Hit the enemies in a area
+     * @param x xLocation
+     * @param y yLocation
+     * @param radius of damage
+     * @param damageDealt damage dealt
+     * @param cause what dealt the damage
+     * @return if you hit an enemy
+     */
     public boolean hitEnemiesInArea( double x, double y, double radius, int damageDealt, String cause )
     {
         boolean hitEnemy = false;

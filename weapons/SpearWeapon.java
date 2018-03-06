@@ -31,7 +31,7 @@ public class SpearWeapon extends Weapon
                 .1 );
             if ( theWielder.getWorld().hitEnemiesInArea( theWielder.getX(), theWielder.getY(), 2, damage, weaponName ) )
             {
-                duabilityChange( -5, 100 );
+                durabilityChange( -5, 100 );
             }
             canAttack = false;
             cooldownCount = 0;

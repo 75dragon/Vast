@@ -59,6 +59,11 @@ public class Weapon
     }
 
 
+    /**
+     * Timer to manage attack. Makes a timer with attackSpeed * 1000 / maxedOut
+     * When timer completes, stops and lets the player attack turn on the timer
+     * after an attack to start the cool down
+     */
     public void attack()
     {
         attackSend = new Timer( (int)( attackSpeed * 1000 / maxedOut ), new ActionListener()
@@ -80,12 +85,23 @@ public class Weapon
     }
 
 
+    /**
+     * what happens on a attack
+     */
     public void attackAction()
     {
     }
 
 
-    public void duabilityChange( double amount, int percent )
+    /**
+     * reduce the durability of the weapon after you hit something durability =
+     * ( durability + amount ) * percent / 100
+     * 
+     * @param amount
+     *            if you want a flat amount, use this value (negative usually)
+     *            and set percent to 100
+     */
+    public void durabilityChange( double amount, int percent )
     {
         dura = ( dura + amount ) * percent / 100;
         if ( dura <= 0 )
@@ -96,6 +112,9 @@ public class Weapon
     }
 
 
+    /**
+     * Break the current weapon and remove it.
+     */
     public void weaponBreak()
     {
         attackSend.stop();
@@ -104,6 +123,10 @@ public class Weapon
     }
 
 
+    /**
+     * 
+     * TODO Write your method description here.
+     */
     public void startAttacking()
     {
         wantToAttack = true;
@@ -112,6 +135,9 @@ public class Weapon
     }
 
 
+    /**
+     * stop attacking
+     */
     public void stopAttacking()
     {
         wantToAttack = false;
@@ -123,7 +149,7 @@ public class Weapon
         g.setFont( new Font( "Courier", Font.BOLD, 20 ) );
         g.setColor( Color.WHITE );
         g.drawString( "Weapon: " + weaponName + " " + dura + "%",
-            (int)( theWielder.getX() * 40 ) ,
+            (int)( theWielder.getX() * 40 ),
             (int)( theWielder.getY() * 40 ) - 350 );
         Graphics2D g2d = (Graphics2D)g.create();
         g2d.setColor( Color.YELLOW );

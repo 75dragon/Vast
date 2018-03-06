@@ -28,7 +28,7 @@ public class SpinWeapon extends Weapon
             theWielder.getWorld().addSprite( attackImg, theWielder.getX(), theWielder.getY(), .1 );
             if ( theWielder.getWorld().hitEnemiesInArea( theWielder.getX(), theWielder.getY(), 2, damage, weaponName ) )
             {
-                duabilityChange( -12, 100 );
+                durabilityChange( -12, 100 );
             }
             canAttack = false;
             cooldownCount = 0;

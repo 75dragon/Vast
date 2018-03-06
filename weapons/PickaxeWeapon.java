@@ -31,7 +31,7 @@ public class PickaxeWeapon extends Weapon
             .75,
             damage , weaponName) )
         {
-            duabilityChange( -5, 100 );
+            durabilityChange( -5, 100 );
         }
         if ( canAttack && wantToAttack )
         {
@@ -50,7 +50,7 @@ public class PickaxeWeapon extends Weapon
             {
                 if ( theWielder.getWorld().theWorld[(int)centerVY][(int)centerVX].getTile().mineTile() )
                 {
-                    duabilityChange( -3, 100 );
+                    durabilityChange( -3, 100 );
                 }
 
                 theWielder.getWorld().addSprite( attackImg,
