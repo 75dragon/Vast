@@ -1,24 +1,34 @@
 # Vast
-Rougelike
+
+-----Dungeon Rougelike----
+
 Controls: 
 
 arrow keys to move
-space to place a deadly bomb
+space to place a bomb that damages entities and terrain
 F to use your current weapon
 
 Pickups:
 
-Health Pot
-Treasure Chest
-Gold Bar
-Ruby
-Weapon Pile
-Bomb Sack
-
-TileTrap is red - beware
+Health Pot - Restores HP
+Treasure Chest - Points
+Gold Bar - Points
+Ruby - Points
+Weapon Pile - Randomly gives you one of the listed weapons
+Bomb Sack - Restores Bombs
 
 Weapons: 
 
-Pickaxe - can mine walls, and in emegencies used to strike enemies
-Spin Sword - a powerful strike that clears all enemies around you. 
+Pickaxe - targets enemies in current direction
+        - breaks walls in current direction
+Spin Sword - targets all enemies around you
+
+Enemies :
+
+Dasher - Randomly moves around the room
+Chaser - Paths twards the player
+
+Tiles :
+Red tiles are traps - avoid!
+Gold wall tiles can be destroyed for money
           
