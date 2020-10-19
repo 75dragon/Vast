@@ -1,6 +1,8 @@
 # Vast
 
 -----Dungeon Rougelike----
+Explore the underground and escape with treasure!
+
 
 Controls: 
 
@@ -31,4 +33,6 @@ Chaser - Paths twards the player
 Tiles :
 Red tiles are traps - avoid!
 Gold wall tiles can be destroyed for money
+
+
           
