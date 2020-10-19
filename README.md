@@ -18,7 +18,7 @@ Bomb Sack - Restores Bombs
 
 Weapons:  
 Pickaxe - targets enemies in current direction  
-        - breaks walls in current direction  
+     - breaks walls in current direction  
 Spin Sword - targets all enemies around you  
 
 Enemies:  
