@@ -46,7 +46,7 @@ public class WeaponPileItem extends Item
         {
             check.stop();
             world.giveRandomItem( victem );
-            world.getDis().getWriter().addText( "A sword to my collection" );
+            world.getDis().getWriter().addText( "Aquired a new weapon" );
             world.itemDeath( this );
             return;
         }

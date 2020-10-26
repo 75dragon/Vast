@@ -44,7 +44,7 @@ public class TreasureChestItem extends Item
         {
             check.stop();
             victem.addGold( 2500 );
-            world.getDis().getWriter().addText( "Picked up lost treasure" );
+            world.getDis().getWriter().addText( "Aquired a Treasure Chest" );
             world.itemDeath( this );
             return;
         }

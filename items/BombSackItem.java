@@ -47,7 +47,7 @@ public class BombSackItem extends Item
         {
             check.stop();
             victem.addBombs( amount );
-            world.getDis().getWriter().addText( "Picked up explosived" );
+            world.getDis().getWriter().addText( "Picked up explosives" );
             world.itemDeath( this );
             return;
         }

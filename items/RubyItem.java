@@ -47,7 +47,7 @@ public class RubyItem extends Item
         {
             check.stop();
             victem.addGold( amount );
-            world.getDis().getWriter().addText( "A lovely ruby to my side" );
+            world.getDis().getWriter().addText( "Aquired a Ruby" );
             world.itemDeath( this );
             return;
         }

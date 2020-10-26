@@ -23,6 +23,7 @@ public class Item
 
     World world;
 
+    boolean test = false;
 
     /**
      * Use this class if you want to draw a PermantSprite. or else, just use the
@@ -50,10 +51,6 @@ public class Item
         {
             g.setColor( Color.ORANGE );
             g.fillRect( (int)( d.getX() * 40 ), (int)( d.getY() * 40 ), 40, 40 );
-            // g.setColor( Color.MAGENTA );
-            // g.drawString( d.getX() + ", " + d.getY(), (int)(d.getX() * 40),
-            // (int)(d.getY() * 40) );
-
         }
         else
         {
@@ -61,6 +58,12 @@ public class Item
                 (int)( d.getX() * 40 - ( img.getWidth() - 40 ) * .5 ),
                 (int)( d.getY() * 40 - ( img.getHeight() - 40 ) * .5 ),
                 null );
+        }
+        if (test)
+        {
+        	g.setColor( Color.MAGENTA );
+        	g.drawString( d.getX() + ", " + d.getY(), (int)(d.getX() * 40),
+            (int)(d.getY() * 40) );
         }
     }
 

@@ -16,7 +16,7 @@ public class HealthPotItem extends Item
 
     int amount;
 
-    Player victem;
+    Player victim;
 
 
     public HealthPotItem( double x, double y, int heal, BufferedImage img, World world )
@@ -43,11 +43,11 @@ public class HealthPotItem extends Item
 
     public void checkArea()
     {
-        if ( ( victem = world.detectPlayer( d.getX(), d.getY(), 1 ) ) != null )
+        if ( ( victim = world.detectPlayer( d.getX(), d.getY(), 1 ) ) != null )
         {
             check.stop();
-            victem.healHealth( amount );
-            world.getDis().getWriter().addText( "Ah, a refreshing restorative" );
+            victim.healHealth( amount );
+            world.getDis().getWriter().addText( "Health Restored" );
             world.itemDeath( this );
             return;
         }

@@ -47,7 +47,7 @@ public class GoldBarItem extends Item
         {
             check.stop();
             victem.addGold( amount );
-            world.getDis().getWriter().addText( "Everyone's favorite metal" );
+            world.getDis().getWriter().addText( "Aquired a Gold Bar" );
             world.itemDeath( this );
             return;
         }
