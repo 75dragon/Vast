@@ -71,6 +71,10 @@ public class Displayer extends JPanel
     {
         super.paintComponent( g );
         this.g = g;
+        if ( gameStart )
+        {
+        	drawStart();
+        }
         if ( gameRun )
         {
             drawGame();
@@ -128,6 +132,20 @@ public class Displayer extends JPanel
             (int)( world.getPlayers().get( 0 ).getY() * tileSize ) - 310 );
         getWriter().printList( (int)( world.getPlayers().get( 0 ).getX() * tileSize ) - 200,
             (int)( world.getPlayers().get( 0 ).getY() * tileSize ) + 260, g );
+    }
+    
+    public void drawStart()
+    {
+    	g.setFont( new Font( "Courier", Font.BOLD, 30 ) );
+        g.setColor( Color.BLACK );
+        g.fillRect( 0, 0, disX, disY );
+        g.setColor( Color.WHITE );
+        g.drawString( "Welcome to Vast! Press G to start", 50, 100 );
+        g.drawString( "Use the arrow keys to move and explore", 50, 130 );
+        g.drawString( "Space to drop a bomb, F to attack", 50, 160 );
+        g.drawString( "Return to the entrance", 50, 190 );
+        g.drawString( "    before the cave collapses!", 50, 220 );
+        
     }
 
 

@@ -33,28 +33,17 @@ public class FollowEnemy extends Enemy
     /**
      * Works the AI of the enemy with a timer.
      */
-    public void ai()
+    public void aiTick()
     {
-        int delay = 20;
-        move = new Timer( delay, new ActionListener()
+    	if ( cooldownCount < maxedOut )
         {
-
-            @Override
-            public void actionPerformed( ActionEvent e )
-            {
-                if ( cooldownCount < maxedOut )
-                {
-                    cooldownCount++;
-                }
-                else
-                {
-                    attemptToAttack();
-                }
-                move();
-            }
-
-        } );
-        move.start();
+            cooldownCount++;
+        }
+        else
+        {
+            attemptToAttack();
+        }
+        move();
     }
 
 

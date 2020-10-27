@@ -122,7 +122,7 @@ public class World
         convertWorld( xDim, yDim );
         for ( int i = 0; i < totalPlayers; i++ )
         {
-            thePlayers.add( new Player( entranceX, entranceY, 10, Color.PINK, this, 5, "human" ) );
+            thePlayers.add( new Player( entranceX, entranceY, 10, Color.PINK, this, 10, "human" ) );
             thePlayers.get( i ).setImage( playerImage );
             thePlayers.get( i ).setWeapon( new PickaxeWeapon( attackImage, pickAxeAttackImage, thePlayers.get( i ) ) );
         }
@@ -367,6 +367,14 @@ public class World
                     {
                         generateDistrikaMap((int)thePlayers.get( i ).getX(), (int)thePlayers.get( i ).getY(), 0);
                     }
+                }
+                for (int i = 0; i < theEnemies.size(); i++)  
+                {
+                	theEnemies.get(i).aiTick();
+                }
+                for (int i = 0; i < thePlayers.size(); i++)  
+                {
+                	thePlayers.get(i).playerTick();
                 }
             }
 
@@ -685,5 +693,17 @@ public class World
     public void setDis( Displayer dis )
     {
         this.dis = dis;
+    }
+    
+    public void pause()
+    {
+    	if ( worldTimer.isRunning() )
+    	{
+    		worldTimer.stop();
+    	}
+    	else
+    	{
+    		worldTimer.start();
+    	}
     }
 }

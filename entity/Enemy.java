@@ -41,7 +41,6 @@ public class Enemy extends Character
         super( x, y, velX, velY, hitPoints, c, world, 12, name );
         vX = velX;
         vY = velY;
-        ai();
         maxedOut = 50;
         cooldownCount = -200;
         attkImg = atkimg;
@@ -50,29 +49,18 @@ public class Enemy extends Character
 
     /**
      * Works the AI of the enemy with a timer.
-     */
-    public void ai()
+     */    
+    public void aiTick()
     {
-        int delay = 20;
-        move = new Timer( delay, new ActionListener()
+    	if ( cooldownCount < maxedOut )
         {
-
-            @Override
-            public void actionPerformed( ActionEvent e )
-            {
-                if ( cooldownCount < maxedOut )
-                {
-                    cooldownCount++;
-                }
-                else
-                {
-                    attemptToAttack();
-                }
-                move();
-            }
-
-        } );
-        move.start();
+            cooldownCount++;
+        }
+        else
+        {
+            attemptToAttack();
+        }
+        move();
     }
 
 
@@ -151,6 +139,6 @@ public class Enemy extends Character
 
     public void removeEnemy()
     {
-        move.stop();
+        //move.stop();
     }
 }

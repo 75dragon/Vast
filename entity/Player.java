@@ -58,7 +58,6 @@ public class Player extends Character
         gold = 0;
         bombs = 5;
         light = 1000;
-        startMoving();
     }
 
 
@@ -110,19 +109,10 @@ public class Player extends Character
             getWorld().getDis().getWriter().addText( "Placed a bomb" );
         }
     }
-
-
-    public void startMoving()
+    
+    public void playerTick()
     {
-        moveMe = new Timer( 10, new ActionListener()
-        {
-            @Override
-            public void actionPerformed( ActionEvent e )
-            {
-                updatePos();
-            }
-        } );
-        moveMe.start();
+    	updatePos();
     }
 
 
@@ -219,7 +209,6 @@ public class Player extends Character
 
     public void removePlayer()
     {
-        moveMe.stop();
         if ( getHolding() != null )
         {
             getHolding().weaponBreak();
