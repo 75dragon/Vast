@@ -26,6 +26,7 @@ public class PickaxeWeapon extends Weapon
 
     public void attackAction()
     {
+    	System.out.println("attackaction!");
         if ( theWielder.getWorld().hitEnemiesInArea( theWielder.getX() + theWielder.getVX(),
             theWielder.getY() + theWielder.getVY(),
             .75,

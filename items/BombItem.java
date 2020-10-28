@@ -19,34 +19,22 @@ public class BombItem extends Item
     public BombItem( double x, double y, int countDown, BufferedImage img, World world )
     {
         super( x, y, 0, img, world );
-        this.countDown = countDown;
-        bombArea();
+        this.countDown = countDown * 1000;
     }
 
-
-    public void bombArea()
+    
+    /**
+     * a single tick is 10, so multiply by 100 and countdown
+     */
+    public void itemTick()
     {
-        Item theBomb = this;
-        timeBomb = new Timer( countDown * 1000, new ActionListener()
-        {
-
-            @Override
-            public void actionPerformed( ActionEvent e )
-            {
-                timeBomb.stop();
-                world.clearArea( d.getX(), d.getY(), 3.5, 15 );
-                System.out.println( d.getX() + " " + d.getY() + " BOOM!" );
-                world.itemDeath( theBomb );
-            }
-
-        } );
-        timeBomb.start();
-    }
-
-
-    public void removeItem()
-    {
-        timeBomb.stop();
+    	countDown = countDown - 10;
+    	if ( countDown < 0 )
+    	{
+    		world.clearArea( d.getX(), d.getY(), 3.5, 15 );
+            System.out.println( d.getX() + " " + d.getY() + " bomb BOOM!" );
+            world.itemDeath( this );
+    	}
     }
 
 }

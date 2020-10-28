@@ -1,12 +1,8 @@
 package entity;
 
 import java.awt.Color;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.util.Random;
-
-import javax.swing.Timer;
 
 import world.World;
 
@@ -14,8 +10,6 @@ import world.World;
 public class Enemy extends Character
 {
     int speed = 200;
-
-    Timer move, attackTimer;
 
     int cooldownCount, maxedOut;
 
@@ -50,7 +44,7 @@ public class Enemy extends Character
     /**
      * Works the AI of the enemy with a timer.
      */    
-    public void aiTick()
+    public void enemyTick()
     {
     	if ( cooldownCount < maxedOut )
         {

@@ -24,6 +24,10 @@ public class Item
     World world;
 
     boolean test = false;
+    
+    int defaultDelay = 100;
+    
+    int delayCount = 0;
 
     /**
      * Use this class if you want to draw a PermantSprite. or else, just use the
@@ -105,4 +109,20 @@ public class Item
     {
         return;
     }
+    
+    public void itemTick()
+    {
+    	delayCount+=1;
+    	if (delayCount >= defaultDelay)
+    	{
+    		checkArea();
+    		delayCount = 0;
+    	}
+    }
+    
+    public void checkArea()
+    {
+    	return;
+    }
+    
 }

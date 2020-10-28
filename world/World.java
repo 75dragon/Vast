@@ -368,9 +368,13 @@ public class World
                         generateDistrikaMap((int)thePlayers.get( i ).getX(), (int)thePlayers.get( i ).getY(), 0);
                     }
                 }
+                for (int i = 0; i < theItems.size(); i++)
+                {
+                	theItems.get(i).itemTick();
+                }
                 for (int i = 0; i < theEnemies.size(); i++)  
                 {
-                	theEnemies.get(i).aiTick();
+                	theEnemies.get(i).enemyTick();
                 }
                 for (int i = 0; i < thePlayers.size(); i++)  
                 {
@@ -458,6 +462,7 @@ public class World
      */
     public void clearArea( double x, double y, double radius, int damageDealt )
     {
+    	System.out.println("clearArea");
         for ( int xx = 0; xx < getxDim(); xx++ )
         {
             for ( int yy = 0; yy < getyDim(); yy++ )

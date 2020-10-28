@@ -3,10 +3,6 @@ package entity;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
-import javax.swing.Timer;
 
 import world.World;
 
@@ -26,8 +22,6 @@ public class Player extends Character
     private int gold;
 
     private int bombs;
-
-    Timer moveMe;
 
     int light;// TODO
 
@@ -68,6 +62,7 @@ public class Player extends Character
      */
     public void takeDamage( double damage, String whatHitMe )
     {
+    	System.out.println("tookdmg");
         if ( isAlive() )
         {
             setHP( getHP() - damage );

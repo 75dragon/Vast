@@ -23,29 +23,12 @@ public class HealthPotItem extends Item
     {
         super( x, y, 0, img, world );
         amount = heal;
-        pickupTimer();
     }
-
-
-    public void pickupTimer()
-    {
-        check = new Timer( 1000, new ActionListener()
-        {
-            @Override
-            public void actionPerformed( ActionEvent e )
-            {
-                checkArea();
-            }
-        } );
-        check.start();
-    }
-
 
     public void checkArea()
     {
         if ( ( victim = world.detectPlayer( d.getX(), d.getY(), 1 ) ) != null )
         {
-            check.stop();
             victim.healHealth( amount );
             world.getDis().getWriter().addText( "Health Restored" );
             world.itemDeath( this );

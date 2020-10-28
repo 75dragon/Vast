@@ -85,6 +85,6 @@ public class TrapTile extends Tile
 
     public void removeTile()
     {
-        check.stop();
+        //check.stop();
     }
 }

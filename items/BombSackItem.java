@@ -23,29 +23,12 @@ public class BombSackItem extends Item
     {
         super( x, y, 0, img, world );
         amount = bombs;
-        pickupTimer();
     }
-
-
-    public void pickupTimer()
-    {
-        check = new Timer( 1000, new ActionListener()
-        {
-            @Override
-            public void actionPerformed( ActionEvent e )
-            {
-                checkArea();
-            }
-        } );
-        check.start();
-    }
-
 
     public void checkArea()
     {
         if ( ( victem = world.detectPlayer( d.getX(), d.getY(), 1 ) ) != null )
         {
-            check.stop();
             victem.addBombs( amount );
             world.getDis().getWriter().addText( "Picked up explosives" );
             world.itemDeath( this );

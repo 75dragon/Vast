@@ -28,31 +28,16 @@ public class TemporaryItem extends Item
     public TemporaryItem( double x, double y, double countDown, BufferedImage img, World world )
     {
         super( x, y, 0, img, world );
-        this.countDown = countDown;
-        TempSprite();
+        this.countDown = countDown * 1000;
     }
 
-
-    public void TempSprite()
+    public void itemTick()
     {
-        Item theSprite = this;
-        temp = new Timer( (int)( countDown * 1000 ), new ActionListener()
-        {
-
-            @Override
-            public void actionPerformed( ActionEvent e )
-            {
-                temp.stop();
-                world.itemDeath( theSprite );
-            }
-
-        } );
-        temp.start();
-    }
-
-
-    public void removeItem()
-    {
-        temp.stop();
+    	System.out.println("temptick");
+    	countDown = countDown - 10;
+    	if ( countDown < 0 )
+    	{
+            world.itemDeath( this );
+    	}
     }
 }

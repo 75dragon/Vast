@@ -23,29 +23,12 @@ public class RubyItem extends Item
     {
         super( x, y, 0, img, world );
         amount = 750;
-        pickupTimer();
     }
-
-
-    public void pickupTimer()
-    {
-        check = new Timer( 1000, new ActionListener()
-        {
-            @Override
-            public void actionPerformed( ActionEvent e )
-            {
-                checkArea();
-            }
-        } );
-        check.start();
-    }
-
 
     public void checkArea()
     {
         if ( ( victem = world.detectPlayer( d.getX(), d.getY(), 1 ) ) != null )
         {
-            check.stop();
             victem.addGold( amount );
             world.getDis().getWriter().addText( "Aquired a Ruby" );
             world.itemDeath( this );

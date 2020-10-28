@@ -22,29 +22,13 @@ public class WeaponPileItem extends Item
     public WeaponPileItem( double x, double y, BufferedImage img, World world )
     {
         super( x, y, 0, img, world );
-        pickupTimer();
     }
-
-
-    public void pickupTimer()
-    {
-        check = new Timer( 1000, new ActionListener()
-        {
-            @Override
-            public void actionPerformed( ActionEvent e )
-            {
-                checkArea();
-            }
-        } );
-        check.start();
-    }
-
 
     public void checkArea()
     {
         if ( ( victem = world.detectPlayer( d.getX(), d.getY(), 1 ) ) != null )
         {
-            check.stop();
+            //check.stop();
             world.giveRandomItem( victem );
             world.getDis().getWriter().addText( "Aquired a new weapon" );
             world.itemDeath( this );

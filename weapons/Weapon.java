@@ -66,6 +66,7 @@ public class Weapon
      */
     public void attack()
     {
+    	System.out.println("attack!");
         attackSend = new Timer( (int)( attackSpeed * 1000 / maxedOut ), new ActionListener()
         {
             @Override
