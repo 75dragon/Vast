@@ -1,20 +1,13 @@
 package items;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
-
-import javax.swing.Timer;
 
 import world.World;
 
 
 public class TemporaryItem extends Item
 {
-    Timer temp;
-
     double countDown;
-
 
     /**
      * Draws a temporary sprite for countDown seconds
@@ -33,7 +26,6 @@ public class TemporaryItem extends Item
 
     public void itemTick()
     {
-    	System.out.println("temptick");
     	countDown = countDown - 10;
     	if ( countDown < 0 )
     	{

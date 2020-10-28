@@ -324,7 +324,7 @@ public class World
 
     public void itemDeath( Item ditem )
     {
-        ditem.removeItem();
+        ditem.onItemPickup();
         theItems.remove( ditem );
     }
 
@@ -599,7 +599,7 @@ public class World
         worldTimer.stop();
         while ( theItems.size() > 0 )
         {
-            theItems.get( 0 ).removeItem();
+            theItems.get( 0 ).onItemPickup();
             theItems.remove( 0 );
         }
         while ( theEnemies.size() > 0 )

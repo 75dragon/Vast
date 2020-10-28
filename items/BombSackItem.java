@@ -1,22 +1,13 @@
 package items;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 
-import javax.swing.Timer;
-
-import entity.Player;
 import world.World;
 
 
 public class BombSackItem extends Item
 {
-    Timer check;
-
     int amount;
-
-    Player victem;
 
 
     public BombSackItem( double x, double y, int bombs, BufferedImage img, World world )
@@ -24,16 +15,11 @@ public class BombSackItem extends Item
         super( x, y, 0, img, world );
         amount = bombs;
     }
-
-    public void checkArea()
+    
+    public void onItemPickup()
     {
-        if ( ( victem = world.detectPlayer( d.getX(), d.getY(), 1 ) ) != null )
-        {
-            victem.addBombs( amount );
-            world.getDis().getWriter().addText( "Picked up explosives" );
-            world.itemDeath( this );
-            return;
-        }
+    	victim.addBombs( amount );
+    	world.getDis().getWriter().addText( "Picked up explosives" );
     }
 
 }

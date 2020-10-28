@@ -1,40 +1,30 @@
 package items;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
-
-import javax.swing.Timer;
 
 import world.World;
 
-
 public class BombItem extends Item
 {
-    Timer timeBomb;
+	int countDown;
 
-    int countDown;
+	public BombItem(double x, double y, int countDown, BufferedImage img, World world)
+	{
+		super(x, y, 0, img, world);
+		this.countDown = countDown * 1000;
+	}
 
-
-    public BombItem( double x, double y, int countDown, BufferedImage img, World world )
-    {
-        super( x, y, 0, img, world );
-        this.countDown = countDown * 1000;
-    }
-
-    
-    /**
-     * a single tick is 10, so multiply by 100 and countdown
-     */
-    public void itemTick()
-    {
-    	countDown = countDown - 10;
-    	if ( countDown < 0 )
-    	{
-    		world.clearArea( d.getX(), d.getY(), 3.5, 15 );
-            System.out.println( d.getX() + " " + d.getY() + " bomb BOOM!" );
-            world.itemDeath( this );
-    	}
-    }
-
+	/**
+	 * a single tick is 10, so multiply by 100 and countdown
+	 */
+	public void itemTick()
+	{
+		countDown = countDown - 10;
+		if (countDown < 0)
+		{
+			world.clearArea(d.getX(), d.getY(), 3.5, 15);
+			System.out.println(d.getX() + " " + d.getY() + " bomb BOOM!");
+			world.itemDeath(this);
+		}
+	}
 }
