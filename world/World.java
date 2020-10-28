@@ -26,8 +26,8 @@ import items.WeaponPileItem;
 import testMine.Displayer;
 import testMine.Generate;
 import testMine.Listener;
-import testMine.GameText;
 import tile.EntranceTile;
+import tile.GameTick;
 import tile.GoldTile;
 import tile.RegularTile;
 import tile.SilverTile;
@@ -51,6 +51,8 @@ public class World
     private ArrayList<Enemy> theEnemies = new ArrayList<Enemy>();
 
     private ArrayList<Item> theItems = new ArrayList<Item>();
+    
+    private ArrayList<GameTick> theTiles = new ArrayList<GameTick>();
 
     private Timer worldTimer;
 
@@ -195,7 +197,9 @@ public class World
                 }
                 else if ( gen.getWorld()[i][j].equals( "t" ) )
                 {
-                    theWorld[i][j] = new TrapTile( true, 0, Color.RED, j, i, this );
+                	TrapTile hold = new TrapTile( true, 0, Color.RED, j, i, this );
+                    theWorld[i][j] = hold;
+                    theTiles.add(hold);
                 }
                 else if ( gen.getWorld()[i][j].equals( "#" ) )
                 {
@@ -324,7 +328,7 @@ public class World
 
     public void itemDeath( Item ditem )
     {
-        ditem.onItemPickup();
+        ditem.onItemDestroy();
         theItems.remove( ditem );
     }
 
@@ -379,6 +383,10 @@ public class World
                 for (int i = 0; i < thePlayers.size(); i++)  
                 {
                 	thePlayers.get(i).playerTick();
+                }
+                for (int i = 0; i < theTiles.size(); i++)  
+                {
+                	theTiles.get(i).onTick();
                 }
             }
 
@@ -599,7 +607,7 @@ public class World
         worldTimer.stop();
         while ( theItems.size() > 0 )
         {
-            theItems.get( 0 ).onItemPickup();
+            theItems.get( 0 ).onItemDestroy();
             theItems.remove( 0 );
         }
         while ( theEnemies.size() > 0 )
@@ -711,4 +719,14 @@ public class World
     		worldTimer.start();
     	}
     }
+
+	public ArrayList<GameTick> getTheTiles()
+	{
+		return theTiles;
+	}
+
+	public void setTheTiles(ArrayList<GameTick> theTiles)
+	{
+		this.theTiles = theTiles;
+	}
 }

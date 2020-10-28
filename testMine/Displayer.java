@@ -13,7 +13,6 @@ import items.Item;
 import tile.Tile;
 import world.World;
 
-
 public class Displayer extends JPanel
 {
     World world;
@@ -42,7 +41,7 @@ public class Displayer extends JPanel
 
     int tileSize;
 
-    boolean gameStart = false;
+    boolean gameStart = true;
 
     boolean gameRun = false;
 

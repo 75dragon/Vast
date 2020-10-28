@@ -110,15 +110,21 @@ public class Item
 	{
 		if ((victim = world.detectPlayer(d.getX(), d.getY(), 1)) != null)
 		{
+			onItemPickup();
 			world.itemDeath(this);
 			return;
 		}
 	}
 
 	/**
-	 * On item removal
+	 * On item pickup
 	 */
 	public void onItemPickup()
+	{
+		return;
+	}
+	
+	public void onItemDestroy()
 	{
 		return;
 	}

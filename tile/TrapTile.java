@@ -1,14 +1,8 @@
 package tile;
 
 import java.awt.Color;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
-import javax.swing.Timer;
-
 import entity.Player;
 import world.World;
-
 
 /**
  * TrapTile class. Makes a tile a deadly trap with the top left corner being
@@ -22,69 +16,53 @@ import world.World;
  *
  * @author Sources: Me & U
  */
-public class TrapTile extends Tile
+public class TrapTile extends Tile implements GameTick
 {
-    Timer check;
+	Player victem;
+	
+	int defaultDelay;
+	
+	int delayCount;
 
-    Player victem;
+	/**
+	 * @param passable
+	 *            passable
+	 * @param loot
+	 *            loot
+	 * @param color
+	 *            colors
+	 * @param c
+	 *            col
+	 * @param r
+	 *            row
+	 * @param world
+	 *            world
+	 */
+	public TrapTile(boolean passable, int loot, Color color, int c, int r, World world)
+	{
+		super(passable, loot, color, c, r, 0, world);
+		defaultDelay = 25;
+		delayCount = 0;
+	}
 
+	public void sneakAttack()
+	{
+		if ((victem = world.detectPlayer(c, r, 1)) != null)
+		{
+			victem.takeDamage(15, "it's a trap!");
+			this.color = Color.CYAN;
+			return;
+		}
+	}
 
-    /**
-     * @param passable
-     *            passable
-     * @param loot
-     *            loot
-     * @param color
-     *            colors
-     * @param c
-     *            col
-     * @param r
-     *            row
-     * @param world
-     *            world
-     */
-    public TrapTile( boolean passable, int loot, Color color, int c, int r, World world )
-    {
-        super( passable, loot, color, c, r, 0, world );
-        trapTimer();
-    }
-
-
-    public void trapTimer()
-    {
-        check = new Timer( 250, new ActionListener()
-        {
-            @Override
-            public void actionPerformed( ActionEvent e )
-            {
-                sneakAttack();
-            }
-        } );
-        check.start();
-    }
-
-
-    public void sneakAttack()
-    {
-        if ( ( victem = world.detectPlayer( c, r, 1 ) ) != null )
-        {
-            check.stop();
-            victem.takeDamage( 15, "it's a trap!" );
-            this.color = Color.CYAN;
-            return;
-        }
-    }
-
-
-    @Override
-    public void blownUp()
-    {
-        check.stop();
-    }
-
-
-    public void removeTile()
-    {
-        check.stop();
-    }
+	@Override
+	public void onTick()
+	{
+		delayCount += 1;
+		if (delayCount >= defaultDelay)
+		{
+			sneakAttack();
+			delayCount = 0;
+		}
+	}
 }
