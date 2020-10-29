@@ -52,7 +52,7 @@ public class World
 
     private ArrayList<Item> theItems = new ArrayList<Item>();
     
-    private ArrayList<GameTick> theTiles = new ArrayList<GameTick>();
+    private ArrayList<GameTick> theTicks = new ArrayList<GameTick>();
 
     private Timer worldTimer;
 
@@ -199,7 +199,7 @@ public class World
                 {
                 	TrapTile hold = new TrapTile( true, 0, Color.RED, j, i, this );
                     theWorld[i][j] = hold;
-                    theTiles.add(hold);
+                    theTicks.add(hold);
                 }
                 else if ( gen.getWorld()[i][j].equals( "#" ) )
                 {
@@ -331,6 +331,11 @@ public class World
         ditem.onItemDestroy();
         theItems.remove( ditem );
     }
+    
+    public void gameTickDeath(GameTick gTick)
+    {
+    	theTicks.remove(gTick);
+    }
 
 
     /**
@@ -384,9 +389,9 @@ public class World
                 {
                 	thePlayers.get(i).playerTick();
                 }
-                for (int i = 0; i < theTiles.size(); i++)  
+                for (int i = 0; i < theTicks.size(); i++)  
                 {
-                	theTiles.get(i).onTick();
+                	theTicks.get(i).onTick();
                 }
             }
 
@@ -722,11 +727,11 @@ public class World
 
 	public ArrayList<GameTick> getTheTiles()
 	{
-		return theTiles;
+		return theTicks;
 	}
 
 	public void setTheTiles(ArrayList<GameTick> theTiles)
 	{
-		this.theTiles = theTiles;
+		this.theTicks = theTiles;
 	}
 }

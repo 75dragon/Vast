@@ -19,9 +19,9 @@ import world.World;
 public class TrapTile extends Tile implements GameTick
 {
 	Player victem;
-	
+
 	int defaultDelay;
-	
+
 	int delayCount;
 
 	/**
@@ -49,9 +49,12 @@ public class TrapTile extends Tile implements GameTick
 	{
 		if ((victem = world.detectPlayer(c, r, 1)) != null)
 		{
-			victem.takeDamage(15, "it's a trap!");
-			this.color = Color.CYAN;
-			return;
+			world.bombArea(c, r, 2000);
+			world.theWorld[c][r] = new RegularTile( false, 0, Color.PINK, c, r, world );
+			world.gameTickDeath(this);
+			// victem.takeDamage(15, "it's a trap!");
+			// this.color = Color.CYAN;
+			// return;
 		}
 	}
 
