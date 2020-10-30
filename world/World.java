@@ -157,19 +157,19 @@ public class World
 		{
 			playerImage = ImageIO.read(getClass().getResource("/imgs/Player.jpg"));
 			bombImage = ImageIO.read(getClass().getResource("/imgs/BlueShell.jpg"));
-			attackImage = ImageIO.read(getClass().getResource("/imgs/attackImage.jpg"));
+			attackImage = ImageIO.read(getClass().getResource("/imgs/AttackImageStar.jpg"));
 			treasureImage = ImageIO.read(getClass().getResource("/imgs/TreasureChest.png"));
-			bombSackImage = ImageIO.read(getClass().getResource("/imgs/bombSack.png"));
-			enemyImage = ImageIO.read(getClass().getResource("/imgs/enemy1.jpg"));
-			goldTileImage = ImageIO.read(getClass().getResource("/imgs/goldtile2.jpg"));
-			silverTileImage = ImageIO.read(getClass().getResource("/imgs/silvertile.jpg"));
+			bombSackImage = ImageIO.read(getClass().getResource("/imgs/BombSack.png"));
+			enemyImage = ImageIO.read(getClass().getResource("/imgs/Enemy1.jpg"));
+			goldTileImage = ImageIO.read(getClass().getResource("/imgs/GoldTile.jpg"));
+			silverTileImage = ImageIO.read(getClass().getResource("/imgs/SilverTile.jpg"));
 			healthPotImage = ImageIO.read(getClass().getResource("/imgs/HealthPot.png"));
 			goldBarImage = ImageIO.read(getClass().getResource("/imgs/GoldBar.png"));
 			rubyImage = ImageIO.read(getClass().getResource("/imgs/Ruby.png"));
 			pickAxeAttackImage = ImageIO.read(getClass().getResource("/imgs/PickAxeStrike.png"));
 			spinAttackImage = ImageIO.read(getClass().getResource("/imgs/SpinAttack.png"));
 			weaponPileImage = ImageIO.read(getClass().getResource("/imgs/WeaponPile.png"));
-			spearAttackImage = ImageIO.read(getClass().getResource("/imgs/spear.png"));
+			spearAttackImage = ImageIO.read(getClass().getResource("/imgs/Spear.png"));
 		}
 		catch (IOException e)
 		{

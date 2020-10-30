@@ -172,7 +172,7 @@ public class Generate
                     {
                         getWorld()[i][j] = "H";
                     }
-                    else if ( rand.nextInt( 5 ) == 0 )
+                    else if ( rand.nextInt( 500 ) == 0 )
                     {
                         getWorld()[i][j] = "W";
                     }

@@ -4,12 +4,8 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.geom.Arc2D;
 import java.awt.image.BufferedImage;
-
-import javax.swing.Timer;
 
 import entity.Character;
 import tile.GameTick;
@@ -18,7 +14,7 @@ public class Weapon implements GameTick
 {
 	String weaponName;
 
-	//Timer attackSend;
+	// Timer attackSend;
 
 	int range, damage;
 
@@ -47,7 +43,7 @@ public class Weapon implements GameTick
 		canAttack = true;
 		wantToAttack = false;
 		attackCount = 0;
-		attackDelay = (int)(atkspd * 100);
+		attackDelay = (int) (atkspd * 100);
 		theWielder.getWorld().getTheTicks().add(this);
 	}
 
