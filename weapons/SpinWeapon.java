@@ -8,7 +8,7 @@ import entity.Player;
 public class SpinWeapon extends Weapon
 {
     /**
-     * A heavy, brittle weapon that once going, will not stop.
+     * Attacks all enemies around the player
      * 
      * @param image
      * @param atkImg

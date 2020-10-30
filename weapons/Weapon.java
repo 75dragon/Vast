@@ -14,8 +14,6 @@ public class Weapon implements GameTick
 {
 	String weaponName;
 
-	// Timer attackSend;
-
 	int range, damage;
 
 	int attackCount, attackDelay;
