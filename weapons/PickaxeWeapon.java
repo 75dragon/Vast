@@ -19,7 +19,7 @@ public class PickaxeWeapon extends Weapon
      */
     public PickaxeWeapon( BufferedImage image, BufferedImage atkImg, Player had )
     {
-        super( 1, 4, .3, image, atkImg, 100, had );
+        super( 1, 4, .25, image, atkImg, 100, had );
         weaponName = "Pickaxe";
     }
 
@@ -61,8 +61,7 @@ public class PickaxeWeapon extends Weapon
             }
 
             canAttack = false;
-            cooldownCount = 0;
-            attackSend.start();
+            attackCount = 0;
         }
     }
 }

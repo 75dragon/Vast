@@ -16,7 +16,7 @@ public class SpinWeapon extends Weapon
      */
     public SpinWeapon( BufferedImage image, BufferedImage atkImg, Player had )
     {
-        super( 1, 5, 4, image, atkImg, 100, had );
+        super( 1, 5, .75, image, atkImg, 100, had );
         weaponName = "Spin Sword";
     }
 
@@ -31,8 +31,7 @@ public class SpinWeapon extends Weapon
                 durabilityChange( -12, 100 );
             }
             canAttack = false;
-            cooldownCount = 0;
-            attackSend.start();
+            attackCount = 0;
         }
     }
 }

@@ -112,8 +112,19 @@ public class World
 		setEndGold(new int[playersx]);
 		setEndText(new String[playersx]);
 		loadImages();
-		newGame();
+		firstGame();
 		lis.addWorld(this);
+	}
+	
+	public void firstGame()
+	{
+		dis.setGameStart(true);
+		dis.setGameRun(false);
+		dis.setGameFinish(false);
+		lis.gameStart(true);
+		lis.gameRun(false);
+		lis.gameFinish(false);
+		dis.repaint();
 	}
 
 	public void newGame()
@@ -126,8 +137,10 @@ public class World
 			thePlayers.get(i).setImage(playerImage);
 			thePlayers.get(i).setWeapon(new PickaxeWeapon(attackImage, pickAxeAttackImage, thePlayers.get(i)));
 		}
+		dis.setGameStart(false);
 		dis.setGameRun(true);
 		dis.setGameFinish(false);
+		lis.gameStart(false);
 		lis.gameRun(true);
 		lis.gameFinish(false);
 		dis.repaint();
@@ -707,7 +720,7 @@ public class World
 		}
 	}
 
-	public ArrayList<GameTick> getTheTiles()
+	public ArrayList<GameTick> getTheTicks()
 	{
 		return theTicks;
 	}

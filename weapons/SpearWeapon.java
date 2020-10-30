@@ -16,7 +16,7 @@ public class SpearWeapon extends Weapon
      */
     public SpearWeapon( BufferedImage image, BufferedImage atkImg, Player had )
     {
-        super( 2, 7, 1, image, atkImg, 100, had );
+        super( 2, 7, .50, image, atkImg, 100, had );
         weaponName = "Spear";
     }
 
@@ -34,8 +34,7 @@ public class SpearWeapon extends Weapon
                 durabilityChange( -5, 100 );
             }
             canAttack = false;
-            cooldownCount = 0;
-            attackSend.start();
+            attackCount = 0;
         }
     }
 }

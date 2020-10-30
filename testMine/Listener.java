@@ -31,7 +31,15 @@ public class Listener implements KeyListener
 	 */
 	public void keyPressed(KeyEvent e)
 	{
-		if (gameFinish)
+		if (gameStart)
+		{
+			if (KeyEvent.VK_S == e.getKeyCode())
+			{
+				world.newGame();
+			}
+			return;
+		}
+		else if (gameFinish)
 		{
 			if (KeyEvent.VK_G == e.getKeyCode())
 			{
