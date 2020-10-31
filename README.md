@@ -38,5 +38,6 @@ Care: Dying halfs your score! Return alive to the entrance!
 # Screenshots
 
 ![alt text](https://github.com/75dragon/Vast/blob/master/ScreenShots/Start1.png?raw=true)
+![alt text](https://github.com/75dragon/Vast/blob/master/ScreenShots/Gameplay2.png?raw=true)
 ![alt text](https://github.com/75dragon/Vast/blob/master/ScreenShots/End1.png?raw=true)
           
