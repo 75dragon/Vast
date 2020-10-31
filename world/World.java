@@ -616,6 +616,10 @@ public class World
 			theEnemies.get(0).removeEnemy();
 			theEnemies.remove(0);
 		}
+		while (theTicks.size() > 0)
+		{
+			theTicks.remove(0);
+		}
 		lis.gameRun(false);
 		lis.gameFinish(true);
 		while (thePlayers.size() > 0)
