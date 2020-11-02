@@ -138,7 +138,7 @@ public class Tile
 			g.setColor(color);
 			g.fillRect(c * 40, r * 40, 40, 40);
 			g.drawImage(image, c * 40 + 10, r * 40 + 10, null);
-			//g.setColor(Color.MAGENTA);
+			// g.setColor(Color.MAGENTA);
 			// g.drawString( c + ", " + r + " " + playerProximity, c * 40, r *
 			// 40 );
 		}

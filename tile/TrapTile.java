@@ -50,11 +50,8 @@ public class TrapTile extends Tile implements GameTick
 		if ((victem = world.detectPlayer(c, r, 1)) != null)
 		{
 			world.bombArea(c, r, 2000);
-			world.theWorld[c][r] = new RegularTile( false, 0, Color.PINK, c, r, world );
+			world.theWorld[c][r] = new RegularTile(false, 0, Color.PINK, c, r, world);
 			world.gameTickDeath(this);
-			// victem.takeDamage(15, "it's a trap!");
-			// this.color = Color.CYAN;
-			// return;
 		}
 	}
 

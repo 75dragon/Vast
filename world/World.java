@@ -115,7 +115,7 @@ public class World
 		firstGame();
 		lis.addWorld(this);
 	}
-	
+
 	public void firstGame()
 	{
 		dis.setGameStart(true);

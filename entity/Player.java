@@ -6,7 +6,6 @@ import java.awt.Graphics;
 
 import world.World;
 
-
 /**
  * Player class.
  *
@@ -19,194 +18,184 @@ import world.World;
  */
 public class Player extends Character
 {
-    private int gold;
+	private int gold;
 
-    private int bombs;
+	private int bombs;
 
-    int light;// TODO
+	int light;// TODO
 
-    String killedBy;
+	String killedBy;
 
+	/**
+	 * @param x
+	 *            x
+	 * @param y
+	 *            y
+	 * @param vX
+	 *            vX
+	 * @param vY
+	 *            vY
+	 * @param hitPoints
+	 *            hp
+	 * @param color
+	 *            default color
+	 * @param world
+	 *            ...
+	 * @param speed
+	 *            how fast
+	 */
+	public Player(int x, int y, int hitPoints, Color color, World world, double speed, String name)
+	{
+		super(x, y, 0, 0, hitPoints, color, world, speed, name);
+		gold = 0;
+		bombs = 5;
+		light = 1000;
+	}
 
-    /**
-     * @param x
-     *            x
-     * @param y
-     *            y
-     * @param vX
-     *            vX
-     * @param vY
-     *            vY
-     * @param hitPoints
-     *            hp
-     * @param color
-     *            default color
-     * @param world
-     *            ...
-     * @param speed
-     *            how fast
-     */
-    public Player( int x, int y, int hitPoints, Color color, World world, double speed, String name )
-    {
-        super( x, y, 0, 0, hitPoints, color, world, speed, name );
-        gold = 0;
-        bombs = 5;
-        light = 1000;
-    }
+	/**
+	 * @param damage
+	 *            damage value
+	 * 
+	 */
+	public void takeDamage(double damage, String whatHitMe)
+	{
+		System.out.println("tookdmg");
+		if (isAlive())
+		{
+			setHP(getHP() - damage);
+			System.out.println(getHP());
+		}
+		if (!isAlive())
+		{
+			getWorld().getEndText()[getWorld().getPlayers().indexOf(this)] = "Killed by: " + whatHitMe;
+			gold = gold / 2;
+			getWorld().playerDeath(this);
+		}
+	}
 
+	/**
+	 * @param damage
+	 *            damage value
+	 * 
+	 */
+	public void healHealth(int heal)
+	{
+		if (isAlive())
+		{
+			setHP(getHP() + heal);
+			System.out.println(getHP());
+		}
+	}
 
-    /**
-     * @param damage
-     *            damage value
-     * 
-     */
-    public void takeDamage( double damage, String whatHitMe )
-    {
-    	System.out.println("tookdmg");
-        if ( isAlive() )
-        {
-            setHP( getHP() - damage );
-            System.out.println( getHP() );
-        }
-        if ( !isAlive() )
-        {
-            getWorld().getEndText()[getWorld().getPlayers().indexOf( this )] = "Killed by: " + whatHitMe;
-            gold = gold / 2;
-            getWorld().playerDeath( this );
-        }
-    }
+	/**
+	 * Deploys bomb
+	 */
+	public void bomb()
+	{
+		if (bombs > 0)
+		{
+			bombs--;
+			getWorld().bombArea(getX(), getY(), 2000);
+			getWorld().getDis().getWriter().addText("Placed a bomb");
+		}
+	}
 
+	public void playerTick()
+	{
+		updatePos();
+	}
 
-    /**
-     * @param damage
-     *            damage value
-     * 
-     */
-    public void healHealth( int heal )
-    {
-        if ( isAlive() )
-        {
-            setHP( getHP() + heal );
-            System.out.println( getHP() );
-        }
-    }
+	/**
+	 * Draws character.
+	 * 
+	 * @param g
+	 *            graphics
+	 */
+	public void drawMe(Graphics g)
+	{
+		if (img == null)
+		{
+			g.setColor(color);
+			g.fillRect((int) (x * 40), (int) (y * 40), 40, 40);
+			g.setColor(Color.WHITE);
+			g.fillRect((int) (x * 40), (int) (y * 40), 40, 5);
+			g.setColor(Color.RED);
+			g.fillRect((int) (x * 40), (int) (y * 40), (int) (40 * hp / maxHp), 5);
+			// g.setColor( Color.MAGENTA );
+			// g.drawString( x + ", " + y, (int)( x * 40 ), (int)( y * 40 ) );
+		}
+		else
+		{
+			g.setColor(color);
+			g.fillRect((int) (x * 40), (int) (y * 40), (int) (40 * wid), (int) (40 * hei));
+			g.drawImage(img, (int) (x * 40) + (int) (10 * wid), (int) (y * 40) + (int) (10 * hei), null);
+			g.setColor(Color.WHITE);
+			g.fillRect((int) (x * 40), (int) (y * 40), 40, 5);
+			g.setColor(Color.RED);
+			g.fillRect((int) (x * 40), (int) (y * 40), (int) (40 * hp / maxHp), 5);
+			// g.setColor( Color.MAGENTA );
+			// g.drawString( x + ", " + y, (int)( x * 40 ), (int)( y * 40 ) );
+		}
+		g.setFont(new Font("Courier", Font.BOLD, 20));
+		g.setColor(Color.WHITE);
+		g.drawString("Bombs: " + getBombs(), (int) (getX() * 40), (int) (getY() * 40) - 250);
 
+		if (getHolding() != null)
+		{
+			getHolding().drawMe(g);
+		}
+		else
+		{
+			g.drawString("Weapon: None!", (int) (getX() * 40), (int) (getY() * 40) - 350);
+		}
+	}
 
-    /**
-     * Deploys bomb
-     */
-    public void bomb()
-    {
-        if ( bombs > 0 )
-        {
-            bombs--;
-            getWorld().bombArea( getX(), getY(), 2000 );
-            getWorld().getDis().getWriter().addText( "Placed a bomb" );
-        }
-    }
-    
-    public void playerTick()
-    {
-    	updatePos();
-    }
+	/**
+	 * Returns player's gold amount.
+	 * 
+	 * @return gold value
+	 */
+	public int getGold()
+	{
+		return gold;
+	}
 
+	/**
+	 * Adds gold value to player's current amount.
+	 * 
+	 * @param g
+	 *            gold value
+	 */
+	public void addGold(int g)
+	{
+		gold += g;
+	}
 
-    /**
-     * Draws character.
-     * 
-     * @param g
-     *            graphics
-     */
-    public void drawMe( Graphics g )
-    {
-        if ( img == null )
-        {
-            g.setColor( color );
-            g.fillRect( (int)( x * 40 ), (int)( y * 40 ), 40, 40 );
-            g.setColor( Color.WHITE );
-            g.fillRect( (int)( x * 40 ), (int)( y * 40 ), 40, 5 );
-            g.setColor( Color.RED );
-            g.fillRect( (int)( x * 40 ), (int)( y * 40 ), (int)( 40 * hp / maxHp ), 5 );
-            // g.setColor( Color.MAGENTA );
-            // g.drawString( x + ", " + y, (int)( x * 40 ), (int)( y * 40 ) );
-        }
-        else
-        {
-            g.setColor( color );
-            g.fillRect( (int)( x * 40 ), (int)( y * 40 ), (int)( 40 * wid ), (int)( 40 * hei ) );
-            g.drawImage( img, (int)( x * 40 ) + (int)( 10 * wid ), (int)( y * 40 ) + (int)( 10 * hei ), null );
-            g.setColor( Color.WHITE );
-            g.fillRect( (int)( x * 40 ), (int)( y * 40 ), 40, 5 );
-            g.setColor( Color.RED );
-            g.fillRect( (int)( x * 40 ), (int)( y * 40 ), (int)( 40 * hp / maxHp ), 5 );
-            // g.setColor( Color.MAGENTA );
-            // g.drawString( x + ", " + y, (int)( x * 40 ), (int)( y * 40 ) );
-        }
-        g.setFont( new Font( "Courier", Font.BOLD, 20 ) );
-        g.setColor( Color.WHITE );
-        g.drawString( "Bombs: " + getBombs(), (int)( getX() * 40 ), (int)( getY() * 40 ) - 250 );
+	/**
+	 * Adds bombs to the player.
+	 * 
+	 * @param amount
+	 */
+	public void addBombs(int amount)
+	{
+		bombs = bombs + amount;
+	}
 
-        if ( getHolding() != null )
-        {
-            getHolding().drawMe( g );
-        }
-        else
-        {
-            g.drawString( "Weapon: None!", (int)( getX() * 40 ), (int)( getY() * 40 ) - 350 );
-        }
-    }
+	/**
+	 * gets the amount of bombs
+	 * 
+	 * @return int of bombs
+	 */
+	public int getBombs()
+	{
+		return bombs;
+	}
 
-
-    /**
-     * Returns player's gold amount.
-     * 
-     * @return gold value
-     */
-    public int getGold()
-    {
-        return gold;
-    }
-
-
-    /**
-     * Adds gold value to player's current amount.
-     * 
-     * @param g
-     *            gold value
-     */
-    public void addGold( int g )
-    {
-        gold += g;
-    }
-
-
-    /**
-     * Adds bombs to the player.
-     * 
-     * @param amount
-     */
-    public void addBombs( int amount )
-    {
-        bombs = bombs + amount;
-    }
-
-
-    /**
-     * gets the amount of bombs
-     * 
-     * @return int of bombs
-     */
-    public int getBombs()
-    {
-        return bombs;
-    }
-
-
-    public void removePlayer()
-    {
-        if ( getHolding() != null )
-        {
-            getHolding().weaponBreak();
-        }
-    }
+	public void removePlayer()
+	{
+		if (getHolding() != null)
+		{
+			getHolding().weaponBreak();
+		}
+	}
 }

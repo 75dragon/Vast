@@ -6,47 +6,44 @@ import javax.swing.JFrame;
 
 import world.World;
 
-
 public class GameStart
 {
-    int frameX = 800;
+	int frameX = 800;
 
-    int frameY = 800;
+	int frameY = 800;
 
-    int X = 50;
+	int X = 50;
 
-    int Y = 50;
+	int Y = 50;
 
-    int defaultTilePixelSize = 40;
+	int defaultTilePixelSize = 40;
 
-    int players = 1;
+	int players = 1;
 
-    boolean test = false;
+	boolean test = false;
 
+	public GameStart()
+	{
+		Listener lis = new Listener();
+		GameText writer = new GameText();
+		Displayer dis = new Displayer(frameX, frameY, defaultTilePixelSize, writer);
+		World world = new World(X, Y, players, lis, dis, defaultTilePixelSize);
+		BorderLayout layout = new BorderLayout();
+		dis.addWorld(world);
+		JFrame frame = new JFrame();
+		frame.setSize(frameX, frameY);
+		frame.setLayout(layout);
+		frame.add(dis, BorderLayout.CENTER);
+		frame.addKeyListener(lis);
 
-    public GameStart()
-    {
-        Listener lis = new Listener();
-        GameText writer = new GameText();
-        Displayer dis = new Displayer( frameX, frameY, defaultTilePixelSize, writer );   
-        World world = new World( X, Y, players, lis, dis, defaultTilePixelSize );
-        BorderLayout layout = new BorderLayout();
-        dis.addWorld( world );
-        JFrame frame = new JFrame();
-        frame.setSize( frameX, frameY );
-        frame.setLayout( layout );
-        frame.add( dis, BorderLayout.CENTER );
-        frame.addKeyListener( lis );
+		frame.setVisible(true);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setResizable(false);
+	}
 
-        frame.setVisible( true );
-        frame.setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE );
-        frame.setResizable( false );
-    }
-
-
-    public static void main( String[] args )
-    {
-        new GameStart();
-        System.out.println( "hello world" );
-    }
+	public static void main(String[] args)
+	{
+		new GameStart();
+		System.out.println("hello world");
+	}
 }
