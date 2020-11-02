@@ -217,7 +217,9 @@ public class World
 					case "E": // entrance
 						entranceX = j;
 						entranceY = i;
-						theWorld[i][j] = new EntranceTile(j, i, this);
+						EntranceTile thisE = new EntranceTile(j, i, this);
+						theWorld[i][j] = thisE;
+						theTicks.add(thisE);
 						break;
 					default: // rest of the tiles are regular and walkable
 						Color holdR = new Color(150 + rand.nextInt(21), 150 + rand.nextInt(21), 150 + rand.nextInt(21));

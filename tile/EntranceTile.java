@@ -1,26 +1,20 @@
 package tile;
 
 import java.awt.Color;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
-import javax.swing.Timer;
-
 import entity.Player;
 import world.World;
 
-public class EntranceTile extends Tile
+public class EntranceTile extends Tile implements GameTick
 {
-	Timer cannotLeaveYet;
-
-	Timer checkForPlayer;
+	int leaveDelay = 1000;
+	int leaveCheckDelay = 50;
+	int leaveCheckCount = 0;
 
 	Player exiting;
 
 	public EntranceTile(int x, int y, World world)
 	{
 		super(true, 0, Color.BLUE, x, y, 0, world);
-		cantExit();
 	}
 
 	@Override
@@ -29,55 +23,32 @@ public class EntranceTile extends Tile
 		// cant destroy me hahaha!
 	}
 
-	public void cantExit()
-	{
-		EntranceTile hold = this;
-		cannotLeaveYet = new Timer(10000, new ActionListener()
-		{
-
-			@Override
-			public void actionPerformed(ActionEvent e)
-			{
-				cannotLeaveYet.stop();
-				hold.checkExit();
-			}
-
-		});
-		cannotLeaveYet.start();
-	}
-
-	public void checkExit()
-	{
-		EntranceTile hold = this;
-		checkForPlayer = new Timer(500, new ActionListener()
-		{
-
-			@Override
-			public void actionPerformed(ActionEvent e)
-			{
-				hold.exiting = world.detectPlayer(hold.c, hold.r, .5);
-				if (hold.exiting != null)
-				{
-					hold.playerLeaves(hold.exiting);
-				}
-			}
-
-		});
-		checkForPlayer.start();
-	}
-
 	public void playerLeaves(Player left)
 	{
 		world.getEndText()[world.getPlayers().indexOf(left)] = "Left Safely!";
 		world.playerDeath(left);
 	}
 
-	public void removeTile()
+	@Override
+	public void onTick()
 	{
-		cannotLeaveYet.stop();
-		if (checkForPlayer != null)
+		if (leaveDelay > 0)
 		{
-			checkForPlayer.stop();
+			leaveDelay--;
+			return;
+		}
+		if (leaveCheckCount < leaveCheckDelay)
+		{
+			leaveCheckCount++;
+		}
+		else
+		{
+			exiting = world.detectPlayer(c, r, .5);
+			if (exiting != null)
+			{
+				playerLeaves(exiting);
+			}
+			leaveCheckCount = 0;
 		}
 	}
 
