@@ -23,7 +23,7 @@ public class BombItem extends Item
 		if (countDown < 0)
 		{
 			world.clearArea(d.getX(), d.getY(), 3.5, 15);
-			System.out.println(d.getX() + " " + d.getY() + " bomb BOOM!");
+			//System.out.println(d.getX() + " " + d.getY() + " bomb BOOM!");
 			world.itemDeath(this);
 		}
 	}

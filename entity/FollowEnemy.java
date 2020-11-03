@@ -55,44 +55,43 @@ public class FollowEnemy extends Enemy
 			vY = 1;
 			sleepNumber = getTilesPriority(x + 1, y + 1);
 		}
-		if (getTilesPriority(x + 1, y - 1) < sleepNumber)
+		else if (getTilesPriority(x + 1, y - 1) < sleepNumber)
 		{
 			vX = 1;
 			vY = -1;
 			sleepNumber = getTilesPriority(x + 1, y - 1);
 		}
-		if (getTilesPriority(x - 1, y + 1) < sleepNumber)
+		else if (getTilesPriority(x - 1, y + 1) < sleepNumber)
 		{
 			vX = -1;
 			vY = 1;
 			sleepNumber = getTilesPriority(x - 1, y + 1);
 		}
-		if (getTilesPriority(x - 1, y - 1) < sleepNumber)
+		else if (getTilesPriority(x - 1, y - 1) < sleepNumber)
 		{
 			vX = -1;
 			vY = -1;
 			sleepNumber = getTilesPriority(x - 1, y - 1);
 		}
-
-		if (getTilesPriority(x + 1, y) < sleepNumber)
+		else if (getTilesPriority(x + 1, y) < sleepNumber)
 		{
 			vX = 1;
 			vY = 0;
 			sleepNumber = getTilesPriority(x + 1, y + 1);
 		}
-		if (getTilesPriority(x, y - 1) < sleepNumber)
+		else if (getTilesPriority(x, y - 1) < sleepNumber)
 		{
 			vX = 0;
 			vY = -1;
 			sleepNumber = getTilesPriority(x + 1, y - 1);
 		}
-		if (getTilesPriority(x - 1, y) < sleepNumber)
+		else if (getTilesPriority(x - 1, y) < sleepNumber)
 		{
 			vX = -1;
 			vY = 0;
 			sleepNumber = getTilesPriority(x - 1, y + 1);
 		}
-		if (getTilesPriority(x, y + 1) < sleepNumber)
+		else if (getTilesPriority(x, y + 1) < sleepNumber)
 		{
 			vX = 0;
 			vY = 1;
